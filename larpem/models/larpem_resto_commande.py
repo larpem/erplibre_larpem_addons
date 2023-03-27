@@ -5,6 +5,8 @@ class LarpemRestoCommande(models.Model):
     _name = "larpem.resto.commande"
     _description = "Restaurant LARPEM"
 
+    # TODO support merge
+
     name = fields.Many2one(
         comodel_name='larpem.personnage', string="Identifiant commande", help="Mot pour reconnaître le client.")
 

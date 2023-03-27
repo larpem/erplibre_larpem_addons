@@ -13,3 +13,5 @@ larpem_system_point_access_user_types_/_internal_user,larpem_system_point Access
 larpem_system_point_access_user_types_/_portal,larpem_system_point Access User types / Portal,model_larpem_system_point,base.group_portal,1,1,1,1
 larpem_resto_commande_user_types_/_internal_user,larpem_resto_commande Access User types / Internal User,model_larpem_resto_commande,base.group_user,1,1,1,1
 larpem_resto_commande_user_types_/_portal,larpem_resto_commande Access User types / Portal,model_larpem_resto_commande,base.group_portal,1,1,1,1
+larpem_resto_repas_user_types_/_internal_user,larpem_resto_repas Access User types / Internal User,model_larpem_resto_repas,base.group_user,1,1,1,1
+larpem_resto_repas_user_types_/_portal,larpem_resto_repas Access User types / Portal,model_larpem_resto_repas,base.group_portal,1,1,1,1

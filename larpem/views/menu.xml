@@ -30,6 +30,14 @@
     />
 
     <menuitem
+        id="resto_repas_menu"
+        name="Repas du restaurant"
+        action="larpem_resto_repas_action_window"
+        sequence="1"
+        parent="restaurant"
+    />
+
+    <menuitem
         id="banque_transaction"
         name="Banque transaction"
         action="larpem_banque_transaction_banque_transaction_action_window"
