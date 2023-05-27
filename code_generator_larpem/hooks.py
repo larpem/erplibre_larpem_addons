@@ -252,6 +252,21 @@ def post_init_hook(cr, e):
         }
         code_generator_id.add_update_model_one2many(model_model, dct_field)
         # Generate view
+        value_snippet = {
+            "code_generator_id": code_generator_id.id,
+            "controller_feature": "model_show_item_list",
+            "enable_javascript": True,
+            # "limitation_item": 3,
+            "model_name": "larpem.manual",
+            # "model_short_name": "portal_time",
+            "name": "Larpem manual",
+            # "show_diff_time": True,
+            # "show_recent_item": True,
+            "snippet_type": "structure",
+            # "debug_doc": "case 4",
+        }
+        env["code.generator.snippet"].create(value_snippet)
+
         # Action generate view
         wizard_view = env["code.generator.generate.views.wizard"].create(
             {

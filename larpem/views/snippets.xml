@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Snippets -->
+    <template id="s_larpem_larpem_manual" name="Larpem Larpem Manual">
+        <section class="o_larpem_larpem_manual oe_snippet_body">
+            <div class="container" />
+        </section>
+    </template>
+    <!-- Add snippets to menu -->
+    <template id="snippet_structure" inherit_id="website.snippets">
+        <xpath expr="//div[@id='snippet_structure']/div[hasclass('o_panel_body')]" position="inside">
+            <t t-snippet="larpem.s_larpem_larpem_manual" t-thumbnail="/larpem/static/description/icon.png" />
+        </xpath>
+    </template>
+    <!-- Add stylesheet and Javascript -->
+    <template id="assets_frontend" inherit_id="website.assets_frontend">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/larpem/static/src/scss/larpem_larpem_manual.scss" />
+        </xpath>
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/larpem/static/src/js/website.larpem_larpem_manual.animation.js" />
+        </xpath>
+    </template>
+</odoo>

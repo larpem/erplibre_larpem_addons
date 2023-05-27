@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="larpem_manual_unit_larpem_manual" name="Larpem Manual">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <section class="pt32 pb32" t-if="not larpem_manual_id">
+                        <div class="container">
+                            <div class="row s_nb_column_fixed">
+                                <div class="col-lg-12 s_title pt16 pb16" style="text-align: center;">
+                                    <h1 class="s_title_default">
+                                        <font style="font-size: 62px;">larpem_manual_id non existante</font>
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section
+                        t-if="larpem_manual_id"
+                        class="s_cover parallax s_parallax_is_fixed bg-black-50 pt96 pb96 s_parallax_no_overflow_hidden"
+                        data-scroll-background-ratio="1"
+                        style="background-image: none;"
+                    >
+                        <span
+                            class="s_parallax_bg oe_img_bg oe_custom_bg"
+                            style="background-image: url('/web/image/website.s_cover_default_image'); background-position: 50% 0;"
+                        />
+                        <div class="container">
+                            <div class="row s_nb_column_fixed">
+                                <div class="col-lg-12 s_title" data-name="Title">
+                                    <h1
+                                        class="s_title_thin"
+                                        style="font-size: 62px; text-align: center;"
+                                        t-field="larpem_manual_id.name"
+                                        t-if="larpem_manual_id.name"
+                                    />
+                                    <h1
+                                        class="s_title_thin"
+                                        style="font-size: 62px; text-align: center;"
+                                        t-if="not larpem_manual_id.name"
+                                    >
+                                        EMPTY
+                                    </h1>
+                                </div>
+                                <div class="col-lg-12 s_text pt16 pb16" data-name="Text" t-if="larpem_manual_id.admin">
+                                    <p
+                                        class="lead o_default_snippet_text"
+                                        style="text-align: center;"
+                                        t-field="larpem_manual_id.admin"
+                                    />
+                                </div>
+                                <div
+                                    class="col-lg-12 s_text pt16 pb16"
+                                    data-name="Text"
+                                    t-if="larpem_manual_id.bullet_description"
+                                >
+                                    <p
+                                        class="lead o_default_snippet_text"
+                                        style="text-align: center;"
+                                        t-field="larpem_manual_id.bullet_description"
+                                    />
+                                </div>
+                                <div
+                                    class="col-lg-12 s_text pt16 pb16"
+                                    data-name="Text"
+                                    t-if="larpem_manual_id.description"
+                                >
+                                    <p
+                                        class="lead o_default_snippet_text"
+                                        style="text-align: center;"
+                                        t-field="larpem_manual_id.description"
+                                    />
+                                </div>
+                                <div
+                                    class="col-lg-12 s_text pt16 pb16"
+                                    data-name="Text"
+                                    t-if="larpem_manual_id.enfant_id"
+                                >
+                                    <p
+                                        class="lead o_default_snippet_text"
+                                        style="text-align: center;"
+                                        t-field="larpem_manual_id.enfant_id"
+                                    />
+                                </div>
+                                <div
+                                    class="col-lg-12 s_text pt16 pb16"
+                                    data-name="Text"
+                                    t-if="larpem_manual_id.hide_player"
+                                >
+                                    <p
+                                        class="lead o_default_snippet_text"
+                                        style="text-align: center;"
+                                        t-field="larpem_manual_id.hide_player"
+                                    />
+                                </div>
+                                <div class="col-lg-12 s_text pt16 pb16" data-name="Text" t-if="larpem_manual_id.key">
+                                    <p
+                                        class="lead o_default_snippet_text"
+                                        style="text-align: center;"
+                                        t-field="larpem_manual_id.key"
+                                    />
+                                </div>
+                                <div class="col-lg-12 s_text pt16 pb16" data-name="Text" t-if="larpem_manual_id.model">
+                                    <p
+                                        class="lead o_default_snippet_text"
+                                        style="text-align: center;"
+                                        t-field="larpem_manual_id.model"
+                                    />
+                                </div>
+                                <div
+                                    class="col-lg-12 s_text pt16 pb16"
+                                    data-name="Text"
+                                    t-if="larpem_manual_id.parent_id"
+                                >
+                                    <p
+                                        class="lead o_default_snippet_text"
+                                        style="text-align: center;"
+                                        t-field="larpem_manual_id.parent_id"
+                                    />
+                                </div>
+                                <div class="col-lg-12 s_text pt16 pb16" data-name="Text" t-if="larpem_manual_id.point">
+                                    <p
+                                        class="lead o_default_snippet_text"
+                                        style="text-align: center;"
+                                        t-field="larpem_manual_id.point"
+                                    />
+                                </div>
+                                <div
+                                    class="col-lg-12 s_text pt16 pb16"
+                                    data-name="Text"
+                                    t-if="larpem_manual_id.second_bullet_description"
+                                >
+                                    <p
+                                        class="lead o_default_snippet_text"
+                                        style="text-align: center;"
+                                        t-field="larpem_manual_id.second_bullet_description"
+                                    />
+                                </div>
+                                <div
+                                    class="col-lg-12 s_text pt16 pb16"
+                                    data-name="Text"
+                                    t-if="larpem_manual_id.sub_key"
+                                >
+                                    <p
+                                        class="lead o_default_snippet_text"
+                                        style="text-align: center;"
+                                        t-field="larpem_manual_id.sub_key"
+                                    />
+                                </div>
+                                <div class="col-lg-12 s_text pt16 pb16" data-name="Text" t-if="larpem_manual_id.title">
+                                    <p
+                                        class="lead o_default_snippet_text"
+                                        style="text-align: center;"
+                                        t-field="larpem_manual_id.title"
+                                    />
+                                </div>
+                                <div
+                                    class="col-lg-12 s_text pt16 pb16"
+                                    data-name="Text"
+                                    t-if="larpem_manual_id.under_level_color"
+                                >
+                                    <p
+                                        class="lead o_default_snippet_text"
+                                        style="text-align: center;"
+                                        t-field="larpem_manual_id.under_level_color"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="larpem_manual_list_larpem_manual" name="Larpem Manual List">
+        <t t-ignore="true">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 s_col_no_bgcolor pb24">
+                        <div class="row" t-if="larpem_manual_s">
+                            <div t-foreach="larpem_manual_s" t-as="larpem_manual">
+                                <a t-if="larpem_manual" t-att-href="'/larpem/larpem_manual/%d' % larpem_manual.id">
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <i class="fa fa-2x fa-files-o rounded-circle bg-primary s_features_grid_icon" />
+                                        <div class="s_features_grid_content">
+                                            <h4
+                                                t-if="larpem_manual.name"
+                                                class="o_default_snippet_text"
+                                                t-field="larpem_manual.name"
+                                            />
+                                            <h4 t-if="not larpem_manual.name" class="o_default_snippet_text">EMPTY</h4>
+                                            <p
+                                                t-if="larpem_manual.admin"
+                                                class="o_default_snippet_text"
+                                                t-field="larpem_manual.admin"
+                                            />
+                                            <p
+                                                t-if="larpem_manual.bullet_description"
+                                                class="o_default_snippet_text"
+                                                t-field="larpem_manual.bullet_description"
+                                            />
+                                            <p
+                                                t-if="larpem_manual.description"
+                                                class="o_default_snippet_text"
+                                                t-field="larpem_manual.description"
+                                            />
+                                            <p
+                                                t-if="larpem_manual.enfant_id"
+                                                class="o_default_snippet_text"
+                                                t-field="larpem_manual.enfant_id"
+                                            />
+                                            <p
+                                                t-if="larpem_manual.hide_player"
+                                                class="o_default_snippet_text"
+                                                t-field="larpem_manual.hide_player"
+                                            />
+                                            <p
+                                                t-if="larpem_manual.key"
+                                                class="o_default_snippet_text"
+                                                t-field="larpem_manual.key"
+                                            />
+                                            <p
+                                                t-if="larpem_manual.model"
+                                                class="o_default_snippet_text"
+                                                t-field="larpem_manual.model"
+                                            />
+                                            <p
+                                                t-if="larpem_manual.parent_id"
+                                                class="o_default_snippet_text"
+                                                t-field="larpem_manual.parent_id"
+                                            />
+                                            <p
+                                                t-if="larpem_manual.point"
+                                                class="o_default_snippet_text"
+                                                t-field="larpem_manual.point"
+                                            />
+                                            <p
+                                                t-if="larpem_manual.second_bullet_description"
+                                                class="o_default_snippet_text"
+                                                t-field="larpem_manual.second_bullet_description"
+                                            />
+                                            <p
+                                                t-if="larpem_manual.sub_key"
+                                                class="o_default_snippet_text"
+                                                t-field="larpem_manual.sub_key"
+                                            />
+                                            <p
+                                                t-if="larpem_manual.title"
+                                                class="o_default_snippet_text"
+                                                t-field="larpem_manual.title"
+                                            />
+                                            <p
+                                                t-if="larpem_manual.under_level_color"
+                                                class="o_default_snippet_text"
+                                                t-field="larpem_manual.under_level_color"
+                                            />
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row" t-if="not larpem_manual_s">Aucune larpem_manual disponible.</div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

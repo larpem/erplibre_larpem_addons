@@ -10,6 +10,8 @@
         "views/larpem_manual.xml",
         "views/larpem_system_point.xml",
         "views/menu.xml",
+        "views/snippets.xml",
+        "templates/website.xml",
     ],
     "installable": True,
 }
