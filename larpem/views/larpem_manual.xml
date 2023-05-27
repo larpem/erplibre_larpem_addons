@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="larpem_manual_view_form" model="ir.ui.view">
+        <field name="name">larpem_manual_form</field>
+        <field name="model">larpem.manual</field>
+        <field name="arch" type="xml">
+            <form string="Titre">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                    </group>
+                    <group>
+                        <field name="admin" />
+                    </group>
+                    <group>
+                        <field name="bullet_description" />
+                    </group>
+                    <group>
+                        <field name="description" />
+                    </group>
+                    <group>
+                        <field name="hide_player" />
+                    </group>
+                    <group>
+                        <field name="key" />
+                    </group>
+                    <group>
+                        <field name="level" />
+                    </group>
+                    <group>
+                        <field name="model" />
+                    </group>
+                    <group>
+                        <field name="point" />
+                    </group>
+                    <group>
+                        <field name="second_bullet_description" />
+                    </group>
+                    <group>
+                        <field name="sub_key" />
+                    </group>
+                    <group>
+                        <field name="title" />
+                    </group>
+                    <group>
+                        <field name="under_level_color" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="larpem_manual_view_graph" model="ir.ui.view">
+        <field name="name">larpem_manual_graph</field>
+        <field name="model">larpem.manual</field>
+        <field name="arch" type="xml">
+            <graph string="Larpem manual">
+                <field name="name" type="row" />
+                <field name="admin" type="row" />
+                <field name="bullet_description" type="row" />
+                <field name="description" type="row" />
+                <field name="hide_player" type="row" />
+                <field name="key" type="row" />
+                <field name="level" type="measure" />
+                <field name="model" type="row" />
+                <field name="point" type="row" />
+                <field name="second_bullet_description" type="row" />
+                <field name="sub_key" type="row" />
+                <field name="title" type="row" />
+                <field name="under_level_color" type="row" />
+            </graph>
+        </field>
+    </record>
+
+    <record id="larpem_manual_view_kanban" model="ir.ui.view">
+        <field name="name">larpem_manual_kanban</field>
+        <field name="model">larpem.manual</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="name" />
+                <field name="admin" />
+                <field name="bullet_description" />
+                <field name="description" />
+                <field name="hide_player" />
+                <field name="key" />
+                <field name="level" />
+                <field name="model" />
+                <field name="point" />
+                <field name="second_bullet_description" />
+                <field name="sub_key" />
+                <field name="title" />
+                <field name="under_level_color" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <ul>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="name" />
+                                        </strong>
+                                    </li>
+                                    <li class="text-success float-right mb4" t-if="record.admin.raw_value">
+                                        <i aria-label="Ok" class="fa fa-circle" role="img" title="Ok" />
+                                    </li>
+                                    <li class="text-danger float-right mb4" t-if="!record.admin.raw_value">
+                                        <i aria-label="Invalid" class="fa fa-circle" role="img" title="Invalid" />
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="bullet_description" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="description" />
+                                        </strong>
+                                    </li>
+                                    <li class="text-success float-right mb4" t-if="record.hide_player.raw_value">
+                                        <i aria-label="Ok" class="fa fa-circle" role="img" title="Ok" />
+                                    </li>
+                                    <li class="text-danger float-right mb4" t-if="!record.hide_player.raw_value">
+                                        <i aria-label="Invalid" class="fa fa-circle" role="img" title="Invalid" />
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="key" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="level" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="model" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="point" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="second_bullet_description" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="sub_key" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="title" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="under_level_color" />
+                                        </strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="larpem_manual_view_pivot" model="ir.ui.view">
+        <field name="name">larpem_manual_pivot</field>
+        <field name="model">larpem.manual</field>
+        <field name="arch" type="xml">
+            <pivot string="Larpem manual">
+                <field name="name" type="row" />
+                <field name="admin" type="row" />
+                <field name="bullet_description" type="row" />
+                <field name="description" type="row" />
+                <field name="hide_player" type="row" />
+                <field name="key" type="row" />
+                <field name="level" type="measure" />
+                <field name="model" type="row" />
+                <field name="point" type="row" />
+                <field name="second_bullet_description" type="row" />
+                <field name="sub_key" type="row" />
+                <field name="title" type="row" />
+                <field name="under_level_color" type="row" />
+            </pivot>
+        </field>
+    </record>
+
+    <record id="larpem_manual_view_search" model="ir.ui.view">
+        <field name="name">larpem_manual_search</field>
+        <field name="model">larpem.manual</field>
+        <field name="arch" type="xml">
+            <search string="Larpem manual">
+                <filter domain="[('name','!=',False)]" name="name" string="Name" />
+                <filter domain="[('admin','=',True)]" name="admin" string="Admin seulement" />
+                <filter
+                    domain="[('bullet_description','!=',False)]"
+                    name="bullet_description"
+                    string="Bullet Description"
+                />
+                <filter domain="[('description','!=',False)]" name="description" string="Description" />
+                <filter domain="[('hide_player','=',True)]" name="hide_player" string="Hide Player" />
+                <filter domain="[('key','!=',False)]" name="key" string="Key" />
+                <filter domain="[('level','!=',False)]" name="level" string="Level" />
+                <filter domain="[('model','!=',False)]" name="model" string="Model" />
+                <filter domain="[('point','!=',False)]" name="point" string="Point" />
+                <filter
+                    domain="[('second_bullet_description','!=',False)]"
+                    name="second_bullet_description"
+                    string="Second Bullet Description"
+                />
+                <filter domain="[('sub_key','!=',False)]" name="sub_key" string="Sub Key" />
+                <filter domain="[('title','!=',False)]" name="title" string="Title" />
+                <filter
+                    domain="[('under_level_color','!=',False)]"
+                    name="under_level_color"
+                    string="Under Level Color"
+                />
+            </search>
+        </field>
+    </record>
+
+    <record id="larpem_manual_view_tree" model="ir.ui.view">
+        <field name="name">larpem_manual_tree</field>
+        <field name="model">larpem.manual</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="admin" />
+                <field name="bullet_description" />
+                <field name="description" />
+                <field name="hide_player" />
+                <field name="key" />
+                <field name="level" />
+                <field name="model" />
+                <field name="point" />
+                <field name="second_bullet_description" />
+                <field name="sub_key" />
+                <field name="title" />
+                <field name="under_level_color" />
+            </tree>
+        </field>
+    </record>
+
+    <act_window
+        id="larpem_manual_manual_action_window"
+        name="Manual"
+        res_model="larpem.manual"
+        view_mode="kanban,tree,pivot,graph,form"
+    />
+</odoo>

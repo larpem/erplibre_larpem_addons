@@ -1,11 +1,11 @@
 from odoo import _, api, fields, models
 
 
-class LarpemSystemPoint(models.Model):
+class LarpemManual(models.Model):
     _name = "larpem.manual"
     _description = "Manuel utilisateur et administrateur"
 
-    name = fields.Char(string="")
+    name = fields.Char()
 
     level = fields.Integer()
 

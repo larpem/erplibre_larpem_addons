@@ -10,11 +10,13 @@
 
     <!--Child menu-->
 
+    <menuitem id="manual" name="Manual" action="larpem_manual_manual_action_window" sequence="1" parent="menu" />
+
     <menuitem
         id="system_point"
         name="System point"
         action="larpem_system_point_system_point_action_window"
-        sequence="1"
+        sequence="2"
         parent="menu"
     />
 </odoo>

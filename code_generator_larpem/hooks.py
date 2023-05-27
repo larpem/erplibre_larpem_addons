@@ -52,6 +52,90 @@ def post_init_hook(cr, e):
 
         code_generator_id = env["code.generator.module"].create(value)
 
+        # Add/Update Larpem Manual
+        model_model = "larpem.manual"
+        model_name = "larpem_manual"
+        dct_model = {
+            "description": "Manuel utilisateur et administrateur",
+        }
+        dct_field = {
+            "admin": {
+                "code_generator_sequence": 4,
+                "field_description": "Admin seulement",
+                "help": (
+                    "Cette information est seulement pour les organisateurs du"
+                    " jeu."
+                ),
+                "ttype": "boolean",
+            },
+            "bullet_description": {
+                "code_generator_sequence": 8,
+                "field_description": "Bullet Description",
+                "ttype": "char",
+            },
+            "description": {
+                "code_generator_sequence": 7,
+                "field_description": "Description",
+                "ttype": "char",
+            },
+            "hide_player": {
+                "code_generator_sequence": 14,
+                "field_description": "Hide Player",
+                "ttype": "boolean",
+            },
+            "key": {
+                "code_generator_sequence": 5,
+                "field_description": "Key",
+                "ttype": "char",
+            },
+            "level": {
+                "code_generator_sequence": 3,
+                "field_description": "Level",
+                "ttype": "integer",
+            },
+            "model": {
+                "code_generator_sequence": 12,
+                "field_description": "Model",
+                "ttype": "char",
+            },
+            "name": {
+                "code_generator_sequence": 2,
+                "field_description": "Name",
+                "ttype": "char",
+            },
+            "point": {
+                "code_generator_sequence": 13,
+                "field_description": "Point",
+                "ttype": "char",
+            },
+            "second_bullet_description": {
+                "code_generator_sequence": 9,
+                "field_description": "Second Bullet Description",
+                "ttype": "char",
+            },
+            "sub_key": {
+                "code_generator_sequence": 11,
+                "field_description": "Sub Key",
+                "ttype": "char",
+            },
+            "title": {
+                "code_generator_sequence": 6,
+                "field_description": "Title",
+                "ttype": "char",
+            },
+            "under_level_color": {
+                "code_generator_sequence": 10,
+                "field_description": "Under Level Color",
+                "ttype": "char",
+            },
+        }
+        model_larpem_manual = code_generator_id.add_update_model(
+            model_model,
+            model_name,
+            dct_field=dct_field,
+            dct_model=dct_model,
+        )
+
         # Add/Update Larpem System Point
         model_model = "larpem.system_point"
         model_name = "larpem_system_point"
@@ -67,6 +151,9 @@ def post_init_hook(cr, e):
             "formule": {
                 "code_generator_sequence": 8,
                 "field_description": "Formule",
+                "help": (
+                    "Formule is an algorithm in Javascript to calculate value."
+                ),
                 "ttype": "char",
             },
             "hide_value": {
@@ -117,7 +204,7 @@ def post_init_hook(cr, e):
                 "field_description": "Type",
                 "required": True,
                 "selection": (
-                    "[('attribut', 'Attribut'), ('ressource', 'Ressource')]"
+                    "[('Attribut', 'Attribut'), ('Ressource', 'Ressource')]"
                 ),
                 "ttype": "selection",
             },
