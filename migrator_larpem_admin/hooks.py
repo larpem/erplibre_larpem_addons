@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 import time
@@ -19,6 +20,11 @@ def post_init_hook(cr, e):
             os.path.dirname(__file__), "client_secret.json"
         )
         file_url = ""
+        path_db_json = os.path.join(os.path.dirname(__file__), "tl_user.json")
+        if not os.path.isfile(path_client_secret):
+            raise Exception(f"Missing file {path_client_secret}")
+        if not os.path.isfile(path_db_json):
+            raise Exception(f"Missing file {path_db_json}")
 
         before_time = time.process_time()
 
@@ -60,6 +66,39 @@ def post_init_hook(cr, e):
         lst_manual = document.get("manual")
         for dct_manual in lst_manual:
             add_manual_section(env, dct_manual)
+
+        _logger.info("Import data from user database")
+        # Import user data
+        with open(path_db_json, "r") as f:
+            data = json.load(f)
+        db_user = data.get("_default")
+        for dct_user in db_user.values():
+            name = dct_user.get("name")
+            email = dct_user.get("email")
+            if email:
+                # _logger.warning(f"Missing email for user {name}. Ignore it")
+                # continue
+                user_id = env["res.users"].create(
+                    {
+                        "name": name,
+                        "login": email,
+                        "email": email,
+                        "groups_id": [
+                            (6, 0, [env.ref("base.group_portal").id])
+                        ],
+                    }
+                )
+                partner_id = user_id.partner_id
+            else:
+                # Don't create user, only the contact information
+                partner_id = env["res.partner"].create(
+                    {
+                        "name": name,
+                    }
+                )
+            zip_str = dct_user.get("postal_code")
+            if zip_str:
+                partner_id.zip = zip_str
 
         after_time = time.process_time()
         _logger.info(

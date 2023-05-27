@@ -10,20 +10,18 @@ odoo.define("larpem_larpem_manual.animation", function (require) {
             let self = this;
             this._eventList = this.$(".container");
             this._originalContent = this._eventList[0].outerHTML;
-            let def = this._rpc({ route: "/larpem/larpem_manual_list" }).then(
-                function (data) {
-                    if (data.error) {
-                        return;
-                    }
-
-                    if (_.isEmpty(data)) {
-                        return;
-                    }
-
-                    self._$loadedContent = $(data);
-                    self._eventList.replaceWith(self._$loadedContent);
+            let def = this._rpc({route: "/larpem/larpem_manual_list"}).then(function (data) {
+                if (data.error) {
+                    return;
                 }
-            );
+
+                if (_.isEmpty(data)) {
+                    return;
+                }
+
+                self._$loadedContent = $(data);
+                self._eventList.replaceWith(self._$loadedContent);
+            });
 
             return $.when(this._super.apply(this, arguments), def);
         },
