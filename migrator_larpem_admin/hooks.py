@@ -72,6 +72,36 @@ def add_manual_section(env, dct_manual, parent_id=None):
     dct_value = {}
     if "title" in dct_manual.keys():
         dct_value["title"] = dct_manual.get("title")
+    if "title_html" in dct_manual.keys():
+        dct_value["title_html"] = dct_manual.get("title_html")
+    if "sub_key" in dct_manual.keys():
+        dct_value["sub_key"] = dct_manual.get("sub_key")
+    if "model" in dct_manual.keys():
+        dct_value["model"] = dct_manual.get("model")
+    if "admin" in dct_manual.keys():
+        dct_value["admin"] = dct_manual.get("admin")
+    if "hide_player" in dct_manual.keys():
+        dct_value["hide_player"] = dct_manual.get("hide_player")
+    if "point" in dct_manual.keys():
+        # TODO need to change
+        dct_value["point"] = dct_manual.get("point")
+    if "description" in dct_manual.keys():
+        # TODO check double list, it's a bullet point
+        dct_value["description"] = (
+            str(dct_manual.get("description"))
+            .replace("['", "")
+            .replace("']", "\n")
+            .replace("[", "")
+            .replace("]", "\n")
+        )
+        # try:
+        #     dct_value["description"] = "\n".join(dct_manual.get("description"))
+        # except Exception as e:
+        #     # Suppose double list
+        #     try:
+        #         dct_value["description"] = "\n".join(["\n".join(a) if type(a) is list else a for a in dct_manual.get("description")])
+        #     except Exception as e:
+        #         print(e)
     if parent_id:
         dct_value["parent_id"] = parent_id.id
 

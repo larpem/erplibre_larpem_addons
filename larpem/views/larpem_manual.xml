@@ -40,7 +40,7 @@
                         <field name="sub_key" />
                     </group>
                     <group>
-                        <field name="title" />
+                        <field name="title_html" />
                     </group>
                     <group>
                         <field name="under_level_color" />
@@ -70,6 +70,7 @@
                 <field name="second_bullet_description" type="row" />
                 <field name="sub_key" type="row" />
                 <field name="title" type="row" />
+                <field name="title_html" type="row" />
                 <field name="under_level_color" type="row" />
             </graph>
         </field>
@@ -92,6 +93,7 @@
                 <field name="second_bullet_description" />
                 <field name="sub_key" />
                 <field name="title" />
+                <field name="title_html" />
                 <field name="under_level_color" />
                 <field name="enfant_id" />
                 <templates>
@@ -163,6 +165,11 @@
                                     </li>
                                     <li class="mb4">
                                         <strong>
+                                            <field name="title_html" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
                                             <field name="under_level_color" />
                                         </strong>
                                     </li>
@@ -197,6 +204,7 @@
                 <field name="second_bullet_description" type="row" />
                 <field name="sub_key" type="row" />
                 <field name="title" type="row" />
+                <field name="title_html" type="row" />
                 <field name="under_level_color" type="row" />
             </pivot>
         </field>
@@ -227,12 +235,16 @@
                 />
                 <filter domain="[('sub_key','!=',False)]" name="sub_key" string="Sub Key" />
                 <filter domain="[('title','!=',False)]" name="title" string="Title" />
+                <filter domain="[('title_html','!=',False)]" name="title_html" string="Title HTML" />
                 <filter
                     domain="[('under_level_color','!=',False)]"
                     name="under_level_color"
                     string="Under Level Color"
                 />
                 <filter domain="[('enfant_id','!=',False)]" name="enfant_id" string="Enfant" />
+                <group expand="0" name="group_by" string="Group By">
+                    <filter name="group_level_1" string="Section manuel" context="{'group_by': 'parent_id'}" />
+                </group>
             </search>
         </field>
     </record>
@@ -254,6 +266,7 @@
                 <field name="second_bullet_description" />
                 <field name="sub_key" />
                 <field name="title" />
+                <field name="title_html" />
                 <field name="under_level_color" />
                 <field name="enfant_id" />
             </tree>

@@ -30,7 +30,9 @@ class LarpemManual(models.Model):
 
     title = fields.Char()
 
-    description = fields.Char()
+    title_html = fields.Html()
+
+    description = fields.Text()
 
     bullet_description = fields.Char()
 
