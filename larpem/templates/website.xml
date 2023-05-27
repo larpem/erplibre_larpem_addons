@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <template id="larpem_manuel_unit_larpem_manuel" name="Larpem manuel">
+    <template id="larpem_manuel_unit_larpem_manuel" name="Larpem Manuel">
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="oe_structure">
@@ -184,7 +184,7 @@
             </div>
         </t>
     </template>
-    <template id="larpem_manuel_list_larpem_manuel" name="Larpem manuel List">
+    <template id="larpem_manuel_list_larpem_manuel" name="Larpem Manuel List">
         <t t-ignore="true">
             <div class="container">
                 <div class="row align-items-center">

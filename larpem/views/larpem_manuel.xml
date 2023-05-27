@@ -278,7 +278,7 @@
 
     <act_window
         id="larpem_manuel_manuel_action_window"
-        name="manuel"
+        name="Manuel"
         res_model="larpem.manuel"
         view_mode="kanban,tree,pivot,graph,form"
     />

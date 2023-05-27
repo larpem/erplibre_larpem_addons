@@ -52,7 +52,64 @@ def post_init_hook(cr, e):
 
         code_generator_id = env["code.generator.module"].create(value)
 
-        # Add/Update Larpem manuel
+        # Add/Update Larpem Banque
+        model_model = "larpem.banque"
+        model_name = "larpem_banque"
+        dct_model = {
+            "description": "Banque",
+        }
+        dct_field = {
+            "name": {
+                "code_generator_sequence": 2,
+                "field_description": "Name",
+                "ttype": "char",
+            },
+        }
+        model_larpem_banque = code_generator_id.add_update_model(
+            model_model,
+            model_name,
+            dct_field=dct_field,
+            dct_model=dct_model,
+        )
+
+        # Add/Update Larpem Banque Compte
+        model_model = "larpem.banque.compte"
+        model_name = "larpem_banque_compte"
+        dct_model = {
+            "description": "Compte bancaire",
+        }
+        dct_field = {
+            "banque_id": {
+                "code_generator_sequence": 3,
+                "field_description": "Banque",
+                "relation": "larpem.banque",
+                "ttype": "many2one",
+            },
+            "name": {
+                "code_generator_sequence": 2,
+                "field_description": "Name",
+                "ttype": "char",
+            },
+            "personnage_id": {
+                "code_generator_sequence": 4,
+                "field_description": "Personnage",
+                "relation": "larpem.personnage",
+                "ttype": "many2one",
+            },
+            "total": {
+                "code_generator_sequence": 5,
+                "field_description": "Sommaire du compte",
+                "ttype": "float",
+            },
+        }
+        model_larpem_banque_compte = code_generator_id.add_update_model(
+            model_model,
+            model_name,
+            dct_field=dct_field,
+            dct_model=dct_model,
+        )
+
+        # Add/Update Larpem Manuel
         model_model = "larpem.manuel"
         model_name = "larpem_manuel"
         dct_model = {
@@ -164,6 +221,32 @@ def post_init_hook(cr, e):
             ]
             env["code.generator.model.code"].create(lst_value)
 
+        # Add/Update Larpem Personnage
+        model_model = "larpem.personnage"
+        model_name = "larpem_personnage"
+        dct_model = {
+            "description": "Personnage",
+        }
+        dct_field = {
+            "name": {
+                "code_generator_sequence": 2,
+                "field_description": "Name",
+                "ttype": "char",
+            },
+            "partner_id": {
+                "code_generator_sequence": 3,
+                "field_description": "Participant",
+                "relation": "res.partner",
+                "ttype": "many2one",
+            },
+        }
+        model_larpem_personnage = code_generator_id.add_update_model(
+            model_model,
+            model_name,
+            dct_field=dct_field,
+            dct_model=dct_model,
+        )
+
         # Add/Update Larpem System Point
         model_model = "larpem.system_point"
         model_name = "larpem_system_point"
@@ -256,19 +339,27 @@ def post_init_hook(cr, e):
             },
         }
         code_generator_id.add_update_model_one2many(model_model, dct_field)
+
+        model_model = "larpem.personnage"
+        dct_field = {
+            "compte_bancaire_ids": {
+                "field_description": "Comptes bancaires",
+                "ttype": "one2many",
+                "code_generator_sequence": 4,
+                "relation": "larpem.banque.compte",
+                "relation_field": "personnage_id",
+            },
+        }
+        code_generator_id.add_update_model_one2many(model_model, dct_field)
+
         # Generate view
         value_snippet = {
             "code_generator_id": code_generator_id.id,
             "controller_feature": "model_show_item_list",
             "enable_javascript": True,
-            # "limitation_item": 3,
             "model_name": "larpem.manuel",
-            # "model_short_name": "portal_time",
             "name": "Larpem manuel",
-            # "show_diff_time": True,
-            # "show_recent_item": True,
             "snippet_type": "structure",
-            # "debug_doc": "case 4",
         }
         env["code.generator.snippet"].create(value_snippet)
 

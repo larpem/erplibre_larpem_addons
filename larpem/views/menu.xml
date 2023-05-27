@@ -10,13 +10,31 @@
 
     <!--Child menu-->
 
-    <menuitem id="manuel" name="manuel" action="larpem_manuel_manuel_action_window" sequence="1" parent="menu" />
+    <menuitem id="banque" name="Banque" action="larpem_banque_banque_action_window" sequence="1" parent="menu" />
+
+    <menuitem
+        id="banque_compte"
+        name="Banque compte"
+        action="larpem_banque_compte_banque_compte_action_window"
+        sequence="2"
+        parent="menu"
+    />
+
+    <menuitem id="manuel" name="Manuel" action="larpem_manuel_manuel_action_window" sequence="3" parent="menu" />
+
+    <menuitem
+        id="personnage"
+        name="Personnage"
+        action="larpem_personnage_personnage_action_window"
+        sequence="4"
+        parent="menu"
+    />
 
     <menuitem
         id="system_point"
         name="System point"
         action="larpem_system_point_system_point_action_window"
-        sequence="2"
+        sequence="5"
         parent="menu"
     />
 </odoo>

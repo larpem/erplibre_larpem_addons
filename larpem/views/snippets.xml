@@ -2,7 +2,7 @@
 <!-- License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <!-- Snippets -->
-    <template id="s_larpem_larpem_manuel" name="Larpem Larpem manuel">
+    <template id="s_larpem_larpem_manuel" name="Larpem Larpem Manuel">
         <section class="o_larpem_larpem_manuel oe_snippet_body">
             <div class="container" />
         </section>

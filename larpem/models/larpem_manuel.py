@@ -1,7 +1,7 @@
 from odoo import _, api, fields, models
 
 
-class Larpemmanuel(models.Model):
+class LarpemManuel(models.Model):
     _name = "larpem.manuel"
     _description = "Manuel utilisateur et administrateur"
 

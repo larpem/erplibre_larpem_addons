@@ -43,7 +43,10 @@ def post_init_hook(cr, e):
 
         # TODO HUMAN: enable your functionality to generate
         value["enable_template_code_generator_demo"] = False
-        value["template_model_name"] = "larpem.manuel; larpem.system_point"
+        value["template_model_name"] = (
+            "larpem.banque; larpem.banque.compte; larpem.manuel;"
+            " larpem.personnage; larpem.system_point"
+        )
         value["template_inherit_model_name"] = ""
         value[
             "template_module_path_generated_extension"

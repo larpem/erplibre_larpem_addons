@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="larpem_banque_compte_view_form" model="ir.ui.view">
+        <field name="name">larpem_banque_compte_form</field>
+        <field name="model">larpem.banque.compte</field>
+        <field name="arch" type="xml">
+            <form string="Titre">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                    </group>
+                    <group>
+                        <field name="banque_id" />
+                    </group>
+                    <group>
+                        <field name="personnage_id" />
+                    </group>
+                    <group>
+                        <field name="total" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="larpem_banque_compte_view_graph" model="ir.ui.view">
+        <field name="name">larpem_banque_compte_graph</field>
+        <field name="model">larpem.banque.compte</field>
+        <field name="arch" type="xml">
+            <graph string="Larpem banque compte">
+                <field name="name" type="row" />
+                <field name="banque_id" type="row" />
+                <field name="personnage_id" type="row" />
+                <field name="total" type="measure" />
+            </graph>
+        </field>
+    </record>
+
+    <record id="larpem_banque_compte_view_kanban" model="ir.ui.view">
+        <field name="name">larpem_banque_compte_kanban</field>
+        <field name="model">larpem.banque.compte</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="name" />
+                <field name="banque_id" />
+                <field name="personnage_id" />
+                <field name="total" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <ul>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="name" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="banque_id" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="personnage_id" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="total" />
+                                        </strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="larpem_banque_compte_view_pivot" model="ir.ui.view">
+        <field name="name">larpem_banque_compte_pivot</field>
+        <field name="model">larpem.banque.compte</field>
+        <field name="arch" type="xml">
+            <pivot string="Larpem banque compte">
+                <field name="name" type="row" />
+                <field name="banque_id" type="row" />
+                <field name="personnage_id" type="row" />
+                <field name="total" type="measure" />
+            </pivot>
+        </field>
+    </record>
+
+    <record id="larpem_banque_compte_view_search" model="ir.ui.view">
+        <field name="name">larpem_banque_compte_search</field>
+        <field name="model">larpem.banque.compte</field>
+        <field name="arch" type="xml">
+            <search string="Larpem banque compte">
+                <filter domain="[('name','!=',False)]" name="name" string="Name" />
+                <filter domain="[('banque_id','!=',False)]" name="banque_id" string="Banque" />
+                <filter domain="[('personnage_id','!=',False)]" name="personnage_id" string="Personnage" />
+                <filter domain="[('total','!=',False)]" name="total" string="Sommaire du compte" />
+            </search>
+        </field>
+    </record>
+
+    <record id="larpem_banque_compte_view_tree" model="ir.ui.view">
+        <field name="name">larpem_banque_compte_tree</field>
+        <field name="model">larpem.banque.compte</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="banque_id" />
+                <field name="personnage_id" />
+                <field name="total" />
+            </tree>
+        </field>
+    </record>
+
+    <act_window
+        id="larpem_banque_compte_banque_compte_action_window"
+        name="Banque compte"
+        res_model="larpem.banque.compte"
+        view_mode="kanban,tree,pivot,graph,form"
+    />
+</odoo>
