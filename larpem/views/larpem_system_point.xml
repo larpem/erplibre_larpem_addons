@@ -10,10 +10,31 @@
                         <field name="name" />
                     </group>
                     <group>
-                        <field name="description" />
+                        <field name="explication" />
                     </group>
                     <group>
-                        <field name="explication" />
+                        <field name="formule" />
+                    </group>
+                    <group>
+                        <field name="hide_value" />
+                    </group>
+                    <group>
+                        <field name="identifiant" />
+                    </group>
+                    <group>
+                        <field name="init_value" />
+                    </group>
+                    <group>
+                        <field name="invisible" />
+                    </group>
+                    <group>
+                        <field name="max_value" />
+                    </group>
+                    <group>
+                        <field name="min_value" />
+                    </group>
+                    <group>
+                        <field name="required_value" />
                     </group>
                     <group>
                         <field name="type" />
@@ -29,8 +50,15 @@
         <field name="arch" type="xml">
             <graph string="Larpem system point">
                 <field name="name" type="row" />
-                <field name="description" type="row" />
                 <field name="explication" type="row" />
+                <field name="formule" type="row" />
+                <field name="hide_value" type="row" />
+                <field name="identifiant" type="row" />
+                <field name="init_value" type="measure" />
+                <field name="invisible" type="row" />
+                <field name="max_value" type="measure" />
+                <field name="min_value" type="measure" />
+                <field name="required_value" type="row" />
                 <field name="type" type="row" />
             </graph>
         </field>
@@ -42,8 +70,15 @@
         <field name="arch" type="xml">
             <kanban class="o_kanban_mobile">
                 <field name="name" />
-                <field name="description" />
                 <field name="explication" />
+                <field name="formule" />
+                <field name="hide_value" />
+                <field name="identifiant" />
+                <field name="init_value" />
+                <field name="invisible" />
+                <field name="max_value" />
+                <field name="min_value" />
+                <field name="required_value" />
                 <field name="type" />
                 <templates>
                     <t t-name="kanban-box">
@@ -57,13 +92,51 @@
                                     </li>
                                     <li class="mb4">
                                         <strong>
-                                            <field name="description" />
+                                            <field name="explication" />
                                         </strong>
                                     </li>
                                     <li class="mb4">
                                         <strong>
-                                            <field name="explication" />
+                                            <field name="formule" />
                                         </strong>
+                                    </li>
+                                    <li class="text-success float-right mb4" t-if="record.hide_value.raw_value">
+                                        <i aria-label="Ok" class="fa fa-circle" role="img" title="Ok" />
+                                    </li>
+                                    <li class="text-danger float-right mb4" t-if="!record.hide_value.raw_value">
+                                        <i aria-label="Invalid" class="fa fa-circle" role="img" title="Invalid" />
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="identifiant" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="init_value" />
+                                        </strong>
+                                    </li>
+                                    <li class="text-success float-right mb4" t-if="record.invisible.raw_value">
+                                        <i aria-label="Ok" class="fa fa-circle" role="img" title="Ok" />
+                                    </li>
+                                    <li class="text-danger float-right mb4" t-if="!record.invisible.raw_value">
+                                        <i aria-label="Invalid" class="fa fa-circle" role="img" title="Invalid" />
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="max_value" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="min_value" />
+                                        </strong>
+                                    </li>
+                                    <li class="text-success float-right mb4" t-if="record.required_value.raw_value">
+                                        <i aria-label="Ok" class="fa fa-circle" role="img" title="Ok" />
+                                    </li>
+                                    <li class="text-danger float-right mb4" t-if="!record.required_value.raw_value">
+                                        <i aria-label="Invalid" class="fa fa-circle" role="img" title="Invalid" />
                                     </li>
                                     <li class="mb4">
                                         <strong>
@@ -85,8 +158,15 @@
         <field name="arch" type="xml">
             <pivot string="Larpem system point">
                 <field name="name" type="row" />
-                <field name="description" type="row" />
                 <field name="explication" type="row" />
+                <field name="formule" type="row" />
+                <field name="hide_value" type="row" />
+                <field name="identifiant" type="row" />
+                <field name="init_value" type="measure" />
+                <field name="invisible" type="row" />
+                <field name="max_value" type="measure" />
+                <field name="min_value" type="measure" />
+                <field name="required_value" type="row" />
                 <field name="type" type="row" />
             </pivot>
         </field>
@@ -97,9 +177,16 @@
         <field name="model">larpem.system_point</field>
         <field name="arch" type="xml">
             <search string="Larpem system point">
-                <filter domain="[('name','!=',False)]" name="name" string="Name" />
-                <filter domain="[('description','!=',False)]" name="description" string="description" />
+                <filter domain="[('name','!=',False)]" name="name" string="Description" />
                 <filter domain="[('explication','!=',False)]" name="explication" string="Explication" />
+                <filter domain="[('formule','!=',False)]" name="formule" string="Formule" />
+                <filter domain="[('hide_value','=',True)]" name="hide_value" string="Cache la valeur" />
+                <filter domain="[('identifiant','!=',False)]" name="identifiant" string="Identifiant" />
+                <filter domain="[('init_value','!=',False)]" name="init_value" string="Valeur initiale" />
+                <filter domain="[('invisible','=',True)]" name="invisible" string="Invisible" />
+                <filter domain="[('max_value','!=',False)]" name="max_value" string="Valeur maximal" />
+                <filter domain="[('min_value','!=',False)]" name="min_value" string="Valeur minimal" />
+                <filter domain="[('required_value','=',True)]" name="required_value" string="Valeur requise" />
                 <filter domain="[('type','!=',False)]" name="type" string="Type" />
             </search>
         </field>
@@ -111,8 +198,15 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name" />
-                <field name="description" />
                 <field name="explication" />
+                <field name="formule" />
+                <field name="hide_value" />
+                <field name="identifiant" />
+                <field name="init_value" />
+                <field name="invisible" />
+                <field name="max_value" />
+                <field name="min_value" />
+                <field name="required_value" />
                 <field name="type" />
             </tree>
         </field>

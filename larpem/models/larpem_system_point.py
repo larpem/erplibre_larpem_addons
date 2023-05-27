@@ -9,7 +9,7 @@ class LarpemSystemPoint(models.Model):
 
     identifiant = fields.Char()
 
-    explication = fields.Char(string="Explication")
+    explication = fields.Char()
 
     init_value = fields.Integer(string="Valeur initiale")
 
@@ -20,15 +20,16 @@ class LarpemSystemPoint(models.Model):
     formule = fields.Char()
 
     hide_value = fields.Boolean(
-        string="Cache la valeur", help="TODO à définir"
+        string="Cache la valeur",
+        help="TODO à définir",
     )
 
     required_value = fields.Boolean(string="Valeur requise")
 
-    invisible = fields.Boolean(string="Invisible", help="TODO à définir")
+    invisible = fields.Boolean(help="TODO à définir")
 
     type = fields.Selection(
-        [("attribut", "Attribut"), ("ressource", "Ressource")],
-        default="ressource",
+        selection=[("attribut", "Attribut"), ("ressource", "Ressource")],
         required=True,
+        default="ressource",
     )

@@ -1,6 +1,9 @@
+import logging
 import os
 
 from odoo import SUPERUSER_ID, _, api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 # TODO HUMAN: change my module_name to create a specific demo functionality
 MODULE_NAME = "code_generator_larpem"
@@ -16,15 +19,26 @@ def post_init_hook(cr, e):
         short_name = MODULE_NAME.replace("_", " ").title()
 
         # Add code generator
+        categ_id = env["ir.module.category"].search(
+            [("name", "=", "Uncategorized")], limit=1
+        )
         value = {
             "shortdesc": short_name,
             "name": MODULE_NAME,
             "license": "AGPL-3",
+            "category_id": categ_id.id,
+            "summary": "",
             "author": "TechnoLibre",
             "website": "https://technolibre.ca",
             "application": True,
             "enable_sync_code": True,
             "path_sync_code": path_module_generate,
+            "icon": os.path.join(
+                os.path.dirname(__file__),
+                "static",
+                "description",
+                "code_generator_icon.png",
+            ),
         }
 
         # TODO HUMAN: enable your functionality to generate

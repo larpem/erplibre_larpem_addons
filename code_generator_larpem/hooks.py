@@ -59,33 +59,67 @@ def post_init_hook(cr, e):
             "description": "Système de pointage de LARPEM",
         }
         dct_field = {
-            "description": {
-                "code_generator_form_simple_view_sequence": 11,
-                "code_generator_sequence": 3,
-                "code_generator_tree_view_sequence": 11,
-                "field_description": "description",
-                "ttype": "char",
-            },
             "explication": {
-                "code_generator_form_simple_view_sequence": 12,
                 "code_generator_sequence": 4,
-                "code_generator_tree_view_sequence": 12,
                 "field_description": "Explication",
                 "ttype": "char",
             },
-            "name": {
-                "code_generator_form_simple_view_sequence": 10,
-                "code_generator_sequence": 2,
-                "code_generator_tree_view_sequence": 10,
-                "field_description": "Name",
+            "formule": {
+                "code_generator_sequence": 8,
+                "field_description": "Formule",
                 "ttype": "char",
             },
-            "type": {
-                "code_generator_form_simple_view_sequence": 13,
-                "code_generator_sequence": 5,
-                "code_generator_tree_view_sequence": 13,
-                "field_description": "Type",
+            "hide_value": {
+                "code_generator_sequence": 9,
+                "field_description": "Cache la valeur",
+                "help": "TODO à définir",
+                "ttype": "boolean",
+            },
+            "identifiant": {
+                "code_generator_sequence": 3,
+                "field_description": "Identifiant",
                 "ttype": "char",
+            },
+            "init_value": {
+                "code_generator_sequence": 5,
+                "field_description": "Valeur initiale",
+                "ttype": "integer",
+            },
+            "invisible": {
+                "code_generator_sequence": 11,
+                "field_description": "Invisible",
+                "help": "TODO à définir",
+                "ttype": "boolean",
+            },
+            "max_value": {
+                "code_generator_sequence": 7,
+                "field_description": "Valeur maximal",
+                "ttype": "integer",
+            },
+            "min_value": {
+                "code_generator_sequence": 6,
+                "field_description": "Valeur minimal",
+                "ttype": "integer",
+            },
+            "name": {
+                "code_generator_sequence": 2,
+                "field_description": "Description",
+                "ttype": "char",
+            },
+            "required_value": {
+                "code_generator_sequence": 10,
+                "field_description": "Valeur requise",
+                "ttype": "boolean",
+            },
+            "type": {
+                "code_generator_sequence": 12,
+                "default": "ressource",
+                "field_description": "Type",
+                "required": True,
+                "selection": (
+                    "[('attribut', 'Attribut'), ('ressource', 'Ressource')]"
+                ),
+                "ttype": "selection",
             },
         }
         model_larpem_system_point = code_generator_id.add_update_model(
@@ -94,6 +128,17 @@ def post_init_hook(cr, e):
             dct_field=dct_field,
             dct_model=dct_model,
         )
+
+        # Generate view
+        # Action generate view
+        wizard_view = env["code.generator.generate.views.wizard"].create(
+            {
+                "code_generator_id": code_generator_id.id,
+                "enable_generate_all": True,
+            }
+        )
+
+        wizard_view.button_generate_views()
 
         # Generate module
         value = {"code_generator_ids": code_generator_id.ids}
