@@ -56,11 +56,29 @@ def post_init_hook(cr, e):
 
         env["larpem.system_point"].create(lst_system_point)
 
+        # manual
+        lst_manual = document.get("manual")
+        for dct_manual in lst_manual:
+            add_manual_section(env, dct_manual)
+
         after_time = time.process_time()
         _logger.info(
             "DEBUG time execution hook update model db before generate_module"
             f" {after_time - before_time}"
         )
+
+
+def add_manual_section(env, dct_manual, parent_id=None):
+    dct_value = {}
+    if "title" in dct_manual.keys():
+        dct_value["title"] = dct_manual.get("title")
+    if parent_id:
+        dct_value["parent_id"] = parent_id.id
+
+    manual_id = env["larpem.manual"].create(dct_value)
+    if "section" in dct_manual.keys():
+        for section in dct_manual.get("section"):
+            add_manual_section(env, section, parent_id=manual_id)
 
 
 def uninstall_hook(cr, e):

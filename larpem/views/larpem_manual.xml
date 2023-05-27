@@ -25,10 +25,10 @@
                         <field name="key" />
                     </group>
                     <group>
-                        <field name="level" />
+                        <field name="model" />
                     </group>
                     <group>
-                        <field name="model" />
+                        <field name="parent_id" />
                     </group>
                     <group>
                         <field name="point" />
@@ -44,6 +44,9 @@
                     </group>
                     <group>
                         <field name="under_level_color" />
+                    </group>
+                    <group>
+                        <field name="enfant_id" />
                     </group>
                 </sheet>
             </form>
@@ -61,8 +64,8 @@
                 <field name="description" type="row" />
                 <field name="hide_player" type="row" />
                 <field name="key" type="row" />
-                <field name="level" type="measure" />
                 <field name="model" type="row" />
+                <field name="parent_id" type="row" />
                 <field name="point" type="row" />
                 <field name="second_bullet_description" type="row" />
                 <field name="sub_key" type="row" />
@@ -83,13 +86,14 @@
                 <field name="description" />
                 <field name="hide_player" />
                 <field name="key" />
-                <field name="level" />
                 <field name="model" />
+                <field name="parent_id" />
                 <field name="point" />
                 <field name="second_bullet_description" />
                 <field name="sub_key" />
                 <field name="title" />
                 <field name="under_level_color" />
+                <field name="enfant_id" />
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_global_click">
@@ -129,12 +133,12 @@
                                     </li>
                                     <li class="mb4">
                                         <strong>
-                                            <field name="level" />
+                                            <field name="model" />
                                         </strong>
                                     </li>
                                     <li class="mb4">
                                         <strong>
-                                            <field name="model" />
+                                            <field name="parent_id" />
                                         </strong>
                                     </li>
                                     <li class="mb4">
@@ -162,6 +166,11 @@
                                             <field name="under_level_color" />
                                         </strong>
                                     </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="enfant_id" />
+                                        </strong>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -182,8 +191,8 @@
                 <field name="description" type="row" />
                 <field name="hide_player" type="row" />
                 <field name="key" type="row" />
-                <field name="level" type="measure" />
                 <field name="model" type="row" />
+                <field name="parent_id" type="row" />
                 <field name="point" type="row" />
                 <field name="second_bullet_description" type="row" />
                 <field name="sub_key" type="row" />
@@ -208,8 +217,8 @@
                 <filter domain="[('description','!=',False)]" name="description" string="Description" />
                 <filter domain="[('hide_player','=',True)]" name="hide_player" string="Hide Player" />
                 <filter domain="[('key','!=',False)]" name="key" string="Key" />
-                <filter domain="[('level','!=',False)]" name="level" string="Level" />
                 <filter domain="[('model','!=',False)]" name="model" string="Model" />
+                <filter domain="[('parent_id','!=',False)]" name="parent_id" string="Parent" />
                 <filter domain="[('point','!=',False)]" name="point" string="Point" />
                 <filter
                     domain="[('second_bullet_description','!=',False)]"
@@ -223,6 +232,7 @@
                     name="under_level_color"
                     string="Under Level Color"
                 />
+                <filter domain="[('enfant_id','!=',False)]" name="enfant_id" string="Enfant" />
             </search>
         </field>
     </record>
@@ -238,13 +248,14 @@
                 <field name="description" />
                 <field name="hide_player" />
                 <field name="key" />
-                <field name="level" />
                 <field name="model" />
+                <field name="parent_id" />
                 <field name="point" />
                 <field name="second_bullet_description" />
                 <field name="sub_key" />
                 <field name="title" />
                 <field name="under_level_color" />
+                <field name="enfant_id" />
             </tree>
         </field>
     </record>

@@ -5,9 +5,21 @@ class LarpemManual(models.Model):
     _name = "larpem.manual"
     _description = "Manuel utilisateur et administrateur"
 
-    name = fields.Char()
+    name = fields.Char(
+        compute="_compute_name",
+        store=True,
+    )
 
-    level = fields.Integer()
+    parent_id = fields.Many2one(
+        comodel_name="larpem.manual",
+        string="Parent",
+    )
+
+    enfant_id = fields.One2many(
+        comodel_name="larpem.manual",
+        inverse_name="parent_id",
+        string="Enfant",
+    )
 
     admin = fields.Boolean(
         string="Admin seulement",
@@ -33,3 +45,11 @@ class LarpemManual(models.Model):
     point = fields.Char()
 
     hide_player = fields.Boolean()
+
+    @api.depends("title")
+    def _compute_name(self):
+        for rec in self:
+            if rec.title:
+                rec.name = rec.title
+            else:
+                rec.name = "NO TITLE"

@@ -60,7 +60,7 @@ def post_init_hook(cr, e):
         }
         dct_field = {
             "admin": {
-                "code_generator_sequence": 4,
+                "code_generator_sequence": 5,
                 "field_description": "Admin seulement",
                 "help": (
                     "Cette information est seulement pour les organisateurs du"
@@ -69,62 +69,65 @@ def post_init_hook(cr, e):
                 "ttype": "boolean",
             },
             "bullet_description": {
-                "code_generator_sequence": 8,
+                "code_generator_sequence": 9,
                 "field_description": "Bullet Description",
                 "ttype": "char",
             },
             "description": {
-                "code_generator_sequence": 7,
+                "code_generator_sequence": 8,
                 "field_description": "Description",
                 "ttype": "char",
             },
             "hide_player": {
-                "code_generator_sequence": 14,
+                "code_generator_sequence": 15,
                 "field_description": "Hide Player",
                 "ttype": "boolean",
             },
             "key": {
-                "code_generator_sequence": 5,
+                "code_generator_sequence": 6,
                 "field_description": "Key",
                 "ttype": "char",
             },
-            "level": {
-                "code_generator_sequence": 3,
-                "field_description": "Level",
-                "ttype": "integer",
-            },
             "model": {
-                "code_generator_sequence": 12,
+                "code_generator_sequence": 13,
                 "field_description": "Model",
                 "ttype": "char",
             },
             "name": {
+                "code_generator_compute": "_compute_name",
                 "code_generator_sequence": 2,
                 "field_description": "Name",
+                "store": True,
                 "ttype": "char",
             },
+            "parent_id": {
+                "code_generator_sequence": 3,
+                "field_description": "Parent",
+                "relation": "larpem.manual",
+                "ttype": "many2one",
+            },
             "point": {
-                "code_generator_sequence": 13,
+                "code_generator_sequence": 14,
                 "field_description": "Point",
                 "ttype": "char",
             },
             "second_bullet_description": {
-                "code_generator_sequence": 9,
+                "code_generator_sequence": 10,
                 "field_description": "Second Bullet Description",
                 "ttype": "char",
             },
             "sub_key": {
-                "code_generator_sequence": 11,
+                "code_generator_sequence": 12,
                 "field_description": "Sub Key",
                 "ttype": "char",
             },
             "title": {
-                "code_generator_sequence": 6,
+                "code_generator_sequence": 7,
                 "field_description": "Title",
                 "ttype": "char",
             },
             "under_level_color": {
-                "code_generator_sequence": 10,
+                "code_generator_sequence": 11,
                 "field_description": "Under Level Color",
                 "ttype": "char",
             },
@@ -135,6 +138,26 @@ def post_init_hook(cr, e):
             dct_field=dct_field,
             dct_model=dct_model,
         )
+
+        # Generate code
+        if True:
+            # Generate code model
+            lst_value = [
+                {
+                    "code": '''for rec in self:
+    if rec.title:
+        rec.name = rec.title
+    else:
+        rec.name = "NO TITLE"''',
+                    "name": "_compute_name",
+                    "decorator": '@api.depends("title")',
+                    "param": "self",
+                    "sequence": 0,
+                    "m2o_module": code_generator_id.id,
+                    "m2o_model": model_larpem_manual.id,
+                },
+            ]
+            env["code.generator.model.code"].create(lst_value)
 
         # Add/Update Larpem System Point
         model_model = "larpem.system_point"
@@ -216,6 +239,18 @@ def post_init_hook(cr, e):
             dct_model=dct_model,
         )
 
+        # Added one2many field, many2one need to be create before add one2many
+        model_model = "larpem.manual"
+        dct_field = {
+            "enfant_id": {
+                "field_description": "Enfant",
+                "ttype": "one2many",
+                "code_generator_sequence": 4,
+                "relation": "larpem.manual",
+                "relation_field": "parent_id",
+            },
+        }
+        code_generator_id.add_update_model_one2many(model_model, dct_field)
         # Generate view
         # Action generate view
         wizard_view = env["code.generator.generate.views.wizard"].create(
