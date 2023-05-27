@@ -17,7 +17,9 @@ class LarpemSystemPoint(models.Model):
 
     max_value = fields.Integer(string="Valeur maximal")
 
-    formule = fields.Char(help="Formule is an algorithm in Javascript to calculate value.")
+    formule = fields.Char(
+        help="Formule is an algorithm in Javascript to calculate value."
+    )
 
     hide_value = fields.Boolean(
         string="Cache la valeur",
