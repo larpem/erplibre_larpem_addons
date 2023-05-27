@@ -229,12 +229,19 @@ def post_init_hook(cr, e):
         }
         dct_field = {
             "name": {
+                "code_generator_compute": "_compute_name",
                 "code_generator_sequence": 2,
                 "field_description": "Name",
+                "store": True,
+                "ttype": "char",
+            },
+            "nom_personnage": {
+                "code_generator_sequence": 3,
+                "field_description": "Nom Personnage",
                 "ttype": "char",
             },
             "partner_id": {
-                "code_generator_sequence": 3,
+                "code_generator_sequence": 4,
                 "field_description": "Participant",
                 "relation": "res.partner",
                 "ttype": "many2one",
@@ -246,6 +253,32 @@ def post_init_hook(cr, e):
             dct_field=dct_field,
             dct_model=dct_model,
         )
+
+        # Generate code
+        if True:
+            # Generate code model
+            lst_value = [
+                {
+                    "code": """for rec in self:
+    name = ""
+    if rec.nom_personnage:
+        name = rec.nom_personnage
+    if rec.partner_id and rec.partner_id.name:
+        if name:
+            name += " - "
+        name += rec.partner_id.name
+    rec.name = name""",
+                    "name": "_compute_name",
+                    "decorator": (
+                        '@api.depends("nom_personnage", "partner_id")'
+                    ),
+                    "param": "self",
+                    "sequence": 0,
+                    "m2o_module": code_generator_id.id,
+                    "m2o_model": model_larpem_personnage.id,
+                },
+            ]
+            env["code.generator.model.code"].create(lst_value)
 
         # Add/Update Larpem System Point
         model_model = "larpem.system_point"
@@ -345,7 +378,7 @@ def post_init_hook(cr, e):
             "compte_bancaire_ids": {
                 "field_description": "Comptes bancaires",
                 "ttype": "one2many",
-                "code_generator_sequence": 4,
+                "code_generator_sequence": 5,
                 "relation": "larpem.banque.compte",
                 "relation_field": "personnage_id",
             },

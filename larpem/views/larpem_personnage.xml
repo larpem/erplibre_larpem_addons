@@ -10,6 +10,9 @@
                         <field name="name" />
                     </group>
                     <group>
+                        <field name="nom_personnage" />
+                    </group>
+                    <group>
                         <field name="partner_id" />
                     </group>
                     <group>
@@ -26,6 +29,7 @@
         <field name="arch" type="xml">
             <graph string="Larpem personnage">
                 <field name="name" type="row" />
+                <field name="nom_personnage" type="row" />
                 <field name="partner_id" type="row" />
             </graph>
         </field>
@@ -37,6 +41,7 @@
         <field name="arch" type="xml">
             <kanban class="o_kanban_mobile">
                 <field name="name" />
+                <field name="nom_personnage" />
                 <field name="partner_id" />
                 <field name="compte_bancaire_ids" />
                 <templates>
@@ -47,6 +52,11 @@
                                     <li class="mb4">
                                         <strong>
                                             <field name="name" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="nom_personnage" />
                                         </strong>
                                     </li>
                                     <li class="mb4">
@@ -74,6 +84,7 @@
         <field name="arch" type="xml">
             <pivot string="Larpem personnage">
                 <field name="name" type="row" />
+                <field name="nom_personnage" type="row" />
                 <field name="partner_id" type="row" />
             </pivot>
         </field>
@@ -85,6 +96,7 @@
         <field name="arch" type="xml">
             <search string="Larpem personnage">
                 <filter domain="[('name','!=',False)]" name="name" string="Name" />
+                <filter domain="[('nom_personnage','!=',False)]" name="nom_personnage" string="Nom Personnage" />
                 <filter domain="[('partner_id','!=',False)]" name="partner_id" string="Participant" />
                 <filter
                     domain="[('compte_bancaire_ids','!=',False)]"
@@ -101,6 +113,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name" />
+                <field name="nom_personnage" />
                 <field name="partner_id" />
                 <field name="compte_bancaire_ids" />
             </tree>

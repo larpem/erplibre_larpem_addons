@@ -72,7 +72,7 @@ def post_init_hook(cr, e):
         with open(path_db_json, "r") as f:
             data = json.load(f)
         db_user = data.get("_default")
-        for dct_user in db_user.values():
+        for bd_id, dct_user in db_user.items():
             name = dct_user.get("name")
             email = dct_user.get("email")
             if email:
@@ -96,6 +96,24 @@ def post_init_hook(cr, e):
                         "name": name,
                     }
                 )
+            lst_char = dct_user.get("character")
+            if len(lst_char) < 1:
+                _logger.warning(
+                    f"User name {name} id {bd_id} missing character"
+                )
+            elif len(lst_char) > 1:
+                _logger.warning(
+                    f"User name {name} id {bd_id} has multiple character, why?"
+                )
+            else:
+                char = lst_char[0]
+                char_value = {
+                    "nom_personnage": char.get("name", False),
+                    "partner_id": partner_id.id,
+                }
+
+                env["larpem.personnage"].create(char_value)
+
             zip_str = dct_user.get("postal_code")
             if zip_str:
                 partner_id.zip = zip_str
