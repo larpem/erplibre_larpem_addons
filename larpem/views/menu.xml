@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--Root menu-->
+
+    <menuitem id="larpem" name="Larpem" sequence="20" web_icon="larpem,static/description/icon.png" />
+
+    <!--Sub menu-->
+
+    <menuitem id="menu" name="Menu" sequence="1" parent="larpem" />
+
+    <!--Child menu-->
+
+    <menuitem
+        id="system_point"
+        name="System point"
+        action="larpem_system_point_system_point_action_window"
+        sequence="1"
+        parent="menu"
+    />
+</odoo>

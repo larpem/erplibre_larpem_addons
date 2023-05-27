@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+larpem_system_point_access_user_types_/_internal_user,larpem_system_point Access User types / Internal User,model_larpem_system_point,base.group_user,1,1,1,1

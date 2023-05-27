@@ -2,6 +2,8 @@ import logging
 import os
 import time
 
+from .pylib.doc_generator import doc_generator_gspread
+
 from odoo import SUPERUSER_ID, _, api, fields, models
 
 _logger = logging.getLogger(__name__)
@@ -17,6 +19,8 @@ def post_init_hook(cr, e):
         path_module_generate = os.path.normpath(
             os.path.join(os.path.dirname(__file__), "..")
         )
+        path_client_secret = os.path.join(os.path.dirname(__file__), "client_secret.json")
+        file_url = ""
 
         short_name = MODULE_NAME.replace("_", " ").title()
 
@@ -58,6 +62,53 @@ def post_init_hook(cr, e):
         # Modification of field before migration
 
         before_time = time.process_time()
+
+        doc_gspread = doc_generator_gspread.DocGeneratorGSpread(path_client_secret, file_url)
+        doc_generator = doc_gspread.get_instance()
+        if not doc_generator:
+            raise Exception("Cannot read google spread credentials. Did you have client_secret.json and good url?")
+
+        status = doc_generator.generate_doc()
+        if not status:
+            error = doc_generator.get_error(force_error=True)
+            raise Exception(f"Error from generate_doc : {error}")
+
+        document = doc_generator.get_generated_doc()
+
+        # System point
+        model_model = "larpem.system_point"
+        model_name = "Système point"
+        dct_model = {
+            "description": "Système de pointage de LARPEM",
+        }
+        dct_field = {
+            "description": {
+                "field_description": "description",
+                "ttype": "char",
+            },
+            "explication": {
+                "field_description": "Explication",
+                "ttype": "char",
+            },
+            "type": {
+                "field_description": "Type",
+                "ttype": "char",
+            },
+            "name": {
+                "field_description": "Name",
+                "ttype": "char",
+            },
+        }
+        model_aliment = code_generator_id.add_update_model(
+            model_model,
+            model_name,
+            dct_field=dct_field,
+            dct_model=dct_model,
+        )
+
+        lst_system_point = document.get("system_point")
+
+        # keys = list(lst_system_point[0].keys())
 
         after_time = time.process_time()
         _logger.info(
