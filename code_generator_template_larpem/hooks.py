@@ -79,7 +79,10 @@ def post_init_hook(cr, e):
         code_generator_id = env["code.generator.module"].create(value)
 
         # Add dependencies
-        lst_depend_module = ["code_generator", "code_generator_hook"]
+        lst_depend_module = [
+            "code_generator",
+            "code_generator_website_snippet",
+        ]
         code_generator_id.add_module_dependency(lst_depend_module)
         # Generate module
         value = {"code_generator_ids": code_generator_id.ids}

@@ -69,17 +69,17 @@ def post_init_hook(cr, e):
                 "ttype": "boolean",
             },
             "bullet_description": {
-                "code_generator_sequence": 9,
+                "code_generator_sequence": 10,
                 "field_description": "Bullet Description",
                 "ttype": "char",
             },
             "description": {
-                "code_generator_sequence": 8,
+                "code_generator_sequence": 9,
                 "field_description": "Description",
-                "ttype": "char",
+                "ttype": "text",
             },
             "hide_player": {
-                "code_generator_sequence": 15,
+                "code_generator_sequence": 16,
                 "field_description": "Hide Player",
                 "ttype": "boolean",
             },
@@ -89,7 +89,7 @@ def post_init_hook(cr, e):
                 "ttype": "char",
             },
             "model": {
-                "code_generator_sequence": 13,
+                "code_generator_sequence": 14,
                 "field_description": "Model",
                 "ttype": "char",
             },
@@ -107,17 +107,17 @@ def post_init_hook(cr, e):
                 "ttype": "many2one",
             },
             "point": {
-                "code_generator_sequence": 14,
+                "code_generator_sequence": 15,
                 "field_description": "Point",
                 "ttype": "char",
             },
             "second_bullet_description": {
-                "code_generator_sequence": 10,
+                "code_generator_sequence": 11,
                 "field_description": "Second Bullet Description",
                 "ttype": "char",
             },
             "sub_key": {
-                "code_generator_sequence": 12,
+                "code_generator_sequence": 13,
                 "field_description": "Sub Key",
                 "ttype": "char",
             },
@@ -126,8 +126,13 @@ def post_init_hook(cr, e):
                 "field_description": "Title",
                 "ttype": "char",
             },
+            "title_html": {
+                "code_generator_sequence": 8,
+                "field_description": "Title Html",
+                "ttype": "html",
+            },
             "under_level_color": {
-                "code_generator_sequence": 11,
+                "code_generator_sequence": 12,
                 "field_description": "Under Level Color",
                 "ttype": "char",
             },

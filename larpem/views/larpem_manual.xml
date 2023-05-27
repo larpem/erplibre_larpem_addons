@@ -40,6 +40,9 @@
                         <field name="sub_key" />
                     </group>
                     <group>
+                        <field name="title" />
+                    </group>
+                    <group>
                         <field name="title_html" />
                     </group>
                     <group>
@@ -235,7 +238,7 @@
                 />
                 <filter domain="[('sub_key','!=',False)]" name="sub_key" string="Sub Key" />
                 <filter domain="[('title','!=',False)]" name="title" string="Title" />
-                <filter domain="[('title_html','!=',False)]" name="title_html" string="Title HTML" />
+                <filter domain="[('title_html','!=',False)]" name="title_html" string="Title Html" />
                 <filter
                     domain="[('under_level_color','!=',False)]"
                     name="under_level_color"

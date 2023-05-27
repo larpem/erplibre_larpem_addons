@@ -158,6 +158,17 @@
                                 <div
                                     class="col-lg-12 s_text pt16 pb16"
                                     data-name="Text"
+                                    t-if="larpem_manual_id.title_html"
+                                >
+                                    <p
+                                        class="lead o_default_snippet_text"
+                                        style="text-align: center;"
+                                        t-field="larpem_manual_id.title_html"
+                                    />
+                                </div>
+                                <div
+                                    class="col-lg-12 s_text pt16 pb16"
+                                    data-name="Text"
                                     t-if="larpem_manual_id.under_level_color"
                                 >
                                     <p
@@ -249,6 +260,11 @@
                                                 t-if="larpem_manual.title"
                                                 class="o_default_snippet_text"
                                                 t-field="larpem_manual.title"
+                                            />
+                                            <p
+                                                t-if="larpem_manual.title_html"
+                                                class="o_default_snippet_text"
+                                                t-field="larpem_manual.title_html"
                                             />
                                             <p
                                                 t-if="larpem_manual.under_level_color"
