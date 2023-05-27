@@ -3,6 +3,7 @@
 import sys
 
 import gspread
+
 # from oauth2client.service_account import ServiceAccountCredentials
 from google.oauth2.service_account import Credentials
 
@@ -172,7 +173,9 @@ class DocGeneratorGSpread(object):
             try:
                 # Get credentials about oauth2 Service
                 # credentials = gspread.service_account(self._path_client_secret, scope)
-                credentials = Credentials.from_service_account_file(self._path_client_secret, scopes=scope)
+                credentials = Credentials.from_service_account_file(
+                    self._path_client_secret, scopes=scope
+                )
                 # credentials = ServiceAccountCredentials.from_json_keyfile_name(
                 #     self._path_client_secret, scope
                 # )

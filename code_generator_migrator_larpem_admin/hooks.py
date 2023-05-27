@@ -2,9 +2,9 @@ import logging
 import os
 import time
 
-from .pylib.doc_generator import doc_generator_gspread
-
 from odoo import SUPERUSER_ID, _, api, fields, models
+
+from .pylib.doc_generator import doc_generator_gspread
 
 _logger = logging.getLogger(__name__)
 
@@ -19,7 +19,9 @@ def post_init_hook(cr, e):
         path_module_generate = os.path.normpath(
             os.path.join(os.path.dirname(__file__), "..")
         )
-        path_client_secret = os.path.join(os.path.dirname(__file__), "client_secret.json")
+        path_client_secret = os.path.join(
+            os.path.dirname(__file__), "client_secret.json"
+        )
         file_url = ""
 
         short_name = MODULE_NAME.replace("_", " ").title()
@@ -63,10 +65,15 @@ def post_init_hook(cr, e):
 
         before_time = time.process_time()
 
-        doc_gspread = doc_generator_gspread.DocGeneratorGSpread(path_client_secret, file_url)
+        doc_gspread = doc_generator_gspread.DocGeneratorGSpread(
+            path_client_secret, file_url
+        )
         doc_generator = doc_gspread.get_instance()
         if not doc_generator:
-            raise Exception("Cannot read google spread credentials. Did you have client_secret.json and good url?")
+            raise Exception(
+                "Cannot read google spread credentials. Did you have"
+                " client_secret.json and good url?"
+            )
 
         status = doc_generator.generate_doc()
         if not status:
