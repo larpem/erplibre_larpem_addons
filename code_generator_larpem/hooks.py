@@ -52,9 +52,9 @@ def post_init_hook(cr, e):
 
         code_generator_id = env["code.generator.module"].create(value)
 
-        # Add/Update Larpem Manual
-        model_model = "larpem.manual"
-        model_name = "larpem_manual"
+        # Add/Update Larpem manuel
+        model_model = "larpem.manuel"
+        model_name = "larpem_manuel"
         dct_model = {
             "description": "Manuel utilisateur et administrateur",
         }
@@ -103,7 +103,7 @@ def post_init_hook(cr, e):
             "parent_id": {
                 "code_generator_sequence": 3,
                 "field_description": "Parent",
-                "relation": "larpem.manual",
+                "relation": "larpem.manuel",
                 "ttype": "many2one",
             },
             "point": {
@@ -137,7 +137,7 @@ def post_init_hook(cr, e):
                 "ttype": "char",
             },
         }
-        model_larpem_manual = code_generator_id.add_update_model(
+        model_larpem_manuel = code_generator_id.add_update_model(
             model_model,
             model_name,
             dct_field=dct_field,
@@ -159,7 +159,7 @@ def post_init_hook(cr, e):
                     "param": "self",
                     "sequence": 0,
                     "m2o_module": code_generator_id.id,
-                    "m2o_model": model_larpem_manual.id,
+                    "m2o_model": model_larpem_manuel.id,
                 },
             ]
             env["code.generator.model.code"].create(lst_value)
@@ -245,13 +245,13 @@ def post_init_hook(cr, e):
         )
 
         # Added one2many field, many2one need to be create before add one2many
-        model_model = "larpem.manual"
+        model_model = "larpem.manuel"
         dct_field = {
             "enfant_id": {
                 "field_description": "Enfant",
                 "ttype": "one2many",
                 "code_generator_sequence": 4,
-                "relation": "larpem.manual",
+                "relation": "larpem.manuel",
                 "relation_field": "parent_id",
             },
         }
@@ -262,9 +262,9 @@ def post_init_hook(cr, e):
             "controller_feature": "model_show_item_list",
             "enable_javascript": True,
             # "limitation_item": 3,
-            "model_name": "larpem.manual",
+            "model_name": "larpem.manuel",
             # "model_short_name": "portal_time",
-            "name": "Larpem manual",
+            "name": "Larpem manuel",
             # "show_diff_time": True,
             # "show_recent_item": True,
             "snippet_type": "structure",

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <template id="larpem_manual_unit_larpem_manual" name="Larpem Manual">
+    <template id="larpem_manuel_unit_larpem_manuel" name="Larpem manuel">
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="oe_structure">
-                    <section class="pt32 pb32" t-if="not larpem_manual_id">
+                    <section class="pt32 pb32" t-if="not larpem_manuel_id">
                         <div class="container">
                             <div class="row s_nb_column_fixed">
                                 <div class="col-lg-12 s_title pt16 pb16" style="text-align: center;">
                                     <h1 class="s_title_default">
-                                        <font style="font-size: 62px;">larpem_manual_id non existante</font>
+                                        <font style="font-size: 62px;">larpem_manuel_id non existante</font>
                                     </h1>
                                 </div>
                             </div>
                         </div>
                     </section>
                     <section
-                        t-if="larpem_manual_id"
+                        t-if="larpem_manuel_id"
                         class="s_cover parallax s_parallax_is_fixed bg-black-50 pt96 pb96 s_parallax_no_overflow_hidden"
                         data-scroll-background-ratio="1"
                         style="background-image: none;"
@@ -32,149 +32,149 @@
                                     <h1
                                         class="s_title_thin"
                                         style="font-size: 62px; text-align: center;"
-                                        t-field="larpem_manual_id.name"
-                                        t-if="larpem_manual_id.name"
+                                        t-field="larpem_manuel_id.name"
+                                        t-if="larpem_manuel_id.name"
                                     />
                                     <h1
                                         class="s_title_thin"
                                         style="font-size: 62px; text-align: center;"
-                                        t-if="not larpem_manual_id.name"
+                                        t-if="not larpem_manuel_id.name"
                                     >
                                         EMPTY
                                     </h1>
                                 </div>
-                                <div class="col-lg-12 s_text pt16 pb16" data-name="Text" t-if="larpem_manual_id.admin">
+                                <div class="col-lg-12 s_text pt16 pb16" data-name="Text" t-if="larpem_manuel_id.admin">
                                     <p
                                         class="lead o_default_snippet_text"
                                         style="text-align: center;"
-                                        t-field="larpem_manual_id.admin"
+                                        t-field="larpem_manuel_id.admin"
                                     />
                                 </div>
                                 <div
                                     class="col-lg-12 s_text pt16 pb16"
                                     data-name="Text"
-                                    t-if="larpem_manual_id.bullet_description"
+                                    t-if="larpem_manuel_id.bullet_description"
                                 >
                                     <p
                                         class="lead o_default_snippet_text"
                                         style="text-align: center;"
-                                        t-field="larpem_manual_id.bullet_description"
+                                        t-field="larpem_manuel_id.bullet_description"
                                     />
                                 </div>
                                 <div
                                     class="col-lg-12 s_text pt16 pb16"
                                     data-name="Text"
-                                    t-if="larpem_manual_id.description"
+                                    t-if="larpem_manuel_id.description"
                                 >
                                     <p
                                         class="lead o_default_snippet_text"
                                         style="text-align: center;"
-                                        t-field="larpem_manual_id.description"
+                                        t-field="larpem_manuel_id.description"
                                     />
                                 </div>
                                 <div
                                     class="col-lg-12 s_text pt16 pb16"
                                     data-name="Text"
-                                    t-if="larpem_manual_id.enfant_id"
+                                    t-if="larpem_manuel_id.enfant_id"
                                 >
                                     <p
                                         class="lead o_default_snippet_text"
                                         style="text-align: center;"
-                                        t-field="larpem_manual_id.enfant_id"
+                                        t-field="larpem_manuel_id.enfant_id"
                                     />
                                 </div>
                                 <div
                                     class="col-lg-12 s_text pt16 pb16"
                                     data-name="Text"
-                                    t-if="larpem_manual_id.hide_player"
+                                    t-if="larpem_manuel_id.hide_player"
                                 >
                                     <p
                                         class="lead o_default_snippet_text"
                                         style="text-align: center;"
-                                        t-field="larpem_manual_id.hide_player"
+                                        t-field="larpem_manuel_id.hide_player"
                                     />
                                 </div>
-                                <div class="col-lg-12 s_text pt16 pb16" data-name="Text" t-if="larpem_manual_id.key">
+                                <div class="col-lg-12 s_text pt16 pb16" data-name="Text" t-if="larpem_manuel_id.key">
                                     <p
                                         class="lead o_default_snippet_text"
                                         style="text-align: center;"
-                                        t-field="larpem_manual_id.key"
+                                        t-field="larpem_manuel_id.key"
                                     />
                                 </div>
-                                <div class="col-lg-12 s_text pt16 pb16" data-name="Text" t-if="larpem_manual_id.model">
+                                <div class="col-lg-12 s_text pt16 pb16" data-name="Text" t-if="larpem_manuel_id.model">
                                     <p
                                         class="lead o_default_snippet_text"
                                         style="text-align: center;"
-                                        t-field="larpem_manual_id.model"
+                                        t-field="larpem_manuel_id.model"
                                     />
                                 </div>
                                 <div
                                     class="col-lg-12 s_text pt16 pb16"
                                     data-name="Text"
-                                    t-if="larpem_manual_id.parent_id"
+                                    t-if="larpem_manuel_id.parent_id"
                                 >
                                     <p
                                         class="lead o_default_snippet_text"
                                         style="text-align: center;"
-                                        t-field="larpem_manual_id.parent_id"
+                                        t-field="larpem_manuel_id.parent_id"
                                     />
                                 </div>
-                                <div class="col-lg-12 s_text pt16 pb16" data-name="Text" t-if="larpem_manual_id.point">
+                                <div class="col-lg-12 s_text pt16 pb16" data-name="Text" t-if="larpem_manuel_id.point">
                                     <p
                                         class="lead o_default_snippet_text"
                                         style="text-align: center;"
-                                        t-field="larpem_manual_id.point"
+                                        t-field="larpem_manuel_id.point"
                                     />
                                 </div>
                                 <div
                                     class="col-lg-12 s_text pt16 pb16"
                                     data-name="Text"
-                                    t-if="larpem_manual_id.second_bullet_description"
+                                    t-if="larpem_manuel_id.second_bullet_description"
                                 >
                                     <p
                                         class="lead o_default_snippet_text"
                                         style="text-align: center;"
-                                        t-field="larpem_manual_id.second_bullet_description"
+                                        t-field="larpem_manuel_id.second_bullet_description"
                                     />
                                 </div>
                                 <div
                                     class="col-lg-12 s_text pt16 pb16"
                                     data-name="Text"
-                                    t-if="larpem_manual_id.sub_key"
+                                    t-if="larpem_manuel_id.sub_key"
                                 >
                                     <p
                                         class="lead o_default_snippet_text"
                                         style="text-align: center;"
-                                        t-field="larpem_manual_id.sub_key"
+                                        t-field="larpem_manuel_id.sub_key"
                                     />
                                 </div>
-                                <div class="col-lg-12 s_text pt16 pb16" data-name="Text" t-if="larpem_manual_id.title">
+                                <div class="col-lg-12 s_text pt16 pb16" data-name="Text" t-if="larpem_manuel_id.title">
                                     <p
                                         class="lead o_default_snippet_text"
                                         style="text-align: center;"
-                                        t-field="larpem_manual_id.title"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-12 s_text pt16 pb16"
-                                    data-name="Text"
-                                    t-if="larpem_manual_id.title_html"
-                                >
-                                    <p
-                                        class="lead o_default_snippet_text"
-                                        style="text-align: center;"
-                                        t-field="larpem_manual_id.title_html"
+                                        t-field="larpem_manuel_id.title"
                                     />
                                 </div>
                                 <div
                                     class="col-lg-12 s_text pt16 pb16"
                                     data-name="Text"
-                                    t-if="larpem_manual_id.under_level_color"
+                                    t-if="larpem_manuel_id.title_html"
                                 >
                                     <p
                                         class="lead o_default_snippet_text"
                                         style="text-align: center;"
-                                        t-field="larpem_manual_id.under_level_color"
+                                        t-field="larpem_manuel_id.title_html"
+                                    />
+                                </div>
+                                <div
+                                    class="col-lg-12 s_text pt16 pb16"
+                                    data-name="Text"
+                                    t-if="larpem_manuel_id.under_level_color"
+                                >
+                                    <p
+                                        class="lead o_default_snippet_text"
+                                        style="text-align: center;"
+                                        t-field="larpem_manuel_id.under_level_color"
                                     />
                                 </div>
                             </div>
@@ -184,46 +184,46 @@
             </div>
         </t>
     </template>
-    <template id="larpem_manual_list_larpem_manual" name="Larpem Manual List">
+    <template id="larpem_manuel_list_larpem_manuel" name="Larpem manuel List">
         <t t-ignore="true">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 s_col_no_bgcolor pb24">
-                        <div class="row" t-if="larpem_manual_s">
-                            <div t-foreach="larpem_manual_s" t-as="larpem_manual" ng-if="!larpem_manual.hide_player">
+                        <div class="row" t-if="larpem_manuel_s">
+                            <div t-foreach="larpem_manuel_s" t-as="larpem_manuel" ng-if="!larpem_manuel.hide_player">
                                 <div class="col-lg-12 pt16 pb16" data-name="Box">
                                     <div class="s_features_grid_content">
                                         <h4
-                                            t-if="larpem_manual.name"
+                                            t-if="larpem_manuel.name"
                                             class="o_default_snippet_text"
-                                            t-field="larpem_manual.name"
+                                            t-field="larpem_manuel.name"
                                         />
-                                        <h4 t-if="not larpem_manual.name" class="o_default_snippet_text">EMPTY</h4>
+                                        <h4 t-if="not larpem_manuel.name" class="o_default_snippet_text">EMPTY</h4>
                                         <p
-                                            t-if="larpem_manual.description"
+                                            t-if="larpem_manuel.description"
                                             class="o_default_snippet_text"
-                                            t-field="larpem_manual.description"
-                                        />
-                                        <p
-                                            t-if="larpem_manual.title"
-                                            class="o_default_snippet_text"
-                                            t-field="larpem_manual.title"
+                                            t-field="larpem_manuel.description"
                                         />
                                         <p
-                                            t-if="larpem_manual.title_html"
+                                            t-if="larpem_manuel.title"
                                             class="o_default_snippet_text"
-                                            t-field="larpem_manual.title_html"
+                                            t-field="larpem_manuel.title"
                                         />
                                         <p
-                                            t-if="larpem_manual.under_level_color"
+                                            t-if="larpem_manuel.title_html"
                                             class="o_default_snippet_text"
-                                            t-field="larpem_manual.under_level_color"
+                                            t-field="larpem_manuel.title_html"
+                                        />
+                                        <p
+                                            t-if="larpem_manuel.under_level_color"
+                                            class="o_default_snippet_text"
+                                            t-field="larpem_manuel.under_level_color"
                                         />
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" t-if="not larpem_manual_s">Aucune larpem_manual disponible.</div>
+                        <div class="row" t-if="not larpem_manuel_s">Aucune larpem_manuel disponible.</div>
                     </div>
                 </div>
             </div>

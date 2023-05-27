@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="larpem_manual_view_form" model="ir.ui.view">
-        <field name="name">larpem_manual_form</field>
-        <field name="model">larpem.manual</field>
+    <record id="larpem_manuel_view_form" model="ir.ui.view">
+        <field name="name">larpem_manuel_form</field>
+        <field name="model">larpem.manuel</field>
         <field name="arch" type="xml">
             <form string="Titre">
                 <sheet>
@@ -56,11 +56,11 @@
         </field>
     </record>
 
-    <record id="larpem_manual_view_graph" model="ir.ui.view">
-        <field name="name">larpem_manual_graph</field>
-        <field name="model">larpem.manual</field>
+    <record id="larpem_manuel_view_graph" model="ir.ui.view">
+        <field name="name">larpem_manuel_graph</field>
+        <field name="model">larpem.manuel</field>
         <field name="arch" type="xml">
-            <graph string="Larpem manual">
+            <graph string="Larpem manuel">
                 <field name="name" type="row" />
                 <field name="admin" type="row" />
                 <field name="bullet_description" type="row" />
@@ -79,9 +79,9 @@
         </field>
     </record>
 
-    <record id="larpem_manual_view_kanban" model="ir.ui.view">
-        <field name="name">larpem_manual_kanban</field>
-        <field name="model">larpem.manual</field>
+    <record id="larpem_manuel_view_kanban" model="ir.ui.view">
+        <field name="name">larpem_manuel_kanban</field>
+        <field name="model">larpem.manuel</field>
         <field name="arch" type="xml">
             <kanban class="o_kanban_mobile">
                 <field name="name" />
@@ -190,11 +190,11 @@
         </field>
     </record>
 
-    <record id="larpem_manual_view_pivot" model="ir.ui.view">
-        <field name="name">larpem_manual_pivot</field>
-        <field name="model">larpem.manual</field>
+    <record id="larpem_manuel_view_pivot" model="ir.ui.view">
+        <field name="name">larpem_manuel_pivot</field>
+        <field name="model">larpem.manuel</field>
         <field name="arch" type="xml">
-            <pivot string="Larpem manual">
+            <pivot string="Larpem manuel">
                 <field name="name" type="row" />
                 <field name="admin" type="row" />
                 <field name="bullet_description" type="row" />
@@ -213,11 +213,11 @@
         </field>
     </record>
 
-    <record id="larpem_manual_view_search" model="ir.ui.view">
-        <field name="name">larpem_manual_search</field>
-        <field name="model">larpem.manual</field>
+    <record id="larpem_manuel_view_search" model="ir.ui.view">
+        <field name="name">larpem_manuel_search</field>
+        <field name="model">larpem.manuel</field>
         <field name="arch" type="xml">
-            <search string="Larpem manual">
+            <search string="Larpem manuel">
                 <filter domain="[('name','!=',False)]" name="name" string="Name" />
                 <filter domain="[('admin','=',True)]" name="admin" string="Admin seulement" />
                 <filter
@@ -252,9 +252,9 @@
         </field>
     </record>
 
-    <record id="larpem_manual_view_tree" model="ir.ui.view">
-        <field name="name">larpem_manual_tree</field>
-        <field name="model">larpem.manual</field>
+    <record id="larpem_manuel_view_tree" model="ir.ui.view">
+        <field name="name">larpem_manuel_tree</field>
+        <field name="model">larpem.manuel</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="name" />
@@ -277,9 +277,9 @@
     </record>
 
     <act_window
-        id="larpem_manual_manual_action_window"
-        name="Manual"
-        res_model="larpem.manual"
+        id="larpem_manuel_manuel_action_window"
+        name="manuel"
+        res_model="larpem.manuel"
         view_mode="kanban,tree,pivot,graph,form"
     />
 </odoo>

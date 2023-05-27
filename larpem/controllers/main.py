@@ -4,44 +4,44 @@ from odoo.http import request
 
 class LarpemController(http.Controller):
     @http.route(
-        ["/larpem/larpem_manual/<int:larpem_manual>"],
+        ["/larpem/larpem_manuel/<int:larpem_manuel>"],
         type="http",
         auth="public",
         website=True,
     )
-    def get_page_larpem_manual(self, larpem_manual=None):
+    def get_page_larpem_manuel(self, larpem_manuel=None):
         env = request.env(context=dict(request.env.context))
 
-        larpem_manual_cls = env["larpem.manual"]
-        if larpem_manual:
-            larpem_manual_id = (
-                larpem_manual_cls.sudo().browse(larpem_manual).exists()
+        larpem_manuel_cls = env["larpem.manuel"]
+        if larpem_manuel:
+            larpem_manuel_id = (
+                larpem_manuel_cls.sudo().browse(larpem_manuel).exists()
             )
         else:
-            larpem_manual_id = None
-        dct_value = {"larpem_manual_id": larpem_manual_id}
+            larpem_manuel_id = None
+        dct_value = {"larpem_manuel_id": larpem_manuel_id}
 
         # Render page
         return request.render(
-            "larpem.larpem_manual_unit_larpem_manual", dct_value
+            "larpem.larpem_manuel_unit_larpem_manuel", dct_value
         )
 
     @http.route(
-        ["/larpem/larpem_manual_list"],
+        ["/larpem/larpem_manuel_list"],
         type="json",
         auth="public",
         website=True,
     )
-    def get_larpem_manual_list(self):
+    def get_larpem_manuel_list(self):
         env = request.env(context=dict(request.env.context))
 
-        larpem_manual_cls = env["larpem.manual"]
-        larpem_manual_ids = larpem_manual_cls.sudo().search([]).ids
-        larpem_manual_s = larpem_manual_cls.sudo().browse(larpem_manual_ids)
+        larpem_manuel_cls = env["larpem.manuel"]
+        larpem_manuel_ids = larpem_manuel_cls.sudo().search([]).ids
+        larpem_manuel_s = larpem_manuel_cls.sudo().browse(larpem_manuel_ids)
 
-        dct_value = {"larpem_manual_s": larpem_manual_s}
+        dct_value = {"larpem_manuel_s": larpem_manuel_s}
 
         # Render page
         return request.env["ir.ui.view"].render_template(
-            "larpem.larpem_manual_list_larpem_manual", dct_value
+            "larpem.larpem_manuel_list_larpem_manuel", dct_value
         )

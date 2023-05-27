@@ -1,8 +1,8 @@
 from odoo import _, api, fields, models
 
 
-class LarpemManual(models.Model):
-    _name = "larpem.manual"
+class Larpemmanuel(models.Model):
+    _name = "larpem.manuel"
     _description = "Manuel utilisateur et administrateur"
 
     name = fields.Char(
@@ -11,12 +11,12 @@ class LarpemManual(models.Model):
     )
 
     parent_id = fields.Many2one(
-        comodel_name="larpem.manual",
+        comodel_name="larpem.manuel",
         string="Parent",
     )
 
     enfant_id = fields.One2many(
-        comodel_name="larpem.manual",
+        comodel_name="larpem.manuel",
         inverse_name="parent_id",
         string="Enfant",
     )

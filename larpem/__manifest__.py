@@ -7,7 +7,7 @@
     "application": True,
     "data": [
         "security/ir.model.access.csv",
-        "views/larpem_manual.xml",
+        "views/larpem_manuel.xml",
         "views/larpem_system_point.xml",
         "views/menu.xml",
         "views/snippets.xml",

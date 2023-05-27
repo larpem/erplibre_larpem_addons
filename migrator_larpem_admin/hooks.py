@@ -62,10 +62,10 @@ def post_init_hook(cr, e):
 
         env["larpem.system_point"].create(lst_system_point)
 
-        # manual
-        lst_manual = document.get("manual")
-        for dct_manual in lst_manual:
-            add_manual_section(env, dct_manual)
+        # manuel
+        lst_manuel = document.get("manual")
+        for dct_manuel in lst_manuel:
+            add_manuel_section(env, dct_manuel)
 
         _logger.info("Import data from user database")
         # Import user data
@@ -107,47 +107,47 @@ def post_init_hook(cr, e):
         )
 
 
-def add_manual_section(env, dct_manual, parent_id=None):
+def add_manuel_section(env, dct_manuel, parent_id=None):
     dct_value = {}
-    if "title" in dct_manual.keys():
-        dct_value["title"] = dct_manual.get("title")
-    if "title_html" in dct_manual.keys():
-        dct_value["title_html"] = dct_manual.get("title_html")
-    if "sub_key" in dct_manual.keys():
-        dct_value["sub_key"] = dct_manual.get("sub_key")
-    if "model" in dct_manual.keys():
-        dct_value["model"] = dct_manual.get("model")
-    if "admin" in dct_manual.keys():
-        dct_value["admin"] = dct_manual.get("admin")
-    if "hide_player" in dct_manual.keys():
-        dct_value["hide_player"] = dct_manual.get("hide_player")
-    if "point" in dct_manual.keys():
+    if "title" in dct_manuel.keys():
+        dct_value["title"] = dct_manuel.get("title")
+    if "title_html" in dct_manuel.keys():
+        dct_value["title_html"] = dct_manuel.get("title_html")
+    if "sub_key" in dct_manuel.keys():
+        dct_value["sub_key"] = dct_manuel.get("sub_key")
+    if "model" in dct_manuel.keys():
+        dct_value["model"] = dct_manuel.get("model")
+    if "admin" in dct_manuel.keys():
+        dct_value["admin"] = dct_manuel.get("admin")
+    if "hide_player" in dct_manuel.keys():
+        dct_value["hide_player"] = dct_manuel.get("hide_player")
+    if "point" in dct_manuel.keys():
         # TODO need to change
-        dct_value["point"] = dct_manual.get("point")
-    if "description" in dct_manual.keys():
+        dct_value["point"] = dct_manuel.get("point")
+    if "description" in dct_manuel.keys():
         # TODO check double list, it's a bullet point
         dct_value["description"] = (
-            str(dct_manual.get("description"))
+            str(dct_manuel.get("description"))
             .replace("['", "")
             .replace("']", "\n")
             .replace("[", "")
             .replace("]", "\n")
         )
         # try:
-        #     dct_value["description"] = "\n".join(dct_manual.get("description"))
+        #     dct_value["description"] = "\n".join(dct_manuel.get("description"))
         # except Exception as e:
         #     # Suppose double list
         #     try:
-        #         dct_value["description"] = "\n".join(["\n".join(a) if type(a) is list else a for a in dct_manual.get("description")])
+        #         dct_value["description"] = "\n".join(["\n".join(a) if type(a) is list else a for a in dct_manuel.get("description")])
         #     except Exception as e:
         #         print(e)
     if parent_id:
         dct_value["parent_id"] = parent_id.id
 
-    manual_id = env["larpem.manual"].create(dct_value)
-    if "section" in dct_manual.keys():
-        for section in dct_manual.get("section"):
-            add_manual_section(env, section, parent_id=manual_id)
+    manuel_id = env["larpem.manuel"].create(dct_value)
+    if "section" in dct_manuel.keys():
+        for section in dct_manuel.get("section"):
+            add_manuel_section(env, section, parent_id=manuel_id)
 
 
 def uninstall_hook(cr, e):

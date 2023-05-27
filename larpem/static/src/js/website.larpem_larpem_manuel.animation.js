@@ -1,16 +1,16 @@
-odoo.define("larpem_larpem_manual.animation", function (require) {
+odoo.define("larpem_larpem_manuel.animation", function (require) {
     "use strict";
 
     let sAnimation = require("website.content.snippets.animation");
 
-    sAnimation.registry.larpem_larpem_manual = sAnimation.Class.extend({
-        selector: ".o_larpem_larpem_manual",
+    sAnimation.registry.larpem_larpem_manuel = sAnimation.Class.extend({
+        selector: ".o_larpem_larpem_manuel",
 
         start: function () {
             let self = this;
             this._eventList = this.$(".container");
             this._originalContent = this._eventList[0].outerHTML;
-            let def = this._rpc({route: "/larpem/larpem_manual_list"}).then(function (data) {
+            let def = this._rpc({route: "/larpem/larpem_manuel_list"}).then(function (data) {
                 if (data.error) {
                     return;
                 }

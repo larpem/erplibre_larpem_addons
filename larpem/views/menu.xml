@@ -10,7 +10,7 @@
 
     <!--Child menu-->
 
-    <menuitem id="manual" name="Manual" action="larpem_manual_manual_action_window" sequence="1" parent="menu" />
+    <menuitem id="manuel" name="manuel" action="larpem_manuel_manuel_action_window" sequence="1" parent="menu" />
 
     <menuitem
         id="system_point"
