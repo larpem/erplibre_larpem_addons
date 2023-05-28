@@ -6,11 +6,15 @@ class LarpemPersonnage(models.Model):
     _description = "Personnage"
 
     name = fields.Char(
-        compute="_compute_name",
-        store=True,
+        string="Nom personnage",
     )
 
-    nom_personnage = fields.Char()
+    nom_joueur = fields.Char(
+        string="Nom joueur",
+        related="partner_id.name",
+        store=True,
+        readonly=True,
+    )
 
     partner_id = fields.Many2one(
         comodel_name="res.partner",
@@ -22,15 +26,3 @@ class LarpemPersonnage(models.Model):
         inverse_name="personnage_id",
         string="Comptes bancaires",
     )
-
-    @api.depends("nom_personnage", "partner_id")
-    def _compute_name(self):
-        for rec in self:
-            name = ""
-            if rec.nom_personnage:
-                name = rec.nom_personnage
-            if rec.partner_id and rec.partner_id.name:
-                if name:
-                    name += " - "
-                name += rec.partner_id.name
-            rec.name = name

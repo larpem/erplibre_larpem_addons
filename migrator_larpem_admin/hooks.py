@@ -108,7 +108,7 @@ def post_init_hook(cr, e):
             else:
                 char = lst_char[0]
                 char_value = {
-                    "nom_personnage": char.get("name", False),
+                    "name": char.get("name", False),
                     "partner_id": partner_id.id,
                 }
 
