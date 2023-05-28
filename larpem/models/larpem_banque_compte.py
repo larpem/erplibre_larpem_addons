@@ -5,7 +5,10 @@ class LarpemBanqueCompte(models.Model):
     _name = "larpem.banque.compte"
     _description = "Compte bancaire"
 
-    name = fields.Char(compute="_compute_name")
+    name = fields.Char(
+        compute="_compute_name",
+        store=True,
+    )
 
     no_compte = fields.Char(string="Numéro de compte")
 

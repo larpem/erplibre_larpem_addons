@@ -59,6 +59,11 @@ def post_init_hook(cr, e):
             "description": "Banque",
         }
         dct_field = {
+            "description": {
+                "code_generator_sequence": 3,
+                "field_description": "Description",
+                "ttype": "char",
+            },
             "name": {
                 "code_generator_sequence": 2,
                 "field_description": "Name",
@@ -80,24 +85,30 @@ def post_init_hook(cr, e):
         }
         dct_field = {
             "banque_id": {
-                "code_generator_sequence": 3,
+                "code_generator_sequence": 4,
                 "field_description": "Banque",
                 "relation": "larpem.banque",
                 "ttype": "many2one",
             },
             "name": {
+                "code_generator_compute": "_compute_name",
                 "code_generator_sequence": 2,
                 "field_description": "Name",
                 "ttype": "char",
             },
+            "no_compte": {
+                "code_generator_sequence": 3,
+                "field_description": "Numéro de compte",
+                "ttype": "char",
+            },
             "personnage_id": {
-                "code_generator_sequence": 4,
+                "code_generator_sequence": 5,
                 "field_description": "Personnage",
                 "relation": "larpem.personnage",
                 "ttype": "many2one",
             },
             "total": {
-                "code_generator_sequence": 5,
+                "code_generator_sequence": 6,
                 "field_description": "Sommaire du compte",
                 "ttype": "float",
             },
@@ -108,6 +119,23 @@ def post_init_hook(cr, e):
             dct_field=dct_field,
             dct_model=dct_model,
         )
+
+        # Generate code
+        if True:
+            # Generate code model
+            lst_value = [
+                {
+                    "code": '''for r in self:
+    r.name = f"{r.banque_id.name} - {r.personnage_id.name}"''',
+                    "name": "_compute_name",
+                    "decorator": '@api.depends("banque_id", "personnage_id")',
+                    "param": "self",
+                    "sequence": 0,
+                    "m2o_module": code_generator_id.id,
+                    "m2o_model": model_larpem_banque_compte.id,
+                },
+            ]
+            env["code.generator.model.code"].create(lst_value)
 
         # Add/Update Larpem Manuel
         model_model = "larpem.manuel"
@@ -229,15 +257,13 @@ def post_init_hook(cr, e):
         }
         dct_field = {
             "name": {
-                "code_generator_compute": "_compute_name",
                 "code_generator_sequence": 2,
-                "field_description": "Name",
-                "store": True,
+                "field_description": "Nom personnage",
                 "ttype": "char",
             },
-            "nom_personnage": {
+            "nom_joueur": {
                 "code_generator_sequence": 3,
-                "field_description": "Nom Personnage",
+                "field_description": "Nom joueur",
                 "ttype": "char",
             },
             "partner_id": {
@@ -253,32 +279,6 @@ def post_init_hook(cr, e):
             dct_field=dct_field,
             dct_model=dct_model,
         )
-
-        # Generate code
-        if True:
-            # Generate code model
-            lst_value = [
-                {
-                    "code": """for rec in self:
-    name = ""
-    if rec.nom_personnage:
-        name = rec.nom_personnage
-    if rec.partner_id and rec.partner_id.name:
-        if name:
-            name += " - "
-        name += rec.partner_id.name
-    rec.name = name""",
-                    "name": "_compute_name",
-                    "decorator": (
-                        '@api.depends("nom_personnage", "partner_id")'
-                    ),
-                    "param": "self",
-                    "sequence": 0,
-                    "m2o_module": code_generator_id.id,
-                    "m2o_model": model_larpem_personnage.id,
-                },
-            ]
-            env["code.generator.model.code"].create(lst_value)
 
         # Add/Update Larpem System Point
         model_model = "larpem.system_point"

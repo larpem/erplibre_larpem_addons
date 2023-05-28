@@ -5,9 +5,7 @@ class LarpemPersonnage(models.Model):
     _name = "larpem.personnage"
     _description = "Personnage"
 
-    name = fields.Char(
-        string="Nom personnage",
-    )
+    name = fields.Char(string="Nom personnage")
 
     nom_joueur = fields.Char(
         string="Nom joueur",
