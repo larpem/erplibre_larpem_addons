@@ -90,10 +90,22 @@ def post_init_hook(cr, e):
                 "relation": "larpem.banque",
                 "ttype": "many2one",
             },
+            "etat_compte": {
+                "code_generator_sequence": 6,
+                "default": "actif",
+                "field_description": "État du compte",
+                "required": True,
+                "selection": (
+                    "[('actif', 'Actif'), ('ferme', 'Fermé'), ('block',"
+                    " 'Bloqué')]"
+                ),
+                "ttype": "selection",
+            },
             "name": {
                 "code_generator_compute": "_compute_name",
                 "code_generator_sequence": 2,
                 "field_description": "Name",
+                "store": True,
                 "ttype": "char",
             },
             "no_compte": {
@@ -101,16 +113,49 @@ def post_init_hook(cr, e):
                 "field_description": "Numéro de compte",
                 "ttype": "char",
             },
+            "nom_personnage": {
+                "code_generator_sequence": 8,
+                "field_description": "Nom personnage",
+                "ttype": "char",
+            },
             "personnage_id": {
-                "code_generator_sequence": 5,
+                "code_generator_sequence": 9,
                 "field_description": "Personnage",
+                "help": "Est la personne responsable du compte",
                 "relation": "larpem.personnage",
                 "ttype": "many2one",
             },
+            "personnage_secondaire_ids": {
+                "code_generator_sequence": 10,
+                "comment_before": """TODO nom_personnage_secondaire
+TODO il faut faire un compute et prendre tous leurs noms
+nom_personnage_secondaire = fields.Char(string=\"Nom personnage secondaire\",
+related=\"personnage_secondaire_ids.name\")""",
+                "field_description": "Personnage secondaire",
+                "help": "Personne secondaire responsable du compte",
+                "relation": "larpem.personnage",
+                "ttype": "many2many",
+            },
+            "raison_etat_compte": {
+                "code_generator_sequence": 7,
+                "field_description": "Raison Etat Compte",
+                "help": (
+                    "La raison lorsque l'état de compte est fermé ou bloqué."
+                ),
+                "ttype": "char",
+            },
             "total": {
-                "code_generator_sequence": 6,
+                "code_generator_sequence": 11,
                 "field_description": "Sommaire du compte",
                 "ttype": "float",
+            },
+            "type_compte": {
+                "code_generator_sequence": 5,
+                "default": "membre",
+                "field_description": "Type de compte",
+                "required": True,
+                "selection": "[('membre', 'Membre'), ('affaire', 'Affaire')]",
+                "ttype": "selection",
             },
         }
         model_larpem_banque_compte = code_generator_id.add_update_model(

@@ -13,13 +13,25 @@
                         <field name="banque_id" />
                     </group>
                     <group>
+                        <field name="etat_compte" />
+                    </group>
+                    <group>
                         <field name="no_compte" />
                     </group>
                     <group>
                         <field name="personnage_id" />
                     </group>
                     <group>
+                        <field name="personnage_secondaire_ids" />
+                    </group>
+                    <group>
+                        <field name="raison_etat_compte" />
+                    </group>
+                    <group>
                         <field name="total" />
+                    </group>
+                    <group>
+                        <field name="type_compte" />
                     </group>
                 </sheet>
             </form>
@@ -33,9 +45,12 @@
             <graph string="Larpem banque compte">
                 <field name="name" type="row" />
                 <field name="banque_id" type="row" />
+                <field name="etat_compte" type="row" />
                 <field name="no_compte" type="row" />
                 <field name="personnage_id" type="row" />
+                <field name="raison_etat_compte" type="row" />
                 <field name="total" type="measure" />
+                <field name="type_compte" type="row" />
             </graph>
         </field>
     </record>
@@ -47,9 +62,13 @@
             <kanban class="o_kanban_mobile">
                 <field name="name" />
                 <field name="banque_id" />
+                <field name="etat_compte" />
                 <field name="no_compte" />
                 <field name="personnage_id" />
+                <field name="personnage_secondaire_ids" />
+                <field name="raison_etat_compte" />
                 <field name="total" />
+                <field name="type_compte" />
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_global_click">
@@ -67,6 +86,11 @@
                                     </li>
                                     <li class="mb4">
                                         <strong>
+                                            <field name="etat_compte" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
                                             <field name="no_compte" />
                                         </strong>
                                     </li>
@@ -77,7 +101,22 @@
                                     </li>
                                     <li class="mb4">
                                         <strong>
+                                            <field name="personnage_secondaire_ids" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="raison_etat_compte" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
                                             <field name="total" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="type_compte" />
                                         </strong>
                                     </li>
                                 </ul>
@@ -96,9 +135,12 @@
             <pivot string="Larpem banque compte">
                 <field name="name" type="row" />
                 <field name="banque_id" type="row" />
+                <field name="etat_compte" type="row" />
                 <field name="no_compte" type="row" />
                 <field name="personnage_id" type="row" />
+                <field name="raison_etat_compte" type="row" />
                 <field name="total" type="measure" />
+                <field name="type_compte" type="row" />
             </pivot>
         </field>
     </record>
@@ -108,11 +150,17 @@
         <field name="model">larpem.banque.compte</field>
         <field name="arch" type="xml">
             <search string="Larpem banque compte">
-                <filter domain="[('name','!=',False)]" name="name" string="Name" />
-                <filter domain="[('banque_id','!=',False)]" name="banque_id" string="Banque" />
-                <filter domain="[('no_compte','!=',False)]" name="no_compte" string="Num&#233;ro de compte" />
+                <field
+                    name="name"
+                    string="Compte bancaire ou personnage"
+                    filter_domain="['|','|',('no_compte','ilike',self),('nom_personnage','ilike',self),('nom_personnage_secondaire','ilike',self)]"
+                />
+                <field name="name" filter_domain="[('name','ilike',self)]" />
+                <!--                <filter domain="[('name','!=',False)]" name="name" string="Name" />-->
+                <!--                <filter domain="[('banque_id','!=',False)]" name="banque_id" string="Banque" />-->
+                <!--                <filter domain="[('no_compte','!=',False)]" name="no_compte" string="Num&#233;ro de compte" />-->
                 <filter domain="[('personnage_id','!=',False)]" name="personnage_id" string="Personnage" />
-                <filter domain="[('total','!=',False)]" name="total" string="Sommaire du compte" />
+                <!--                <filter domain="[('total','!=',False)]" name="total" string="Sommaire du compte" />-->
             </search>
         </field>
     </record>
@@ -124,9 +172,12 @@
             <tree>
                 <field name="name" />
                 <field name="banque_id" />
+                <field name="etat_compte" />
                 <field name="no_compte" />
                 <field name="personnage_id" />
                 <field name="total" sum="Total" />
+                <field name="raison_etat_compte" />
+                <field name="type_compte" />
             </tree>
         </field>
     </record>

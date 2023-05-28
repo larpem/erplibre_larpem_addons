@@ -398,5 +398,81 @@
             <field name="no_compte">CBV0068</field>
             <field name="total">3500</field>
         </record>
+
+        <record id="larpem_banque_compte_affaire_beatrice" model="larpem.banque.compte">
+            <field name="banque_id" ref="larpem_banque_vallam" />
+            <field name="personnage_id" model="larpem.personnage" search="[('name','ilike','béatrice')]" />
+            <field name="no_compte">CAV0002</field>
+            <field name="total">400</field>
+        </record>
+
+        <record id="larpem_banque_compte_affaire_forge_bijouterie" model="larpem.banque.compte">
+            <field name="banque_id" ref="larpem_banque_vallam" />
+            <field name="personnage_id" model="larpem.personnage" search="[('name','ilike','henry')]" />
+            <field
+                name="personnage_secondaire_ids"
+                model="larpem.personnage"
+                search="['|',('name','ilike','lionel'),('name','ilike','Roísín')]"
+            />
+            <field name="type_compte">affaire</field>
+            <field name="no_compte">CAV0003</field>
+            <field name="total">151</field>
+        </record>
+
+        <record id="larpem_banque_compte_affaire_glouton_repu" model="larpem.banque.compte">
+            <field name="banque_id" ref="larpem_banque_vallam" />
+            <field name="personnage_id" model="larpem.personnage" search="[('name','ilike','roland')]" />
+            <field name="personnage_secondaire_ids" model="larpem.personnage" search="[('name','ilike','1112')]" />
+            <field name="type_compte">affaire</field>
+            <field name="no_compte">CAV0006</field>
+            <field name="total">368</field>
+        </record>
+
+        <record id="larpem_banque_compte_affaire_casino" model="larpem.banque.compte">
+            <field name="banque_id" ref="larpem_banque_vallam" />
+            <field name="personnage_id" model="larpem.personnage" search="[('name','ilike','flutor')]" />
+            <field name="type_compte">affaire</field>
+            <field name="no_compte">CAV0007</field>
+            <field name="total">-380</field>
+        </record>
+
+        <record id="larpem_banque_compte_affaire_consortium_marchands" model="larpem.banque.compte">
+            <field name="banque_id" ref="larpem_banque_vallam" />
+            <field name="personnage_id" model="larpem.personnage" search="[('name','ilike','marco')]" />
+            <field name="personnage_secondaire_ids" model="larpem.personnage" search="[('name','ilike','cosimo')]" />
+            <field name="type_compte">affaire</field>
+            <field name="no_compte">CAV0008</field>
+            <field name="total">1249</field>
+        </record>
+
+        <record id="larpem_banque_compte_affaire_charcuterie_euphorique" model="larpem.banque.compte">
+            <field name="banque_id" ref="larpem_banque_vallam" />
+            <field name="personnage_id" model="larpem.personnage" search="[('name','ilike','hysto')]" />
+            <field
+                name="personnage_secondaire_ids"
+                model="larpem.personnage"
+                search="['|',('name','ilike','colé rik'),('name','ilike','ba rik')]"
+            />
+            <field name="type_compte">affaire</field>
+            <field name="no_compte">CAV0010</field>
+            <field name="total">950</field>
+        </record>
+
+        <record id="larpem_banque_compte_affaire_conservatoire" model="larpem.banque.compte">
+            <field name="banque_id" ref="larpem_banque_vallam" />
+            <field name="personnage_id" model="larpem.personnage" search="[('name','ilike','wilfrid')]" />
+            <field name="personnage_secondaire_ids" model="larpem.personnage" search="[('name','ilike','herbarius')]" />
+            <field name="type_compte">affaire</field>
+            <field name="no_compte">CAV0011</field>
+            <field name="total">1200</field>
+        </record>
+
+        <record id="larpem_banque_compte_affaire_baron_mairie" model="larpem.banque.compte">
+            <field name="banque_id" ref="larpem_banque_vallam" />
+            <field name="personnage_id" model="larpem.personnage" search="[('name','ilike','wilfrid')]" />
+            <field name="type_compte">affaire</field>
+            <field name="no_compte">CAV0012</field>
+            <field name="total">50</field>
+        </record>
     </data>
 </odoo>
