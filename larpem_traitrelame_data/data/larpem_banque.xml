@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="larpem_banque_or" model="larpem.banque">
+            <field name="name">Banque d'or</field>
+            <field name="description">Banque de Malédestarône</field>
+        </record>
+
+        <record id="larpem_banque_bronze" model="larpem.banque">
+            <field name="name">Banque de bronze</field>
+            <field name="description">Banque de Zazanov</field>
+        </record>
+
+        <record id="larpem_banque_blanche" model="larpem.banque">
+            <field name="name">Banque blanche</field>
+            <field name="description">Banque d'Angbar</field>
+        </record>
+
+        <record id="larpem_banque_verte" model="larpem.banque">
+            <field name="name">Banque verte</field>
+            <field name="description">Banque de Sarsare</field>
+        </record>
+
+        <record id="larpem_banque_noire" model="larpem.banque">
+            <field name="name">Banque noire</field>
+            <field name="description">Banque d'Amunzrat</field>
+        </record>
+
+        <record id="larpem_banque_vallam" model="larpem.banque">
+            <field name="name">Banque de Vallam</field>
+            <field name="description">Banque de Vallam gérer par le banquier 1000</field>
+        </record>
+    </data>
+</odoo>

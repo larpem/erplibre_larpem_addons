@@ -6,3 +6,5 @@ class LarpemBanque(models.Model):
     _description = "Banque"
 
     name = fields.Char()
+
+    description = fields.Char()

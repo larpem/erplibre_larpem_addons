@@ -113,7 +113,7 @@
                 <field name="name" />
                 <field name="banque_id" />
                 <field name="personnage_id" />
-                <field name="total" />
+                <field name="total" sum="Total" />
             </tree>
         </field>
     </record>
