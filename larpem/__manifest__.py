@@ -5,9 +5,15 @@
     "author": "TechnoLibre",
     "license": "AGPL-3",
     "application": True,
+    "depends": [
+        "mail",
+        "portal",
+        "website",
+    ],
     "data": [
         "security/ir.model.access.csv",
         "views/larpem_banque.xml",
+        "views/larpem_templates.xml",
         "views/larpem_banque_compte.xml",
         "views/larpem_manuel.xml",
         "views/larpem_personnage.xml",

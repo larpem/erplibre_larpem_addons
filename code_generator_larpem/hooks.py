@@ -52,6 +52,10 @@ def post_init_hook(cr, e):
 
         code_generator_id = env["code.generator.module"].create(value)
 
+        # Add dependencies
+        lst_depend_module = ["mail", "portal", "website"]
+        code_generator_id.add_module_dependency(lst_depend_module)
+
         # Add/Update Larpem Banque
         model_model = "larpem.banque"
         model_name = "larpem_banque"
@@ -297,8 +301,14 @@ related=\"personnage_secondaire_ids.name\")""",
         # Add/Update Larpem Personnage
         model_model = "larpem.personnage"
         model_name = "larpem_personnage"
+        lst_depend_model = [
+            "mail.thread",
+            "mail.activity.mixin",
+            "portal.mixin",
+        ]
         dct_model = {
             "description": "Personnage",
+            "enable_activity": True,
         }
         dct_field = {
             "name": {
@@ -323,6 +333,7 @@ related=\"personnage_secondaire_ids.name\")""",
             model_name,
             dct_field=dct_field,
             dct_model=dct_model,
+            lst_depend_model=lst_depend_model,
         )
 
         # Add/Update Larpem System Point
@@ -446,6 +457,8 @@ related=\"personnage_secondaire_ids.name\")""",
             {
                 "code_generator_id": code_generator_id.id,
                 "enable_generate_all": True,
+                "enable_generate_portal": True,
+                "portal_enable_create": True,
             }
         )
 

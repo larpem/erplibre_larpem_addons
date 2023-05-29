@@ -3,6 +3,7 @@ from odoo import _, api, fields, models
 
 class LarpemManuel(models.Model):
     _name = "larpem.manuel"
+    _inherit = "portal.mixin"
     _description = "Manuel utilisateur et administrateur"
 
     name = fields.Char(
@@ -55,3 +56,10 @@ class LarpemManuel(models.Model):
                 rec.name = rec.title
             else:
                 rec.name = "NO TITLE"
+
+    def _compute_access_url(self):
+        super(LarpemManuel, self)._compute_access_url()
+        for larpem_manuel in self:
+            larpem_manuel.access_url = (
+                "/my/larpem_manuel/%s" % larpem_manuel.id
+            )
