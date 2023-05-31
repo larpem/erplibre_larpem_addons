@@ -304,17 +304,6 @@ for larpem_banque_compte in self:
                 "relation": "larpem.banque.compte",
                 "ttype": "many2one",
             },
-            "type_transaction": {
-                "code_generator_sequence": 8,
-                "default": "depot",
-                "field_description": "Type de transaction",
-                "required": True,
-                "selection": (
-                    "[('depot', 'Dépôt'), ('retrait', 'Retrait'),"
-                    " ('transfert', 'Transfert')]"
-                ),
-                "ttype": "selection",
-            },
         }
         model_larpem_banque_transaction = code_generator_id.add_update_model(
             model_model,
@@ -362,16 +351,13 @@ _logger = logging.getLogger(__name__)""",
         elif len(event_ids) == 1:
             event_id = event_ids
 
-    name = f"{r.montant} - {r.type_transaction}"
+    name = f"{r.montant}"
     if event_id and event_id.name:
         name += f"- {event_id.name}"
 
     r.name = name""",
                     "name": "_compute_name",
-                    "decorator": (
-                        '@api.depends("date_transaction", "montant",'
-                        ' "type_transaction")'
-                    ),
+                    "decorator": '@api.depends("date_transaction", "montant")',
                     "param": "self",
                     "sequence": 0,
                     "m2o_module": code_generator_id.id,

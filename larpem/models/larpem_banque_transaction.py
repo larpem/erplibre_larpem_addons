@@ -27,18 +27,7 @@ class LarpemBanqueTransaction(models.Model):
 
     destination_compte = fields.Many2one(comodel_name="larpem.banque.compte")
 
-    type_transaction = fields.Selection(
-        selection=[
-            ("depot", "Dépôt"),
-            ("retrait", "Retrait"),
-            ("transfert", "Transfert"),
-        ],
-        string="Type de transaction",
-        required=True,
-        default="depot",
-    )
-
-    @api.depends("date_transaction", "montant", "type_transaction")
+    @api.depends("date_transaction", "montant")
     def _compute_name(self):
         for r in self:
             event_model_name = "event.event"
@@ -60,9 +49,12 @@ class LarpemBanqueTransaction(models.Model):
                     event_id = event_ids[0]
                 elif len(event_ids) == 1:
                     event_id = event_ids
+                else:
+                    # Chercher entre les événements
+                    print("oups")
 
-            name = f"{r.montant} - {r.type_transaction}"
+            name = f"{r.montant}"
             if event_id and event_id.name:
-                name += f"- {event_id.name}"
+                name += f" - {event_id.name}"
 
             r.name = name

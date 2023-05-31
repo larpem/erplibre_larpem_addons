@@ -7,25 +7,14 @@
             <form string="Titre">
                 <sheet>
                     <group>
-                        <field name="name" />
-                    </group>
-                    <group>
-                        <field name="date_transaction" />
-                    </group>
-                    <group>
+                        <field name="montant" />
+                        <field name="source_compte" />
                         <field name="destination_compte" />
-                    </group>
-                    <group>
                         <field name="memo" />
                     </group>
                     <group>
-                        <field name="montant" />
-                    </group>
-                    <group>
-                        <field name="source_compte" />
-                    </group>
-                    <group>
-                        <field name="type_transaction" />
+                        <field name="name" />
+                        <field name="date_transaction" />
                     </group>
                 </sheet>
             </form>
@@ -43,7 +32,6 @@
                 <field name="memo" type="row" />
                 <field name="montant" type="measure" />
                 <field name="source_compte" type="row" />
-                <field name="type_transaction" type="row" />
             </graph>
         </field>
     </record>
@@ -52,14 +40,13 @@
         <field name="name">larpem_banque_transaction_kanban</field>
         <field name="model">larpem.banque.transaction</field>
         <field name="arch" type="xml">
-            <kanban class="o_kanban_mobile">
+            <kanban class="o_kanban_mobile" limit="200">
                 <field name="name" />
                 <field name="date_transaction" />
                 <field name="destination_compte" />
                 <field name="memo" />
                 <field name="montant" />
                 <field name="source_compte" />
-                <field name="type_transaction" />
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_global_click">
@@ -95,11 +82,6 @@
                                             <field name="source_compte" />
                                         </strong>
                                     </li>
-                                    <li class="mb4">
-                                        <strong>
-                                            <field name="type_transaction" />
-                                        </strong>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -120,7 +102,6 @@
                 <field name="memo" type="row" />
                 <field name="montant" type="measure" />
                 <field name="source_compte" type="row" />
-                <field name="type_transaction" type="row" />
             </pivot>
         </field>
     </record>
@@ -144,11 +125,6 @@
                 <filter domain="[('memo','!=',False)]" name="memo" string="Memo" />
                 <filter domain="[('montant','!=',False)]" name="montant" string="Montant" />
                 <filter domain="[('source_compte','!=',False)]" name="source_compte" string="Source Compte" />
-                <filter
-                    domain="[('type_transaction','!=',False)]"
-                    name="type_transaction"
-                    string="Type de transaction"
-                />
             </search>
         </field>
     </record>
@@ -157,14 +133,13 @@
         <field name="name">larpem_banque_transaction_tree</field>
         <field name="model">larpem.banque.transaction</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree limit="200">
                 <field name="name" />
                 <field name="date_transaction" />
                 <field name="destination_compte" />
                 <field name="memo" />
                 <field name="montant" />
                 <field name="source_compte" />
-                <field name="type_transaction" />
             </tree>
         </field>
     </record>
