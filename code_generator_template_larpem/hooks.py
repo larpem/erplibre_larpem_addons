@@ -44,8 +44,8 @@ def post_init_hook(cr, e):
         # TODO HUMAN: enable your functionality to generate
         value["enable_template_code_generator_demo"] = False
         value["template_model_name"] = (
-            "larpem.banque; larpem.banque.compte; larpem.manuel;"
-            " larpem.personnage; larpem.system_point"
+            "larpem.banque; larpem.banque.compte; larpem.banque.transaction;"
+            " larpem.manuel; larpem.personnage; larpem.system_point"
         )
         value["template_inherit_model_name"] = ""
         value[
@@ -84,6 +84,7 @@ def post_init_hook(cr, e):
         # Add dependencies
         lst_depend_module = [
             "code_generator",
+            "code_generator_portal",
             "code_generator_website_snippet",
         ]
         code_generator_id.add_module_dependency(lst_depend_module)

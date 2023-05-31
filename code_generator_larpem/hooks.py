@@ -59,17 +59,22 @@ def post_init_hook(cr, e):
         # Add/Update Larpem Banque
         model_model = "larpem.banque"
         model_name = "larpem_banque"
+        lst_depend_model = ["portal.mixin"]
         dct_model = {
             "description": "Banque",
         }
         dct_field = {
             "description": {
-                "code_generator_sequence": 3,
+                "code_generator_form_simple_view_sequence": 11,
+                "code_generator_sequence": 4,
+                "code_generator_tree_view_sequence": 11,
                 "field_description": "Description",
                 "ttype": "char",
             },
             "name": {
-                "code_generator_sequence": 2,
+                "code_generator_form_simple_view_sequence": 10,
+                "code_generator_sequence": 3,
+                "code_generator_tree_view_sequence": 10,
                 "field_description": "Name",
                 "ttype": "char",
             },
@@ -79,23 +84,53 @@ def post_init_hook(cr, e):
             model_name,
             dct_field=dct_field,
             dct_model=dct_model,
+            lst_depend_model=lst_depend_model,
         )
+
+        # Generate code
+        if True:
+            # Generate code model
+            lst_value = [
+                {
+                    "code": """super(LarpemBanque, self)._compute_access_url()
+for larpem_banque in self:
+    larpem_banque.access_url = (
+        "/my/larpem_banque/%s" % larpem_banque.id
+    )""",
+                    "name": "_compute_access_url",
+                    "param": "self",
+                    "sequence": 0,
+                    "m2o_module": code_generator_id.id,
+                    "m2o_model": model_larpem_banque.id,
+                },
+            ]
+            env["code.generator.model.code"].create(lst_value)
 
         # Add/Update Larpem Banque Compte
         model_model = "larpem.banque.compte"
         model_name = "larpem_banque_compte"
+        lst_depend_model = [
+            "portal.mixin",
+            "mail.thread",
+            "mail.activity.mixin",
+        ]
         dct_model = {
             "description": "Compte bancaire",
+            "enable_activity": True,
         }
         dct_field = {
             "banque_id": {
-                "code_generator_sequence": 4,
+                "code_generator_form_simple_view_sequence": 11,
+                "code_generator_sequence": 5,
+                "code_generator_tree_view_sequence": 11,
                 "field_description": "Banque",
                 "relation": "larpem.banque",
                 "ttype": "many2one",
             },
             "etat_compte": {
-                "code_generator_sequence": 6,
+                "code_generator_form_simple_view_sequence": 12,
+                "code_generator_sequence": 7,
+                "code_generator_tree_view_sequence": 12,
                 "default": "actif",
                 "field_description": "État du compte",
                 "required": True,
@@ -107,41 +142,53 @@ def post_init_hook(cr, e):
             },
             "name": {
                 "code_generator_compute": "_compute_name",
-                "code_generator_sequence": 2,
+                "code_generator_form_simple_view_sequence": 10,
+                "code_generator_sequence": 3,
+                "code_generator_tree_view_sequence": 10,
                 "field_description": "Name",
                 "store": True,
                 "ttype": "char",
             },
             "no_compte": {
-                "code_generator_sequence": 3,
+                "code_generator_form_simple_view_sequence": 13,
+                "code_generator_sequence": 4,
+                "code_generator_tree_view_sequence": 13,
                 "field_description": "Numéro de compte",
                 "ttype": "char",
             },
             "nom_personnage": {
-                "code_generator_sequence": 8,
+                "code_generator_sequence": 9,
                 "field_description": "Nom personnage",
                 "ttype": "char",
             },
+            "nom_personnage_secondaire": {
+                "code_generator_compute": "_compute_nom_personnage_secondaire",
+                "code_generator_sequence": 11,
+                "field_description": "Nom personnage secondaire",
+                "store": True,
+                "ttype": "char",
+            },
             "personnage_id": {
-                "code_generator_sequence": 9,
+                "code_generator_form_simple_view_sequence": 14,
+                "code_generator_sequence": 10,
+                "code_generator_tree_view_sequence": 14,
                 "field_description": "Personnage",
                 "help": "Est la personne responsable du compte",
                 "relation": "larpem.personnage",
                 "ttype": "many2one",
             },
             "personnage_secondaire_ids": {
-                "code_generator_sequence": 10,
-                "comment_before": """TODO nom_personnage_secondaire
-TODO il faut faire un compute et prendre tous leurs noms
-nom_personnage_secondaire = fields.Char(string=\"Nom personnage secondaire\",
-related=\"personnage_secondaire_ids.name\")""",
+                "code_generator_form_simple_view_sequence": 15,
+                "code_generator_sequence": 12,
                 "field_description": "Personnage secondaire",
                 "help": "Personne secondaire responsable du compte",
                 "relation": "larpem.personnage",
                 "ttype": "many2many",
             },
             "raison_etat_compte": {
-                "code_generator_sequence": 7,
+                "code_generator_form_simple_view_sequence": 16,
+                "code_generator_sequence": 8,
+                "code_generator_tree_view_sequence": 16,
                 "field_description": "Raison Etat Compte",
                 "help": (
                     "La raison lorsque l'état de compte est fermé ou bloqué."
@@ -149,12 +196,16 @@ related=\"personnage_secondaire_ids.name\")""",
                 "ttype": "char",
             },
             "total": {
-                "code_generator_sequence": 11,
+                "code_generator_form_simple_view_sequence": 17,
+                "code_generator_sequence": 13,
+                "code_generator_tree_view_sequence": 15,
                 "field_description": "Sommaire du compte",
                 "ttype": "float",
             },
             "type_compte": {
-                "code_generator_sequence": 5,
+                "code_generator_form_simple_view_sequence": 18,
+                "code_generator_sequence": 6,
+                "code_generator_tree_view_sequence": 17,
                 "default": "membre",
                 "field_description": "Type de compte",
                 "required": True,
@@ -167,6 +218,7 @@ related=\"personnage_secondaire_ids.name\")""",
             model_name,
             dct_field=dct_field,
             dct_model=dct_model,
+            lst_depend_model=lst_depend_model,
         )
 
         # Generate code
@@ -183,49 +235,61 @@ related=\"personnage_secondaire_ids.name\")""",
                     "m2o_module": code_generator_id.id,
                     "m2o_model": model_larpem_banque_compte.id,
                 },
+                {
+                    "code": """super(LarpemBanqueCompte, self)._compute_access_url()
+for larpem_banque_compte in self:
+    larpem_banque_compte.access_url = (
+        "/my/larpem_banque_compte/%s" % larpem_banque_compte.id
+    )""",
+                    "name": "_compute_access_url",
+                    "param": "self",
+                    "sequence": 1,
+                    "m2o_module": code_generator_id.id,
+                    "m2o_model": model_larpem_banque_compte.id,
+                },
+                {
+                    "code": """for r in self:
+    r.nom_personnage_secondaire = " - ".join(
+        [a.name for a in r.personnage_secondaire_ids]
+    )""",
+                    "name": "_compute_nom_personnage_secondaire",
+                    "decorator": '@api.depends("personnage_secondaire_ids")',
+                    "param": "self",
+                    "sequence": 2,
+                    "m2o_module": code_generator_id.id,
+                    "m2o_model": model_larpem_banque_compte.id,
+                },
             ]
             env["code.generator.model.code"].create(lst_value)
 
-        # Add/Update Larpem Manuel
-        model_model = "larpem.manuel"
-        model_name = "larpem_manuel"
+        # Add/Update Larpem Banque Transaction
+        model_model = "larpem.banque.transaction"
+        model_name = "larpem_banque_transaction"
         dct_model = {
-            "description": "Manuel utilisateur et administrateur",
+            "description": "Banque",
         }
         dct_field = {
-            "admin": {
+            "date_transaction": {
+                "code_generator_sequence": 4,
+                "default_lambda": "lambda self: fields.Datetime.now()",
+                "field_description": "Date de la transaction",
+                "ttype": "datetime",
+            },
+            "destination_compte": {
+                "code_generator_sequence": 7,
+                "field_description": "Destination Compte",
+                "relation": "larpem.banque.compte",
+                "ttype": "many2one",
+            },
+            "memo": {
                 "code_generator_sequence": 5,
-                "field_description": "Admin seulement",
-                "help": (
-                    "Cette information est seulement pour les organisateurs du"
-                    " jeu."
-                ),
-                "ttype": "boolean",
-            },
-            "bullet_description": {
-                "code_generator_sequence": 10,
-                "field_description": "Bullet Description",
+                "field_description": "Memo",
                 "ttype": "char",
             },
-            "description": {
-                "code_generator_sequence": 9,
-                "field_description": "Description",
-                "ttype": "text",
-            },
-            "hide_player": {
-                "code_generator_sequence": 16,
-                "field_description": "Hide Player",
-                "ttype": "boolean",
-            },
-            "key": {
-                "code_generator_sequence": 6,
-                "field_description": "Key",
-                "ttype": "char",
-            },
-            "model": {
-                "code_generator_sequence": 14,
-                "field_description": "Model",
-                "ttype": "char",
+            "montant": {
+                "code_generator_sequence": 3,
+                "field_description": "Montant",
+                "ttype": "float",
             },
             "name": {
                 "code_generator_compute": "_compute_name",
@@ -234,39 +298,198 @@ related=\"personnage_secondaire_ids.name\")""",
                 "store": True,
                 "ttype": "char",
             },
-            "parent_id": {
+            "source_compte": {
+                "code_generator_sequence": 6,
+                "field_description": "Source Compte",
+                "relation": "larpem.banque.compte",
+                "ttype": "many2one",
+            },
+            "type_transaction": {
+                "code_generator_sequence": 8,
+                "default": "depot",
+                "field_description": "Type de transaction",
+                "required": True,
+                "selection": (
+                    "[('depot', 'Dépôt'), ('retrait', 'Retrait'),"
+                    " ('transfert', 'Transfert')]"
+                ),
+                "ttype": "selection",
+            },
+        }
+        model_larpem_banque_transaction = code_generator_id.add_update_model(
+            model_model,
+            model_name,
+            dct_field=dct_field,
+            dct_model=dct_model,
+        )
+
+        # Generate code
+        if True:
+            # Generate code header
+            value = {
+                "code": """import logging
+
+from odoo import _, api, fields, models
+
+_logger = logging.getLogger(__name__)""",
+                "name": "header",
+                "m2o_module": code_generator_id.id,
+                "m2o_model": model_larpem_banque_transaction.id,
+            }
+            env["code.generator.model.code.import"].create(value)
+
+            # Generate code model
+            lst_value = [
+                {
+                    "code": """for r in self:
+    event_model_name = "event.event"
+    event_id = None
+    if event_model_name in self.env.keys():
+        # event exist!
+        event_ids = self.env["event.event"].search(
+            [
+                ("date_begin", "<=", r.date_transaction),
+                ("date_end", ">=", r.date_transaction),
+            ]
+        )
+        if len(event_ids) > 1:
+            _logger.warning(
+                "Find more than 1 event.event for transaction date"
+                f" {r.date_transaction}. Do you have multiple event?"
+                " Choose first for larpem.banque.transaction name."
+            )
+            event_id = event_ids[0]
+        elif len(event_ids) == 1:
+            event_id = event_ids
+
+    name = f"{r.montant} - {r.type_transaction}"
+    if event_id and event_id.name:
+        name += f"- {event_id.name}"
+
+    r.name = name""",
+                    "name": "_compute_name",
+                    "decorator": (
+                        '@api.depends("date_transaction", "montant",'
+                        ' "type_transaction")'
+                    ),
+                    "param": "self",
+                    "sequence": 0,
+                    "m2o_module": code_generator_id.id,
+                    "m2o_model": model_larpem_banque_transaction.id,
+                },
+            ]
+            env["code.generator.model.code"].create(lst_value)
+
+        # Add/Update Larpem Manuel
+        model_model = "larpem.manuel"
+        model_name = "larpem_manuel"
+        lst_depend_model = ["portal.mixin"]
+        dct_model = {
+            "description": "Manuel utilisateur et administrateur",
+        }
+        dct_field = {
+            "admin": {
+                "code_generator_form_simple_view_sequence": 11,
+                "code_generator_sequence": 6,
+                "code_generator_tree_view_sequence": 11,
+                "field_description": "Admin seulement",
+                "help": (
+                    "Cette information est seulement pour les organisateurs du"
+                    " jeu."
+                ),
+                "ttype": "boolean",
+            },
+            "bullet_description": {
+                "code_generator_form_simple_view_sequence": 12,
+                "code_generator_sequence": 11,
+                "code_generator_tree_view_sequence": 12,
+                "field_description": "Bullet Description",
+                "ttype": "char",
+            },
+            "description": {
+                "code_generator_form_simple_view_sequence": 13,
+                "code_generator_sequence": 10,
+                "code_generator_tree_view_sequence": 13,
+                "field_description": "Description",
+                "ttype": "text",
+            },
+            "hide_player": {
+                "code_generator_form_simple_view_sequence": 14,
+                "code_generator_sequence": 17,
+                "code_generator_tree_view_sequence": 14,
+                "field_description": "Hide Player",
+                "ttype": "boolean",
+            },
+            "key": {
+                "code_generator_form_simple_view_sequence": 15,
+                "code_generator_sequence": 7,
+                "code_generator_tree_view_sequence": 15,
+                "field_description": "Key",
+                "ttype": "char",
+            },
+            "model": {
+                "code_generator_form_simple_view_sequence": 16,
+                "code_generator_sequence": 15,
+                "code_generator_tree_view_sequence": 16,
+                "field_description": "Model",
+                "ttype": "char",
+            },
+            "name": {
+                "code_generator_compute": "_compute_name",
+                "code_generator_form_simple_view_sequence": 10,
                 "code_generator_sequence": 3,
+                "code_generator_tree_view_sequence": 10,
+                "field_description": "Name",
+                "store": True,
+                "ttype": "char",
+            },
+            "parent_id": {
+                "code_generator_form_simple_view_sequence": 17,
+                "code_generator_sequence": 4,
+                "code_generator_tree_view_sequence": 17,
                 "field_description": "Parent",
                 "relation": "larpem.manuel",
                 "ttype": "many2one",
             },
             "point": {
-                "code_generator_sequence": 15,
+                "code_generator_form_simple_view_sequence": 18,
+                "code_generator_sequence": 16,
+                "code_generator_tree_view_sequence": 18,
                 "field_description": "Point",
                 "ttype": "char",
             },
             "second_bullet_description": {
-                "code_generator_sequence": 11,
+                "code_generator_form_simple_view_sequence": 19,
+                "code_generator_sequence": 12,
+                "code_generator_tree_view_sequence": 19,
                 "field_description": "Second Bullet Description",
                 "ttype": "char",
             },
             "sub_key": {
-                "code_generator_sequence": 13,
+                "code_generator_form_simple_view_sequence": 20,
+                "code_generator_sequence": 14,
+                "code_generator_tree_view_sequence": 20,
                 "field_description": "Sub Key",
                 "ttype": "char",
             },
             "title": {
-                "code_generator_sequence": 7,
+                "code_generator_form_simple_view_sequence": 21,
+                "code_generator_sequence": 8,
+                "code_generator_tree_view_sequence": 21,
                 "field_description": "Title",
                 "ttype": "char",
             },
             "title_html": {
-                "code_generator_sequence": 8,
+                "code_generator_form_simple_view_sequence": 22,
+                "code_generator_sequence": 9,
+                "code_generator_tree_view_sequence": 22,
                 "field_description": "Title Html",
                 "ttype": "html",
             },
             "under_level_color": {
-                "code_generator_sequence": 12,
+                "code_generator_form_simple_view_sequence": 23,
+                "code_generator_sequence": 13,
+                "code_generator_tree_view_sequence": 23,
                 "field_description": "Under Level Color",
                 "ttype": "char",
             },
@@ -276,6 +499,7 @@ related=\"personnage_secondaire_ids.name\")""",
             model_name,
             dct_field=dct_field,
             dct_model=dct_model,
+            lst_depend_model=lst_depend_model,
         )
 
         # Generate code
@@ -295,6 +519,18 @@ related=\"personnage_secondaire_ids.name\")""",
                     "m2o_module": code_generator_id.id,
                     "m2o_model": model_larpem_manuel.id,
                 },
+                {
+                    "code": """super(LarpemManuel, self)._compute_access_url()
+for larpem_manuel in self:
+    larpem_manuel.access_url = (
+        "/my/larpem_manuel/%s" % larpem_manuel.id
+    )""",
+                    "name": "_compute_access_url",
+                    "param": "self",
+                    "sequence": 1,
+                    "m2o_module": code_generator_id.id,
+                    "m2o_model": model_larpem_manuel.id,
+                },
             ]
             env["code.generator.model.code"].create(lst_value)
 
@@ -311,18 +547,38 @@ related=\"personnage_secondaire_ids.name\")""",
             "enable_activity": True,
         }
         dct_field = {
+            "compte_bancaire_secondaire_ids": {
+                "code_generator_form_simple_view_sequence": 13,
+                "code_generator_sequence": 8,
+                "code_generator_tree_view_sequence": 14,
+                "comment_after": (
+                    'all_name = fields.Char(string="Nom personnage") combine'
+                    " name + nom_joueur et mettre dans les recherches des"
+                    " autres vues"
+                ),
+                "field_description": "Comptes bancaires supplémentaires",
+                "force_widget": "many2many_tags",
+                "relation": "larpem.banque.compte",
+                "ttype": "many2many",
+            },
             "name": {
-                "code_generator_sequence": 2,
+                "code_generator_form_simple_view_sequence": 10,
+                "code_generator_sequence": 3,
+                "code_generator_tree_view_sequence": 10,
                 "field_description": "Nom personnage",
+                "track_visibility": "onchange",
                 "ttype": "char",
             },
             "nom_joueur": {
-                "code_generator_sequence": 3,
+                "code_generator_sequence": 4,
+                "code_generator_tree_view_sequence": 11,
                 "field_description": "Nom joueur",
                 "ttype": "char",
             },
             "partner_id": {
-                "code_generator_sequence": 4,
+                "code_generator_form_simple_view_sequence": 11,
+                "code_generator_sequence": 5,
+                "code_generator_tree_view_sequence": 12,
                 "field_description": "Participant",
                 "relation": "res.partner",
                 "ttype": "many2one",
@@ -336,6 +592,25 @@ related=\"personnage_secondaire_ids.name\")""",
             lst_depend_model=lst_depend_model,
         )
 
+        # Generate code
+        if True:
+            # Generate code model
+            lst_value = [
+                {
+                    "code": """super(LarpemPersonnage, self)._compute_access_url()
+for larpem_personnage in self:
+    larpem_personnage.access_url = (
+        "/my/larpem_personnage/%s" % larpem_personnage.id
+    )""",
+                    "name": "_compute_access_url",
+                    "param": "self",
+                    "sequence": 0,
+                    "m2o_module": code_generator_id.id,
+                    "m2o_model": model_larpem_personnage.id,
+                },
+            ]
+            env["code.generator.model.code"].create(lst_value)
+
         # Add/Update Larpem System Point
         model_model = "larpem.system_point"
         model_name = "larpem_system_point"
@@ -344,12 +619,16 @@ related=\"personnage_secondaire_ids.name\")""",
         }
         dct_field = {
             "explication": {
+                "code_generator_form_simple_view_sequence": 11,
                 "code_generator_sequence": 4,
+                "code_generator_tree_view_sequence": 11,
                 "field_description": "Explication",
                 "ttype": "char",
             },
             "formule": {
+                "code_generator_form_simple_view_sequence": 12,
                 "code_generator_sequence": 8,
+                "code_generator_tree_view_sequence": 12,
                 "field_description": "Formule",
                 "help": (
                     "Formule is an algorithm in Javascript to calculate value."
@@ -357,49 +636,67 @@ related=\"personnage_secondaire_ids.name\")""",
                 "ttype": "char",
             },
             "hide_value": {
+                "code_generator_form_simple_view_sequence": 13,
                 "code_generator_sequence": 9,
+                "code_generator_tree_view_sequence": 13,
                 "field_description": "Cache la valeur",
                 "help": "TODO à définir",
                 "ttype": "boolean",
             },
             "identifiant": {
+                "code_generator_form_simple_view_sequence": 14,
                 "code_generator_sequence": 3,
+                "code_generator_tree_view_sequence": 14,
                 "field_description": "Identifiant",
                 "ttype": "char",
             },
             "init_value": {
+                "code_generator_form_simple_view_sequence": 15,
                 "code_generator_sequence": 5,
+                "code_generator_tree_view_sequence": 15,
                 "field_description": "Valeur initiale",
                 "ttype": "integer",
             },
             "invisible": {
+                "code_generator_form_simple_view_sequence": 16,
                 "code_generator_sequence": 11,
+                "code_generator_tree_view_sequence": 16,
                 "field_description": "Invisible",
                 "help": "TODO à définir",
                 "ttype": "boolean",
             },
             "max_value": {
+                "code_generator_form_simple_view_sequence": 17,
                 "code_generator_sequence": 7,
+                "code_generator_tree_view_sequence": 17,
                 "field_description": "Valeur maximal",
                 "ttype": "integer",
             },
             "min_value": {
+                "code_generator_form_simple_view_sequence": 18,
                 "code_generator_sequence": 6,
+                "code_generator_tree_view_sequence": 18,
                 "field_description": "Valeur minimal",
                 "ttype": "integer",
             },
             "name": {
+                "code_generator_form_simple_view_sequence": 10,
                 "code_generator_sequence": 2,
+                "code_generator_tree_view_sequence": 10,
                 "field_description": "Description",
                 "ttype": "char",
             },
             "required_value": {
+                "code_generator_form_simple_view_sequence": 19,
                 "code_generator_sequence": 10,
+                "code_generator_tree_view_sequence": 19,
                 "field_description": "Valeur requise",
                 "ttype": "boolean",
             },
             "type": {
+                "code_generator_form_simple_view_sequence": 20,
                 "code_generator_sequence": 12,
+                "code_generator_tree_view_sequence": 20,
                 "default": "ressource",
                 "field_description": "Type",
                 "required": True,
@@ -422,7 +719,9 @@ related=\"personnage_secondaire_ids.name\")""",
             "enfant_id": {
                 "field_description": "Enfant",
                 "ttype": "one2many",
-                "code_generator_sequence": 4,
+                "code_generator_sequence": 5,
+                "code_generator_form_simple_view_sequence": 24,
+                "code_generator_tree_view_sequence": 24,
                 "relation": "larpem.manuel",
                 "relation_field": "parent_id",
             },
@@ -434,7 +733,9 @@ related=\"personnage_secondaire_ids.name\")""",
             "compte_bancaire_ids": {
                 "field_description": "Comptes bancaires",
                 "ttype": "one2many",
-                "code_generator_sequence": 5,
+                "code_generator_sequence": 6,
+                "code_generator_form_simple_view_sequence": 12,
+                "code_generator_tree_view_sequence": 13,
                 "relation": "larpem.banque.compte",
                 "relation_field": "personnage_id",
             },

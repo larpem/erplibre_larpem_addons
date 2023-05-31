@@ -17,14 +17,15 @@ class LarpemBanqueTransaction(models.Model):
     montant = fields.Float()
 
     date_transaction = fields.Datetime(
-        "Date de la transaction", default=lambda self: fields.Datetime.now()
+        string="Date de la transaction",
+        default=lambda self: fields.Datetime.now(),
     )
 
     memo = fields.Char()
 
-    source_compte = fields.Many2one("larpem.banque.compte")
+    source_compte = fields.Many2one(comodel_name="larpem.banque.compte")
 
-    destination_compte = fields.Many2one("larpem.banque.compte")
+    destination_compte = fields.Many2one(comodel_name="larpem.banque.compte")
 
     type_transaction = fields.Selection(
         selection=[

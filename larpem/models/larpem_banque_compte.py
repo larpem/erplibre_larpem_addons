@@ -3,7 +3,7 @@ from odoo import _, api, fields, models
 
 class LarpemBanqueCompte(models.Model):
     _name = "larpem.banque.compte"
-    _inherit = "portal.mixin"
+    _inherit = ["mail.activity.mixin", "mail.thread", "portal.mixin"]
     _description = "Compte bancaire"
 
     name = fields.Char(
