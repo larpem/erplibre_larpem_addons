@@ -121,6 +121,13 @@
         <field name="model">larpem.banque.transaction</field>
         <field name="arch" type="xml">
             <search string="Larpem banque transaction">
+                <field
+                    name="name"
+                    string="Compte bancaire ou personnage"
+                    filter_domain="['|',('source_compte','ilike',self),('destination_compte','ilike',self)]"
+                />
+                <field name="name" string="Mémo" filter_domain="[('memo','ilike',self)]" />
+                <field name="name" filter_domain="[('name','ilike',self)]" />
                 <filter domain="[('name','!=',False)]" name="name" string="Name" />
                 <filter
                     domain="[('date_transaction','!=',False)]"
@@ -149,7 +156,7 @@
                 <field name="destination_compte" />
                 <field name="memo" />
                 <field name="type_transaction" />
-                <field name="montant" />
+                <field name="montant" sum="Total" />
             </tree>
         </field>
     </record>

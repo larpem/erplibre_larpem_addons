@@ -218,6 +218,11 @@
         <field name="model">larpem.manuel</field>
         <field name="arch" type="xml">
             <search string="Larpem manuel">
+                <field
+                    name="name"
+                    string="Texte"
+                    filter_domain="['|','|',('description','ilike',self),('title_html','ilike',self),('title','ilike',self)]"
+                />
                 <filter domain="[('name','!=',False)]" name="name" string="Name" />
                 <filter domain="[('admin','=',True)]" name="admin" string="Admin seulement" />
                 <filter

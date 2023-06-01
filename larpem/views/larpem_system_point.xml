@@ -177,6 +177,11 @@
         <field name="model">larpem.system_point</field>
         <field name="arch" type="xml">
             <search string="Larpem system point">
+                <field
+                    name="name"
+                    string="Texte"
+                    filter_domain="['|','|',('explication','ilike',self),('name','ilike',self),('identifiant','ilike',self)]"
+                />
                 <filter domain="[('name','!=',False)]" name="name" string="Description" />
                 <filter domain="[('explication','!=',False)]" name="explication" string="Explication" />
                 <filter domain="[('formule','!=',False)]" name="formule" string="Formule" />
