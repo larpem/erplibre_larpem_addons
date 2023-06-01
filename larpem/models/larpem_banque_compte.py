@@ -78,11 +78,18 @@ class LarpemBanqueCompte(models.Model):
         string="Sommaire du compte", store=True, compute="_compute_total"
     )
 
-    @api.depends("banque_id", "personnage_id", "no_compte")
+    @api.depends(
+        "banque_id",
+        "personnage_id",
+        "no_compte",
+        "transaction_source_compte",
+        "transaction_destination_compte",
+    )
     def _compute_name(self):
         for r in self:
             r.name = (
-                f"{r.no_compte} - {r.personnage_id.name} - {r.banque_id.name}"
+                f"{r.no_compte} - {r.personnage_id.name} -"
+                f" {r.banque_id.name} - {r.total}"
             )
 
     @api.depends("transaction_source_compte", "transaction_destination_compte")

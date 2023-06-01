@@ -7,9 +7,13 @@
             <form string="Titre">
                 <sheet>
                     <group>
+                        <field name="type_transaction" />
+                        <field name="source_compte" attrs="{'invisible': [('type_transaction', '=', 'depot')]}" />
+                        <field
+                            name="destination_compte"
+                            attrs="{'invisible': [('type_transaction', '=', 'retrait')]}"
+                        />
                         <field name="montant" />
-                        <field name="source_compte" />
-                        <field name="destination_compte" />
                         <field name="memo" />
                     </group>
                     <group>
@@ -45,6 +49,7 @@
                 <field name="date_transaction" />
                 <field name="destination_compte" />
                 <field name="memo" />
+                <field name="type_transaction" />
                 <field name="montant" />
                 <field name="source_compte" />
                 <templates>
@@ -70,6 +75,11 @@
                                     <li class="mb4">
                                         <strong>
                                             <field name="memo" />
+                                        </strong>
+                                    </li>
+                                    <li class="mb4">
+                                        <strong>
+                                            <field name="type_transaction" />
                                         </strong>
                                     </li>
                                     <li class="mb4">
@@ -133,13 +143,13 @@
         <field name="name">larpem_banque_transaction_tree</field>
         <field name="model">larpem.banque.transaction</field>
         <field name="arch" type="xml">
-            <tree limit="200">
-                <field name="name" />
+            <tree limit="200" default_order="date_transaction desc">
                 <field name="date_transaction" />
+                <field name="source_compte" />
                 <field name="destination_compte" />
                 <field name="memo" />
+                <field name="type_transaction" />
                 <field name="montant" />
-                <field name="source_compte" />
             </tree>
         </field>
     </record>
@@ -148,6 +158,6 @@
         id="larpem_banque_transaction_banque_transaction_action_window"
         name="Banque transaction"
         res_model="larpem.banque.transaction"
-        view_mode="kanban,tree,pivot,graph,form"
+        view_mode="tree,kanban,pivot,graph,form"
     />
 </odoo>
