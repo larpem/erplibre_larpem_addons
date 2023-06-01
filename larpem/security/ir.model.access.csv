@@ -1,6 +1,13 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 larpem_banque_access_user_types_/_internal_user,larpem_banque Access User types / Internal User,model_larpem_banque,base.group_user,1,1,1,1
+larpem_banque_access_user_types_/_portal,larpem_banque Access User types / Portal,model_larpem_banque,base.group_portal,1,1,1,1
 larpem_banque_compte_access_user_types_/_internal_user,larpem_banque_compte Access User types / Internal User,model_larpem_banque_compte,base.group_user,1,1,1,1
+larpem_banque_compte_access_user_types_/_portal,larpem_banque_compte Access User types / Portal,model_larpem_banque_compte,base.group_portal,1,1,1,1
+larpem_banque_transaction_access_user_types_/_internal_user,larpem_banque_transaction Access User types / Internal User,model_larpem_banque_transaction,base.group_user,1,1,1,1
+larpem_banque_transaction_access_user_types_/_portal,larpem_banque_transaction Access User types / Portal,model_larpem_banque_transaction,base.group_portal,1,1,1,1
 larpem_manuel_access_user_types_/_internal_user,larpem_manuel Access User types / Internal User,model_larpem_manuel,base.group_user,1,1,1,1
+larpem_manuel_access_user_types_/_portal,larpem_manuel Access User types / Portal,model_larpem_manuel,base.group_portal,1,1,1,1
 larpem_personnage_access_user_types_/_internal_user,larpem_personnage Access User types / Internal User,model_larpem_personnage,base.group_user,1,1,1,1
+larpem_personnage_access_user_types_/_portal,larpem_personnage Access User types / Portal,model_larpem_personnage,base.group_portal,1,1,1,1
 larpem_system_point_access_user_types_/_internal_user,larpem_system_point Access User types / Internal User,model_larpem_system_point,base.group_user,1,1,1,1
+larpem_system_point_access_user_types_/_portal,larpem_system_point Access User types / Portal,model_larpem_system_point,base.group_portal,1,1,1,1

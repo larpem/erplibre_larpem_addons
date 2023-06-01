@@ -3,9 +3,10 @@ from odoo import _, api, fields, models
 
 class LarpemPersonnage(models.Model):
     _name = "larpem.personnage"
+    _inherit = ["mail.activity.mixin", "mail.thread", "portal.mixin"]
     _description = "Personnage"
 
-    name = fields.Char(string="Nom personnage")
+    name = fields.Char(string="Nom personnage", track_visibility="onchange")
 
     nom_joueur = fields.Char(
         string="Nom joueur",
@@ -32,3 +33,10 @@ class LarpemPersonnage(models.Model):
     )
 
     # all_name = fields.Char(string="Nom personnage") combine name + nom_joueur et mettre dans les recherches des autres vues
+
+    def _compute_access_url(self):
+        super(LarpemPersonnage, self)._compute_access_url()
+        for larpem_personnage in self:
+            larpem_personnage.access_url = (
+                "/my/larpem_personnage/%s" % larpem_personnage.id
+            )

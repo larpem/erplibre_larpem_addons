@@ -8,6 +8,7 @@
     "application": True,
     "depends": [
         "code_generator",
+        "code_generator_portal",
         "code_generator_website_snippet",
     ],
     "installable": True,

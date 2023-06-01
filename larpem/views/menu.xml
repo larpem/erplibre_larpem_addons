@@ -20,13 +20,21 @@
         parent="menu"
     />
 
-    <menuitem id="manuel" name="Manuel" action="larpem_manuel_manuel_action_window" sequence="3" parent="menu" />
+    <menuitem
+        id="banque_transaction"
+        name="Banque transaction"
+        action="larpem_banque_transaction_banque_transaction_action_window"
+        sequence="3"
+        parent="menu"
+    />
+
+    <menuitem id="manuel" name="Manuel" action="larpem_manuel_manuel_action_window" sequence="4" parent="menu" />
 
     <menuitem
         id="personnage"
         name="Personnage"
         action="larpem_personnage_personnage_action_window"
-        sequence="4"
+        sequence="5"
         parent="menu"
     />
 
@@ -34,7 +42,7 @@
         id="system_point"
         name="System point"
         action="larpem_system_point_system_point_action_window"
-        sequence="5"
+        sequence="6"
         parent="menu"
     />
 </odoo>

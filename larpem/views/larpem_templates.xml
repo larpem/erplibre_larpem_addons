@@ -1,0 +1,1371 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="portal_create_larpem_banque" name="Create Larpem Banque">
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="text-center">Send a new larpem banque</h1>
+                    </div>
+                </div>
+            </div>
+            <form
+                action="/submitted/larpem_banque"
+                method="POST"
+                class="form-horizontal mt32"
+                enctype="multipart/form-data"
+            >
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="name">Name</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="name"
+                            t-attf-value="#{name}"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="description">Description</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="description"
+                            t-att-value="default_description"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                        <button class="btn btn-primary btn-lg">Submit Larpem Banque</button>
+                    </div>
+                </div>
+            </form>
+        </t>
+    </template>
+
+    <template id="portal_create_larpem_banque_compte" name="Create Larpem Banque Compte">
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="text-center">Send a new larpem banque compte</h1>
+                    </div>
+                </div>
+            </div>
+            <form
+                action="/submitted/larpem_banque_compte"
+                method="POST"
+                class="form-horizontal mt32"
+                enctype="multipart/form-data"
+            >
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="name">Name</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="name"
+                            t-attf-value="#{name}"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="banque_id">Banque_id</label>
+                    <div class="col-md-7 col-sm-8">
+                        <select class="form-control o_website_form_input" id="banque_id" name="banque_id">
+                            <t t-foreach="banque_id" t-as="ban">
+                                <option t-attf-value="#{ban.id}" t-att-selected="default_banque_id == ban.id">
+                                    <t t-esc="ban.name" />
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="etat_compte">Etat_compte</label>
+                    <div class="col-md-7 col-sm-8">
+                        <select
+                            class="form-control o_website_form_input"
+                            id="etat_compte"
+                            name="etat_compte"
+                            required="True"
+                        >
+                            <t t-foreach="etat_compte" t-as="eta" t-att-selected="default_etat_compte == eta[0]">
+                                <option t-attf-value="#{eta[0]}">
+                                    <t t-esc="eta[1]" />
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="no_compte">No_compte</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="no_compte"
+                            t-att-value="default_no_compte"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="nom_personnage">Nom_personnage</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="nom_personnage"
+                            t-att-value="default_nom_personnage"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="personnage_id">Personnage_id</label>
+                    <div class="col-md-7 col-sm-8">
+                        <select class="form-control o_website_form_input" id="personnage_id" name="personnage_id">
+                            <t t-foreach="personnage_id" t-as="per">
+                                <option t-attf-value="#{per.id}" t-att-selected="default_personnage_id == per.id">
+                                    <t t-esc="per.name" />
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="personnage_secondaire_ids">
+                        Personnage_secondaire_ids
+                    </label>
+                    <div class="col-md-7 col-sm-8">
+                        <t t-foreach="personnage_secondaire_ids" t-as="per">
+                            <input
+                                type="checkbox"
+                                class="form-control o_website_form_input"
+                                name="personnage_secondaire_ids"
+                                t-att-id="'personnage_secondaire_ids_' + per.name + '_' + str(per_index)"
+                                t-att-value="per.id"
+                                t-att-checked="per.id in default_personnage_secondaire_ids"
+                            />
+                            <label
+                                t-att-for="'personnage_secondaire_ids_' + per.name + '_' + str(per_index)"
+                                t-att-string="per.name"
+                            >
+                                <t t-esc="per.name" />
+                            </label>
+                        </t>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="raison_etat_compte">Raison_etat_compte</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="raison_etat_compte"
+                            t-att-value="default_raison_etat_compte"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="total">Total</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="total"
+                            t-att-value="default_total"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="type_compte">Type_compte</label>
+                    <div class="col-md-7 col-sm-8">
+                        <select
+                            class="form-control o_website_form_input"
+                            id="type_compte"
+                            name="type_compte"
+                            required="True"
+                        >
+                            <t t-foreach="type_compte" t-as="typ" t-att-selected="default_type_compte == typ[0]">
+                                <option t-attf-value="#{typ[0]}">
+                                    <t t-esc="typ[1]" />
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                        <button class="btn btn-primary btn-lg">Submit Larpem Banque Compte</button>
+                    </div>
+                </div>
+            </form>
+        </t>
+    </template>
+
+    <template id="portal_create_larpem_manuel" name="Create Larpem Manuel">
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="text-center">Send a new larpem manuel</h1>
+                    </div>
+                </div>
+            </div>
+            <form
+                action="/submitted/larpem_manuel"
+                method="POST"
+                class="form-horizontal mt32"
+                enctype="multipart/form-data"
+            >
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="name">Name</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="name"
+                            t-attf-value="#{name}"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="admin">Admin</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="checkbox"
+                            class="form-control o_website_form_input"
+                            name="admin"
+                            id="admin"
+                            t-att-value="True"
+                            t-att-checked="default_admin"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="bullet_description">Bullet_description</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="bullet_description"
+                            t-att-value="default_bullet_description"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="description">Description</label>
+                    <div class="col-md-7 col-sm-8">
+        <!-- prettier-ignore-start --><textarea class="form-control o_website_form_input" name="description" style="min-height: 120px"><t t-esc="default_description"/></textarea><!-- prettier-ignore-end -->
+        </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="hide_player">Hide_player</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="checkbox"
+                            class="form-control o_website_form_input"
+                            name="hide_player"
+                            id="hide_player"
+                            t-att-value="True"
+                            t-att-checked="default_hide_player"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="key">Key</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="key"
+                            t-att-value="default_key"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="model">Model</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="model"
+                            t-att-value="default_model"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="parent_id">Parent_id</label>
+                    <div class="col-md-7 col-sm-8">
+                        <select class="form-control o_website_form_input" id="parent_id" name="parent_id">
+                            <t t-foreach="parent_id" t-as="par">
+                                <option t-attf-value="#{par.id}" t-att-selected="default_parent_id == par.id">
+                                    <t t-esc="par.name" />
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="point">Point</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="point"
+                            t-att-value="default_point"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="second_bullet_description">
+                        Second_bullet_description
+                    </label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="second_bullet_description"
+                            t-att-value="default_second_bullet_description"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="sub_key">Sub_key</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="sub_key"
+                            t-att-value="default_sub_key"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="title">Title</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="title"
+                            t-att-value="default_title"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="title_html">Title_html</label>
+                    <div class="col-md-7 col-sm-8">
+        <!-- prettier-ignore-start --><textarea class="form-control o_website_form_input" name="title_html" style="min-height: 120px"><t t-esc="default_title_html"/></textarea><!-- prettier-ignore-end -->
+        </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="under_level_color">Under_level_color</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="under_level_color"
+                            t-att-value="default_under_level_color"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                        <button class="btn btn-primary btn-lg">Submit Larpem Manuel</button>
+                    </div>
+                </div>
+            </form>
+        </t>
+    </template>
+
+    <template id="portal_create_larpem_personnage" name="Create Larpem Personnage">
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="text-center">Send a new larpem personnage</h1>
+                    </div>
+                </div>
+            </div>
+            <form
+                action="/submitted/larpem_personnage"
+                method="POST"
+                class="form-horizontal mt32"
+                enctype="multipart/form-data"
+            >
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="name">Name</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="name"
+                            t-attf-value="#{name}"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="nom_joueur">Nom_joueur</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="nom_joueur"
+                            t-att-value="default_nom_joueur"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="partner_id">Partner_id</label>
+                    <div class="col-md-7 col-sm-8">
+                        <select class="form-control o_website_form_input" id="partner_id" name="partner_id">
+                            <t t-foreach="partner_id" t-as="par">
+                                <option t-attf-value="#{par.id}" t-att-selected="default_partner_id == par.id">
+                                    <t t-esc="par.name" />
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                        <button class="btn btn-primary btn-lg">Submit Larpem Personnage</button>
+                    </div>
+                </div>
+            </form>
+        </t>
+    </template>
+
+    <template id="portal_create_larpem_system_point" name="Create Larpem System_Point">
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="text-center">Send a new larpem system point</h1>
+                    </div>
+                </div>
+            </div>
+            <form
+                action="/submitted/larpem_system_point"
+                method="POST"
+                class="form-horizontal mt32"
+                enctype="multipart/form-data"
+            >
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="name">Name</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="name"
+                            t-attf-value="#{name}"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="explication">Explication</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="explication"
+                            t-att-value="default_explication"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="formule">Formule</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="formule"
+                            t-att-value="default_formule"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="hide_value">Hide_value</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="checkbox"
+                            class="form-control o_website_form_input"
+                            name="hide_value"
+                            id="hide_value"
+                            t-att-value="True"
+                            t-att-checked="default_hide_value"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="identifiant">Identifiant</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="identifiant"
+                            t-att-value="default_identifiant"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="init_value">Init_value</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="init_value"
+                            t-att-value="default_init_value"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="invisible">Invisible</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="checkbox"
+                            class="form-control o_website_form_input"
+                            name="invisible"
+                            id="invisible"
+                            t-att-value="True"
+                            t-att-checked="default_invisible"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="max_value">Max_value</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="max_value"
+                            t-att-value="default_max_value"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="min_value">Min_value</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="text"
+                            class="form-control o_website_form_input"
+                            name="min_value"
+                            t-att-value="default_min_value"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="required_value">Required_value</label>
+                    <div class="col-md-7 col-sm-8">
+                        <input
+                            type="checkbox"
+                            class="form-control o_website_form_input"
+                            name="required_value"
+                            id="required_value"
+                            t-att-value="True"
+                            t-att-checked="default_required_value"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label" for="type">Type</label>
+                    <div class="col-md-7 col-sm-8">
+                        <select class="form-control o_website_form_input" id="type" name="type" required="True">
+                            <t t-foreach="type" t-as="typ" t-att-selected="default_type == typ[0]">
+                                <option t-attf-value="#{typ[0]}">
+                                    <t t-esc="typ[1]" />
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                        <button class="btn btn-primary btn-lg">Submit Larpem System_Point</button>
+                    </div>
+                </div>
+            </form>
+        </t>
+    </template>
+
+    <template id="larpem.portal_my_larpem_banque" name="My Larpem Banque">
+        <t t-call="portal.portal_layout">
+            <t t-set="o_portal_fullwidth_alert">
+                <t t-call="portal.portal_back_in_edit_mode">
+                    <t
+                        t-set="backend_url"
+                        t-value="'/web#return_label=Website&amp;model=larpem.banque&amp;id=%s&amp;view_type=form' % (larpem_banque.id)"
+                    />
+                </t>
+            </t>
+            <t t-call="portal.portal_record_layout">
+                <t t-set="card_header">
+                    <h5 class="mb-0">
+                        <small class="text-muted">Larpem Banque -</small>
+                        <span t-field="larpem_banque.name" />
+                    </h5>
+                </t>
+                <t t-set="card_body">
+                    <div class="row">
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Description:</b>
+                            <span t-field="larpem_banque.description" />
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="larpem.portal_my_larpem_banque_compte" name="My Larpem Banque Compte">
+        <t t-call="portal.portal_layout">
+            <t t-set="o_portal_fullwidth_alert">
+                <t t-call="portal.portal_back_in_edit_mode">
+                    <t
+                        t-set="backend_url"
+                        t-value="'/web#return_label=Website&amp;model=larpem.banque.compte&amp;id=%s&amp;view_type=form' % (larpem_banque_compte.id)"
+                    />
+                </t>
+            </t>
+            <t t-call="portal.portal_record_layout">
+                <t t-set="card_header">
+                    <h5 class="mb-0">
+                        <small class="text-muted">Larpem Banque Compte -</small>
+                        <span t-field="larpem_banque_compte.name" />
+                    </h5>
+                </t>
+                <t t-set="card_body">
+                    <div class="row">
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Banque:</b>
+                            <a
+                                t-attf-href="/my/larpem_banque/#{larpem_banque_compte.banque_id.id}"
+                                t-field="larpem_banque_compte.banque_id.name"
+                            />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>&#201;tat du compte:</b>
+                            <span t-field="larpem_banque_compte.etat_compte" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Num&#233;ro de compte:</b>
+                            <span t-field="larpem_banque_compte.no_compte" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Nom personnage:</b>
+                            <span t-field="larpem_banque_compte.nom_personnage" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Personnage:</b>
+                            <a
+                                t-attf-href="/my/larpem_personnage/#{larpem_banque_compte.personnage_id.id}"
+                                t-field="larpem_banque_compte.personnage_id.name"
+                            />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Personnage secondaire:</b>
+                            <t t-foreach="larpem_banque_compte.personnage_secondaire_ids" t-as="per">
+                                <a t-attf-href="/my/larpem_personnage/#{per.id}" t-field="per.name" />
+                                <t t-if="not per_last">,</t>
+                            </t>
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Raison Etat Compte:</b>
+                            <span t-field="larpem_banque_compte.raison_etat_compte" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Sommaire du compte:</b>
+                            <span t-field="larpem_banque_compte.total" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Type de compte:</b>
+                            <span t-field="larpem_banque_compte.type_compte" />
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="larpem.portal_my_larpem_manuel" name="My Larpem Manuel">
+        <t t-call="portal.portal_layout">
+            <t t-set="o_portal_fullwidth_alert">
+                <t t-call="portal.portal_back_in_edit_mode">
+                    <t
+                        t-set="backend_url"
+                        t-value="'/web#return_label=Website&amp;model=larpem.manuel&amp;id=%s&amp;view_type=form' % (larpem_manuel.id)"
+                    />
+                </t>
+            </t>
+            <t t-call="portal.portal_record_layout">
+                <t t-set="card_header">
+                    <h5 class="mb-0">
+                        <small class="text-muted">Larpem Manuel -</small>
+                        <span t-field="larpem_manuel.name" />
+                    </h5>
+                </t>
+                <t t-set="card_body">
+                    <div class="row">
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Admin seulement:</b>
+                            <span t-field="larpem_manuel.admin" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Bullet Description:</b>
+                            <span t-field="larpem_manuel.bullet_description" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Description:</b>
+                            <span t-field="larpem_manuel.description" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Hide Player:</b>
+                            <span t-field="larpem_manuel.hide_player" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Key:</b>
+                            <span t-field="larpem_manuel.key" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Model:</b>
+                            <span t-field="larpem_manuel.model" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Parent:</b>
+                            <a
+                                t-attf-href="/my/larpem_manuel/#{larpem_manuel.parent_id.id}"
+                                t-field="larpem_manuel.parent_id.name"
+                            />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Point:</b>
+                            <span t-field="larpem_manuel.point" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Second Bullet Description:</b>
+                            <span t-field="larpem_manuel.second_bullet_description" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Sub Key:</b>
+                            <span t-field="larpem_manuel.sub_key" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Title:</b>
+                            <span t-field="larpem_manuel.title" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Title Html:</b>
+                            <span t-raw="larpem_manuel.title_html" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Under Level Color:</b>
+                            <span t-field="larpem_manuel.under_level_color" />
+                        </div>
+                        <div class="container" t-if="larpem_manuel.enfant_id">
+                            <hr class="mt-4 mb-1" />
+                            <h5 class="mt-2 mb-2">Enfant</h5>
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Admin seulement</th>
+                                        <th>Bullet Description</th>
+                                        <th>Description</th>
+                                        <th>Enfant</th>
+                                        <th>Hide Player</th>
+                                        <th>Key</th>
+                                        <th>Model</th>
+                                        <th>Parent</th>
+                                        <th>Point</th>
+                                        <th>Second Bullet Description</th>
+                                        <th>Sub Key</th>
+                                        <th>Title</th>
+                                        <th>Title Html</th>
+                                        <th>Under Level Color</th>
+                                    </tr>
+                                </thead>
+                                <tr t-foreach="larpem_manuel.enfant_id" t-as="enfant_id">
+                                    <td>
+                                        <a t-attf-href="/my/larpem_manuel/#{enfant_id.id}" t-field="enfant_id.name" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="enfant_id.admin" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="enfant_id.bullet_description" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="enfant_id.description" />
+                                    </td>
+                                    <td>
+                                        <t t-foreach="enfant_id.enfant_id" t-as="enf">
+                                            <a t-attf-href="/my/larpem_manuel/#{enf.id}" t-field="enf.name" />
+                                            <br t-if="not enf_last" />
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <t t-esc="enfant_id.hide_player" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="enfant_id.key" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="enfant_id.model" />
+                                    </td>
+                                    <td>
+                                        <a
+                                            t-attf-href="/my/larpem_manuel/#{enfant_id.parent_id.id}"
+                                            t-field="enfant_id.parent_id.name"
+                                        />
+                                    </td>
+                                    <td>
+                                        <t t-esc="enfant_id.point" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="enfant_id.second_bullet_description" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="enfant_id.sub_key" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="enfant_id.title" />
+                                    </td>
+                                    <td>
+                                        <t t-raw="enfant_id.title_html" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="enfant_id.under_level_color" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="larpem.portal_my_larpem_personnage" name="My Larpem Personnage">
+        <t t-call="portal.portal_layout">
+            <t t-set="o_portal_fullwidth_alert">
+                <t t-call="portal.portal_back_in_edit_mode">
+                    <t
+                        t-set="backend_url"
+                        t-value="'/web#return_label=Website&amp;model=larpem.personnage&amp;id=%s&amp;view_type=form' % (larpem_personnage.id)"
+                    />
+                </t>
+            </t>
+            <t t-call="portal.portal_record_layout">
+                <t t-set="card_header">
+                    <h5 class="mb-0">
+                        <small class="text-muted">Larpem Personnage -</small>
+                        <span t-field="larpem_personnage.name" />
+                    </h5>
+                </t>
+                <t t-set="card_body">
+                    <div class="row">
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Nom joueur:</b>
+                            <span t-field="larpem_personnage.nom_joueur" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Participant:</b>
+                            <a t-field="larpem_personnage.partner_id.name" />
+                            <!--                            <a-->
+                            <!--                                t-attf-href="/my/res_partner/#{larpem_personnage.partner_id.id}"-->
+                            <!--                                t-field="larpem_personnage.partner_id.name"-->
+                            <!--                            />-->
+                        </div>
+                        <div class="container" t-if="larpem_personnage.compte_bancaire_ids">
+                            <hr class="mt-4 mb-1" />
+                            <h5 class="mt-2 mb-2">Comptes bancaires</h5>
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <!--                                        <th>Name</th>-->
+                                        <th>Banque</th>
+                                        <th>&#201;tat du compte</th>
+                                        <th>Num&#233;ro de compte</th>
+                                        <th>Nom personnage</th>
+                                        <th>Personnage</th>
+                                        <th>Personnage secondaire</th>
+                                        <th>Raison Etat Compte</th>
+                                        <th>Sommaire du compte</th>
+                                        <th>Type de compte</th>
+                                    </tr>
+                                </thead>
+                                <tr t-foreach="larpem_personnage.compte_bancaire_ids" t-as="compte_bancaire_ids">
+                                    <!--                                    <td>-->
+                                    <!--                                        <a-->
+                                    <!--                                            t-attf-href="/my/larpem_banque_compte/#{compte_bancaire_ids.id}"-->
+                                    <!--                                            t-field="compte_bancaire_ids.name"-->
+                                    <!--                                        />-->
+                                    <!--                                    </td>-->
+                                    <td>
+                                        <a t-field="compte_bancaire_ids.banque_id.name" />
+                                        <!--                                        <a-->
+                                        <!--                                            t-attf-href="/my/larpem_banque/#{compte_bancaire_ids.banque_id.id}"-->
+                                        <!--                                            t-field="compte_bancaire_ids.banque_id.name"-->
+                                        <!--                                        />-->
+                                    </td>
+                                    <td>
+                                        <t t-esc="compte_bancaire_ids.etat_compte" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="compte_bancaire_ids.no_compte" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="compte_bancaire_ids.nom_personnage" />
+                                    </td>
+                                    <td>
+                                        <a t-field="compte_bancaire_ids.personnage_id.name" />
+                                        <!--                                        <a-->
+                                        <!--                                            t-attf-href="/my/larpem_personnage/#{compte_bancaire_ids.personnage_id.id}"-->
+                                        <!--                                            t-field="compte_bancaire_ids.personnage_id.name"-->
+                                        <!--                                        />-->
+                                    </td>
+                                    <td>
+                                        <t t-foreach="compte_bancaire_ids.personnage_secondaire_ids" t-as="per">
+                                            <a t-field="per.name" />
+                                            <!--                                            <a t-attf-href="/my/larpem_personnage/#{per.id}" t-field="per.name" />-->
+                                            <br t-if="not per_last" />
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <t t-esc="compte_bancaire_ids.raison_etat_compte" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="compte_bancaire_ids.total" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="compte_bancaire_ids.type_compte" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+            <div class="mt32">
+                <h4>
+                    <strong>Message and communication history</strong>
+                </h4>
+                <t t-call="portal.message_thread">
+                    <t t-set="object" t-value="larpem_personnage" />
+                    <t t-set="token" t-value="larpem_personnage.access_token" />
+                    <t t-set="pid" t-value="pid" />
+                    <t t-set="hask" t-value="hash" />
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <template id="larpem.portal_my_larpem_system_point" name="My Larpem System_Point">
+        <t t-call="portal.portal_layout">
+            <t t-set="o_portal_fullwidth_alert">
+                <t t-call="portal.portal_back_in_edit_mode">
+                    <t
+                        t-set="backend_url"
+                        t-value="'/web#return_label=Website&amp;model=larpem.system_point&amp;id=%s&amp;view_type=form' % (larpem_system_point.id)"
+                    />
+                </t>
+            </t>
+            <t t-call="portal.portal_record_layout">
+                <t t-set="card_header">
+                    <h5 class="mb-0">
+                        <small class="text-muted">Larpem System_Point -</small>
+                        <span t-field="larpem_system_point.name" />
+                    </h5>
+                </t>
+                <t t-set="card_body">
+                    <div class="row">
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Explication:</b>
+                            <span t-field="larpem_system_point.explication" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Formule:</b>
+                            <span t-field="larpem_system_point.formule" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Cache la valeur:</b>
+                            <span t-field="larpem_system_point.hide_value" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Identifiant:</b>
+                            <span t-field="larpem_system_point.identifiant" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Valeur initiale:</b>
+                            <span t-field="larpem_system_point.init_value" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Invisible:</b>
+                            <span t-field="larpem_system_point.invisible" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Valeur maximal:</b>
+                            <span t-field="larpem_system_point.max_value" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Valeur minimal:</b>
+                            <span t-field="larpem_system_point.min_value" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Valeur requise:</b>
+                            <span t-field="larpem_system_point.required_value" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <b>Type:</b>
+                            <span t-field="larpem_system_point.type" />
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="assets_frontend_larpem_portal" name="Portal assets frontend" inherit_id="web.assets_frontend">
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/larpem/static/src/js/portal.larpem.js" />
+        </xpath>
+    </template>
+
+    <template id="larpem.portal_my_larpem_banque_comptes" name="My Larpem Banque Comptes">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True" />
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Larpem Banque Comptes</t>
+            </t>
+            <form method="POST" t-attf-action="/new/larpem_banque_compte">
+                <button
+                    name="create_new_larpem_banque_compte"
+                    type="action"
+                    class="btn btn-primary"
+                    style="float: right; margin-right: 5px;"
+                >
+                    New Larpem Banque Compte
+                </button>
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+            </form>
+            <t t-if="not larpem_banque_comptes">
+                <div class="alert alert-warning mt8" role="alert">There are no larpem_banque_comptes.</div>
+            </t>
+            <t t-if="larpem_banque_comptes" t-call="portal.portal_table">
+                <tbody>
+                    <tr t-foreach="larpem_banque_comptes" t-as="larpem_banque_compte">
+                        <td>
+                            <a t-attf-href="/my/larpem_banque_compte/#{larpem_banque_compte.id}?{{ keep_query() }}">
+                                <span t-field="larpem_banque_compte.name" />
+                            </a>
+                        </td>
+                        <td class="text-right" />
+                    </tr>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+    <template id="larpem.portal_my_larpem_banques" name="My Larpem Banques">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True" />
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Larpem Banques</t>
+            </t>
+            <form method="POST" t-attf-action="/new/larpem_banque">
+                <button
+                    name="create_new_larpem_banque"
+                    type="action"
+                    class="btn btn-primary"
+                    style="float: right; margin-right: 5px;"
+                >
+                    New Larpem Banque
+                </button>
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+            </form>
+            <t t-if="not larpem_banques">
+                <div class="alert alert-warning mt8" role="alert">There are no larpem_banques.</div>
+            </t>
+            <t t-if="larpem_banques" t-call="portal.portal_table">
+                <tbody>
+                    <tr t-foreach="larpem_banques" t-as="larpem_banque">
+                        <td>
+                            <a t-attf-href="/my/larpem_banque/#{larpem_banque.id}?{{ keep_query() }}">
+                                <span t-field="larpem_banque.name" />
+                            </a>
+                        </td>
+                        <td class="text-right" />
+                    </tr>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+    <template id="larpem.portal_my_larpem_manuels" name="My Larpem Manuels">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True" />
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Larpem Manuels</t>
+            </t>
+            <form method="POST" t-attf-action="/new/larpem_manuel">
+                <button
+                    name="create_new_larpem_manuel"
+                    type="action"
+                    class="btn btn-primary"
+                    style="float: right; margin-right: 5px;"
+                >
+                    New Larpem Manuel
+                </button>
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+            </form>
+            <t t-if="not larpem_manuels">
+                <div class="alert alert-warning mt8" role="alert">There are no larpem_manuels.</div>
+            </t>
+            <t t-if="larpem_manuels" t-call="portal.portal_table">
+                <tbody>
+                    <tr t-foreach="larpem_manuels" t-as="larpem_manuel">
+                        <td>
+                            <a t-attf-href="/my/larpem_manuel/#{larpem_manuel.id}?{{ keep_query() }}">
+                                <span t-field="larpem_manuel.name" />
+                            </a>
+                        </td>
+                        <td class="text-right" />
+                    </tr>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+    <template id="larpem.portal_my_larpem_personnages" name="My Larpem Personnages">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True" />
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Larpem Personnages</t>
+            </t>
+            <form method="POST" t-attf-action="/new/larpem_personnage">
+                <button
+                    name="create_new_larpem_personnage"
+                    type="action"
+                    class="btn btn-primary"
+                    style="float: right; margin-right: 5px;"
+                >
+                    Nouveau personnage
+                </button>
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+            </form>
+            <t t-if="not larpem_personnages">
+                <div class="alert alert-warning mt8" role="alert">There are no larpem_personnages.</div>
+            </t>
+            <t t-if="larpem_personnages" t-call="portal.portal_table">
+                <tbody>
+                    <tr t-foreach="larpem_personnages" t-as="larpem_personnage">
+                        <td>
+                            <a t-attf-href="/my/larpem_personnage/#{larpem_personnage.id}?{{ keep_query() }}">
+                                <span t-field="larpem_personnage.name" />
+                            </a>
+                        </td>
+                        <td class="text-right" />
+                    </tr>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+    <template id="larpem.portal_my_larpem_system_points" name="My Larpem System_Points">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True" />
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Larpem System_Points</t>
+            </t>
+            <form method="POST" t-attf-action="/new/larpem_system_point">
+                <button
+                    name="create_new_larpem_system_point"
+                    type="action"
+                    class="btn btn-primary"
+                    style="float: right; margin-right: 5px;"
+                >
+                    New Larpem System_Point
+                </button>
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+            </form>
+            <t t-if="not larpem_system_points">
+                <div class="alert alert-warning mt8" role="alert">There are no larpem_system_points.</div>
+            </t>
+            <t t-if="larpem_system_points" t-call="portal.portal_table">
+                <tbody>
+                    <tr t-foreach="larpem_system_points" t-as="larpem_system_point">
+                        <td>
+                            <a t-attf-href="/my/larpem_system_point/#{larpem_system_point.id}?{{ keep_query() }}">
+                                <span t-field="larpem_system_point.name" />
+                            </a>
+                        </td>
+                        <td class="text-right" />
+                    </tr>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+    <template id="larpem.portal_my_home" name="Portal My Home: Larpem entries" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <!--            <t t-if="larpem_banque_count" t-call="portal.portal_docs_entry">-->
+            <!--                <t t-set="title">Larpem Banques</t>-->
+            <!--                <t t-set="url" t-value="'/my/larpem_banques'" />-->
+            <!--                <t t-set="count" t-value="larpem_banque_count" />-->
+            <!--            </t>-->
+            <!--            <a-->
+            <!--                t-if="not larpem_banque_count"-->
+            <!--                role="button"-->
+            <!--                class="btn btn-primary btn-block mb8"-->
+            <!--                href="/new/larpem_banque"-->
+            <!--            >-->
+            <!--                <i class="fa fa-plus-circle" />-->
+            <!--                Larpem Banque-->
+            <!--            </a>-->
+            <!--            <t t-if="larpem_banque_compte_count" t-call="portal.portal_docs_entry">-->
+            <!--                <t t-set="title">Larpem Banque Comptes</t>-->
+            <!--                <t t-set="url" t-value="'/my/larpem_banque_comptes'" />-->
+            <!--                <t t-set="count" t-value="larpem_banque_compte_count" />-->
+            <!--            </t>-->
+            <!--            <a-->
+            <!--                t-if="not larpem_banque_compte_count"-->
+            <!--                role="button"-->
+            <!--                class="btn btn-primary btn-block mb8"-->
+            <!--                href="/new/larpem_banque_compte"-->
+            <!--            >-->
+            <!--                <i class="fa fa-plus-circle" />-->
+            <!--                Larpem Banque Compte-->
+            <!--            </a>-->
+            <!--            <t t-if="larpem_manuel_count" t-call="portal.portal_docs_entry">-->
+            <!--                <t t-set="title">Larpem Manuels</t>-->
+            <!--                <t t-set="url" t-value="'/my/larpem_manuels'" />-->
+            <!--                <t t-set="count" t-value="larpem_manuel_count" />-->
+            <!--            </t>-->
+            <!--            <a-->
+            <!--                t-if="not larpem_manuel_count"-->
+            <!--                role="button"-->
+            <!--                class="btn btn-primary btn-block mb8"-->
+            <!--                href="/new/larpem_manuel"-->
+            <!--            >-->
+            <!--                <i class="fa fa-plus-circle" />-->
+            <!--                Larpem Manuel-->
+            <!--            </a>-->
+            <t t-if="larpem_personnage_count" t-call="portal.portal_docs_entry">
+                <t t-set="title">Personnages</t>
+                <t t-set="url" t-value="'/my/larpem_personnages'" />
+                <t t-set="count" t-value="larpem_personnage_count" />
+            </t>
+            <a
+                t-if="not larpem_personnage_count"
+                role="button"
+                class="btn btn-primary btn-block mb8"
+                href="/new/larpem_personnage"
+            >
+                <i class="fa fa-plus-circle" />
+                Nouveau personnage
+            </a>
+            <!--            <t t-if="larpem_system_point_count" t-call="portal.portal_docs_entry">-->
+            <!--                <t t-set="title">Larpem System_Points</t>-->
+            <!--                <t t-set="url" t-value="'/my/larpem_system_points'" />-->
+            <!--                <t t-set="count" t-value="larpem_system_point_count" />-->
+            <!--            </t>-->
+            <!--            <a-->
+            <!--                t-if="not larpem_system_point_count"-->
+            <!--                role="button"-->
+            <!--                class="btn btn-primary btn-block mb8"-->
+            <!--                href="/new/larpem_system_point"-->
+            <!--            >-->
+            <!--                <i class="fa fa-plus-circle" />-->
+            <!--                Larpem System_Point-->
+            <!--            </a>-->
+        </xpath>
+    </template>
+
+    <template id="larpem.portal_layout" name="Portal layout: Larpem menu entry" inherit_id="portal.portal_breadcrumbs">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <!--            <li-->
+            <!--                t-if="page_name in ('larpem_banque', 'create_larpem_banque') or larpem_banque"-->
+            <!--                t-attf-class="breadcrumb-item #{'active ' if not larpem_banque else ''}"-->
+            <!--            >-->
+            <!--                <a-->
+            <!--                    t-if="larpem_banque or page_name == 'create_larpem_banque'"-->
+            <!--                    t-attf-href="/my/larpem_banques?{{ keep_query() }}"-->
+            <!--                >-->
+            <!--                    Larpem Banques-->
+            <!--                </a>-->
+            <!--                <t t-else="">Larpem Banques</t>-->
+            <!--            </li>-->
+            <!--            <li t-if="larpem_banque" class="breadcrumb-item active">-->
+            <!--                <t t-esc="larpem_banque.name" />-->
+            <!--            </li>-->
+            <!--            <li-->
+            <!--                t-if="page_name in ('larpem_banque_compte', 'create_larpem_banque_compte') or larpem_banque_compte"-->
+            <!--                t-attf-class="breadcrumb-item #{'active ' if not larpem_banque_compte else ''}"-->
+            <!--            >-->
+            <!--                <a-->
+            <!--                    t-if="larpem_banque_compte or page_name == 'create_larpem_banque_compte'"-->
+            <!--                    t-attf-href="/my/larpem_banque_comptes?{{ keep_query() }}"-->
+            <!--                >-->
+            <!--                    Larpem Banque Comptes-->
+            <!--                </a>-->
+            <!--                <t t-else="">Larpem Banque Comptes</t>-->
+            <!--            </li>-->
+            <!--            <li t-if="larpem_banque_compte" class="breadcrumb-item active">-->
+            <!--                <t t-esc="larpem_banque_compte.name" />-->
+            <!--            </li>-->
+            <!--            <li-->
+            <!--                t-if="page_name in ('larpem_manuel', 'create_larpem_manuel') or larpem_manuel"-->
+            <!--                t-attf-class="breadcrumb-item #{'active ' if not larpem_manuel else ''}"-->
+            <!--            >-->
+            <!--                <a-->
+            <!--                    t-if="larpem_manuel or page_name == 'create_larpem_manuel'"-->
+            <!--                    t-attf-href="/my/larpem_manuels?{{ keep_query() }}"-->
+            <!--                >-->
+            <!--                    Larpem Manuels-->
+            <!--                </a>-->
+            <!--                <t t-else="">Larpem Manuels</t>-->
+            <!--            </li>-->
+            <!--            <li t-if="larpem_manuel" class="breadcrumb-item active">-->
+            <!--                <t t-esc="larpem_manuel.name" />-->
+            <!--            </li>-->
+            <li
+                t-if="page_name in ('larpem_personnage', 'create_larpem_personnage') or larpem_personnage"
+                t-attf-class="breadcrumb-item #{'active ' if not larpem_personnage else ''}"
+            >
+                <a
+                    t-if="larpem_personnage or page_name == 'create_larpem_personnage'"
+                    t-attf-href="/my/larpem_personnages?{{ keep_query() }}"
+                >
+                    Personnages
+                </a>
+                <t t-else="">Personnages</t>
+            </li>
+            <li t-if="larpem_personnage" class="breadcrumb-item active">
+                <t t-esc="larpem_personnage.name" />
+            </li>
+            <!--            <li-->
+            <!--                t-if="page_name in ('larpem_system_point', 'create_larpem_system_point') or larpem_system_point"-->
+            <!--                t-attf-class="breadcrumb-item #{'active ' if not larpem_system_point else ''}"-->
+            <!--            >-->
+            <!--                <a-->
+            <!--                    t-if="larpem_system_point or page_name == 'create_larpem_system_point'"-->
+            <!--                    t-attf-href="/my/larpem_system_points?{{ keep_query() }}"-->
+            <!--                >-->
+            <!--                    Larpem System_Points-->
+            <!--                </a>-->
+            <!--                <t t-else="">Larpem System_Points</t>-->
+            <!--            </li>-->
+            <!--            <li t-if="larpem_system_point" class="breadcrumb-item active">-->
+            <!--                <t t-esc="larpem_system_point.name" />-->
+            <!--            </li>-->
+        </xpath>
+    </template>
+</odoo>

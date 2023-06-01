@@ -25,6 +25,12 @@
                         <field name="personnage_secondaire_ids" />
                     </group>
                     <group>
+                        <field name="transaction_source_compte" />
+                    </group>
+                    <group>
+                        <field name="transaction_destination_compte" />
+                    </group>
+                    <group>
                         <field name="raison_etat_compte" />
                     </group>
                     <group>
@@ -59,7 +65,7 @@
         <field name="name">larpem_banque_compte_kanban</field>
         <field name="model">larpem.banque.compte</field>
         <field name="arch" type="xml">
-            <kanban class="o_kanban_mobile">
+            <kanban class="o_kanban_mobile" limit="200">
                 <field name="name" />
                 <field name="banque_id" />
                 <field name="etat_compte" />
@@ -169,7 +175,7 @@
         <field name="name">larpem_banque_compte_tree</field>
         <field name="model">larpem.banque.compte</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree limit="200" default_order="no_compte asc">
                 <field name="name" />
                 <field name="banque_id" />
                 <field name="etat_compte" />

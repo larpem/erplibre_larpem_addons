@@ -19,6 +19,11 @@
                         <field name="compte_bancaire_secondaire_ids" />
                     </group>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" options="{'post_refresh': 'recipients'}" widget="mail_thread" />
+                </div>
             </form>
         </field>
     </record>
@@ -119,6 +124,6 @@
         id="larpem_personnage_personnage_action_window"
         name="Personnage"
         res_model="larpem.personnage"
-        view_mode="kanban,tree,pivot,graph,form"
+        view_mode="kanban,tree,pivot,graph,form,activity"
     />
 </odoo>
