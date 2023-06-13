@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--Child menu-->
+
+    <menuitem
+        id="sync_rpc_conf_menu"
+        name="Sync LARPEM"
+        action="sync_external_larpem.action_sync_conf_form"
+        sequence="0"
+        parent="base.next_id_9"
+    />
+</odoo>
