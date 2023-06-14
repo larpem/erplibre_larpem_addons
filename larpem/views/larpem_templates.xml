@@ -1151,14 +1151,14 @@
                 <t t-set="title">Larpem Personnages</t>
             </t>
             <form method="POST" t-attf-action="/new/larpem_personnage">
-                <button
-                    name="create_new_larpem_personnage"
-                    type="action"
-                    class="btn btn-primary"
-                    style="float: right; margin-right: 5px;"
-                >
-                    Nouveau personnage
-                </button>
+                <!--                <button-->
+                <!--                    name="create_new_larpem_personnage"-->
+                <!--                    type="action"-->
+                <!--                    class="btn btn-primary"-->
+                <!--                    style="float: right; margin-right: 5px;"-->
+                <!--                >-->
+                <!--                    Nouveau personnage-->
+                <!--                </button>-->
                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
             </form>
             <t t-if="not larpem_personnages">
@@ -1263,15 +1263,15 @@
                 <t t-set="url" t-value="'/my/larpem_personnages'" />
                 <t t-set="count" t-value="larpem_personnage_count" />
             </t>
-            <a
-                t-if="not larpem_personnage_count"
-                role="button"
-                class="btn btn-primary btn-block mb8"
-                href="/new/larpem_personnage"
-            >
-                <i class="fa fa-plus-circle" />
-                Nouveau personnage
-            </a>
+            <!--            <a-->
+            <!--                t-if="not larpem_personnage_count"-->
+            <!--                role="button"-->
+            <!--                class="btn btn-primary btn-block mb8"-->
+            <!--                href="/new/larpem_personnage"-->
+            <!--            >-->
+            <!--                <i class="fa fa-plus-circle" />-->
+            <!--                Nouveau personnage-->
+            <!--            </a>-->
             <!--            <t t-if="larpem_system_point_count" t-call="portal.portal_docs_entry">-->
             <!--                <t t-set="title">Larpem System_Points</t>-->
             <!--                <t t-set="url" t-value="'/my/larpem_system_points'" />-->
