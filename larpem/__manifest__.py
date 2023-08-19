@@ -18,6 +18,7 @@
         "views/larpem_banque_transaction.xml",
         "views/larpem_manuel.xml",
         "views/larpem_personnage.xml",
+        "views/larpem_resto_commande.xml",
         "views/larpem_system_point.xml",
         "views/menu.xml",
         "views/snippets.xml",

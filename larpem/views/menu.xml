@@ -7,6 +7,7 @@
     <!--Sub menu-->
 
     <menuitem id="menu" name="Menu" sequence="1" parent="larpem" />
+    <menuitem id="restaurant" name="Restaurant" sequence="1" parent="larpem" />
 
     <!--Child menu-->
 
@@ -18,6 +19,14 @@
         action="larpem_banque_compte_banque_compte_action_window"
         sequence="2"
         parent="menu"
+    />
+
+    <menuitem
+        id="resto_commande_menu"
+        name="Commande du restaurant"
+        action="larpem_resto_commande_action_window"
+        sequence="1"
+        parent="restaurant"
     />
 
     <menuitem
