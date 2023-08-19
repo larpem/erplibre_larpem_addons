@@ -18,9 +18,9 @@
                     <group>
                         <field name="type" />
                     </group>
-<!--                    <group>-->
-<!--                        <field name="category_paiement" />-->
-<!--                    </group>-->
+                    <group>
+                        <field name="repas" widget="many2many_tags" />
+                    </group>
                     <group>
                         <field name="paye" />
                     </group>

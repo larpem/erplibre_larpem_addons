@@ -1,7 +1,7 @@
 from odoo import _, api, fields, models
 
 
-class LarpemSystemPoint(models.Model):
+class LarpemRestoCommande(models.Model):
     _name = "larpem.resto.commande"
     _description = "Restaurant LARPEM"
 
@@ -16,6 +16,8 @@ class LarpemSystemPoint(models.Model):
         required=True,
         default="Samedi soir",
     )
+
+    repas = fields.Many2many(comodel_name="larpem.resto.repas")
 
     type = fields.Selection(
         selection=[("Payé", "Payé"), ("Employé", "Employé"),
