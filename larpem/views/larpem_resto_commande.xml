@@ -96,6 +96,8 @@
                 <filter domain="[('name','!=',False)]" name="name" string="Avec nom" />
                 <filter domain="[('|'), ('name','=',False), ('name','=','')]" name="sans nom" string="Sans nom" />
                 <filter domain="[('paye','=',False)]" name="non_paye" string="Non payé" />
+                <filter domain="[('commande_recu','=',True)]" name="commande_recu_oui" string="Est servi" />
+                <filter domain="[('commande_recu','=',False)]" name="commande_recu_non" string="N'est pas servi" />
             </search>
         </field>
     </record>
@@ -116,5 +118,6 @@
         name="Commande du restaurant"
         res_model="larpem.resto.commande"
         view_mode="kanban,tree,pivot,graph,form"
+        context="{'search_default_commande_recu_non': 1}"
     />
 </odoo>

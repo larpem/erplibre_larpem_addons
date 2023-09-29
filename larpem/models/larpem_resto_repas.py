@@ -6,3 +6,7 @@ class LarpemRestoRepas(models.Model):
     _description = "Restaurant LARPEM"
 
     name = fields.Char(string="Repas", help="Repas fait.")
+
+    active = fields.Boolean(default=True)
+
+    price = fields.Float(string="Prix")

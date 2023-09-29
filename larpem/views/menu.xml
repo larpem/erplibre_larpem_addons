@@ -6,7 +6,7 @@
 
     <!--Sub menu-->
 
-    <menuitem id="menu" name="Menu" sequence="1" parent="larpem" />
+    <menuitem id="menu" name="Menu" sequence="2" parent="larpem" />
     <menuitem id="restaurant" name="Restaurant" sequence="1" parent="larpem" />
 
     <!--Child menu-->
